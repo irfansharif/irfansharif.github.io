@@ -55,7 +55,7 @@ a {
     text-decoration: none;
 }
 
-h1, h2 { margin: 0; }
+h1, h2, h3 { margin: 0; }
 
 h1 {
 	font-size: 80px;
@@ -71,6 +71,14 @@ h2 {
 	line-height: 1em;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
+	color: #161a1b;
+}
+
+h3 {
+	font-size: 18px;
+	font-weight: 800;
+	line-height: 1em;
+	letter-spacing: 0.2em;
 	color: #161a1b;
 }
 
@@ -959,4 +967,26 @@ h2 {
 		border-radius: 10px;
 		padding: 25px 45px;
 	}
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }

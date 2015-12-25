@@ -70,7 +70,7 @@
                 <li class="layer" data-depth="0.20">
                     <div class="title">
                         <h2>
-                            Irfan Sharif
+                            Electrical & Computer Engineering Student, Software Option
                         </h2>
                         <span class="line"></span>
                     </div>
@@ -84,14 +84,18 @@
 
                 <li class="layer" data-depth="0.30">
                     <div class="hero">
-                        <h1 id="countdown">
-                            Coming soon!
+                        <h1 id="countdown_new">
+                           Irfan Sharif
                         </h1>
 
-                        <p class="sub-title">
-                            Coming soon!
+                        <h3>
+                          I focus my research on
+                            <div id="substituted"></div>
+                            <br>Read more about them here
+                        </h3>
+                  </div>
+                         <p class="sub-title">
                         </p>
-                    </div>
                 </li>
                 <!-- Flakes -->
 
@@ -173,8 +177,9 @@
                                 <a class="file-pdf-o" href="irfan-sharif-résumé.pdf"><i class="fa fa-file-pdf-o"></i></a>
                             </li>
                         </ul>
-                        Contact me
-                        <a class="mail" href="mailto:i4sharif@uwaterloo.ca">i4sharif@uwaterloo.ca</a>
+                                    <a class="mail" href="mailto:irfan.sharif@uwaterloo.ca"> <font color="black"> 
+                                     Contact me: irfan.sharif@uwaterloo.ca </font> </a>
+
                     </div>
                 </li>
             </ul>
@@ -185,5 +190,31 @@
         <script src="js/jquery.countdown.min.js"></script> 
         <script src="js/main.js"></script>
 
+        <script src="http://cdn.jsdelivr.net/theaterjs/latest/theater.min.js"></script>
+        <script>
+          var theater = theaterJS()
+          theater
+            .on('type:start, erase:start', function () {
+              // add a class to actor's dom element when he starts typing/erasing
+              var  actor = theater.getCurrentActor()
+              actor.$element.classList.add('is-typing')
+            })
+            .on('type:end, erase:end', function () {
+              // and then remove it when he's done
+              var actor = theater.getCurrentActor()
+              actor.$element.classList.remove('is-typing')
+            })
+
+          theater
+            .addActor('substituted')
+
+          theater
+            .addScene('substituted:Boolean SAT solvers', 400)
+            .addScene('substituted:Artificial neural networks', 400)
+            .addScene('substituted:Competitive programming', 400)
+            .addScene('substituted:Lambda calculus ', 400)
+            .addScene('substituted:functional programming paradigms', 400)
+            .addScene(theater.replay)
+        </script>
     </body>
 </html>
