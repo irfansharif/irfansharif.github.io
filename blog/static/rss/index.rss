@@ -1,0 +1,82 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>λ</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Fri, 25 Dec 2015 10:37:06 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Testing Ghost features</title><description>&lt;p&gt;Code snippets: &lt;code&gt;MOV R3, #0xDEAD&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id="subheadings"&gt;Subheadings&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;italics&lt;/em&gt; &amp;amp; &lt;strong&gt;bold&lt;/strong&gt;, a list:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Item number one&lt;/li&gt;
+&lt;li&gt;Item number two
+&lt;ul&gt;&lt;li&gt;A nested item&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;A final item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;or with numbers!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Remember to buy some milk  &lt;/li&gt;
+&lt;li&gt;Drink the milk  &lt;/li&gt;
+&lt;li&gt;Tweet that I remembered to buy the milk, and drank it&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="subsubheadings"&gt;Sub-subheadings&lt;/h3&gt;
+
+&lt;p&gt;URL, like &lt;a href="http://irfansharif.com"&gt;http://irfansharif.&lt;/a&gt;&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">1a7cbbca-a1a5-4dae-8ac5-533b88ce39b0</guid><category>Getting Started</category><dc:creator>Irfan Sharif</dc:creator><pubDate>Wed, 23 Dec 2015 11:51:49 GMT</pubDate><content:encoded>&lt;p&gt;Code snippets: &lt;code&gt;MOV R3, #0xDEAD&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id="subheadings"&gt;Subheadings&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;italics&lt;/em&gt; &amp;amp; &lt;strong&gt;bold&lt;/strong&gt;, a list:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Item number one&lt;/li&gt;
+&lt;li&gt;Item number two
+&lt;ul&gt;&lt;li&gt;A nested item&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;A final item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;or with numbers!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Remember to buy some milk  &lt;/li&gt;
+&lt;li&gt;Drink the milk  &lt;/li&gt;
+&lt;li&gt;Tweet that I remembered to buy the milk, and drank it&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="subsubheadings"&gt;Sub-subheadings&lt;/h3&gt;
+
+&lt;p&gt;URL, like &lt;a href="http://irfansharif.com"&gt;http://irfansharif.com&lt;/a&gt; - it'll automatically be linked up. Customised anchor text, here's a link to my personal &lt;a href="http://irfansharif.com"&gt;website&lt;/a&gt;. &lt;/p&gt;
+
+&lt;h3 id="images"&gt;Images&lt;/h3&gt;
+
+&lt;p&gt;URL of the image you want to include in your article &lt;br&gt;
+&lt;img src="https://ghost.org/images/ghost.png" alt="The Ghost Logo"&gt;&lt;/p&gt;
+
+&lt;p&gt;Descriptive placeholder and keep writing.  &lt;/p&gt;
+
+&lt;h3 id="quoting"&gt;Quoting&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ghost - Just a blogging platform&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id="workingwithcode"&gt;Working with Code&lt;/h3&gt;
+
+&lt;p&gt;Write inline &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; blocks really easily with back ticks. 4 spaces of indentation for something more comprehensive:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.awesome-thing {
+    display: block;
+    width: 100%;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="readyforabreak"&gt;Ready for a Break?&lt;/h3&gt;
+
+&lt;p&gt;Throw 3 or more dashes down on any new line and you've got yourself a fancy new divider&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3 id="advancedusage"&gt;Advanced Usage&lt;/h3&gt;
+
+&lt;p&gt;you can write plain old HTML and it'll still work! Very flexible.&lt;/p&gt;
+
+&lt;p&gt;&lt;input type="text" placeholder="I'm an input field!"&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
