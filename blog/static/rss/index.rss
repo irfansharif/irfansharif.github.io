@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>λ</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Fri, 25 Dec 2015 10:37:06 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Testing Ghost features</title><description>&lt;p&gt;Code snippets: &lt;code&gt;MOV R3, #0xDEAD&lt;/code&gt;.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>λ</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Fri, 25 Dec 2015 11:51:42 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Testing Ghost features</title><description>&lt;p&gt;Code snippets: &lt;code&gt;MOV R3, #0xDEAD&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id="subheadings"&gt;Subheadings&lt;/h2&gt;
 
@@ -79,4 +79,15 @@
 
 &lt;p&gt;you can write plain old HTML and it'll still work! Very flexible.&lt;/p&gt;
 
-&lt;p&gt;&lt;input type="text" placeholder="I'm an input field!"&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;input type="text" placeholder="I'm an input field!"&gt;&lt;/p&gt;
+
+&lt;p&gt;Syntax highlighting now works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-prettyprint lang-cpp"&gt;int = 42;  
+double = 42.0;  
+std::string hello = "Hello World!";
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$LaTeX$ supported:&lt;/p&gt;
+
+&lt;p&gt;$$\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi}{6}$$&lt;/p&gt;</content:encoded></item></channel></rss>
