@@ -1,8 +1,233 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>λ</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Fri, 25 Dec 2015 11:51:42 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Testing Ghost features</title><description>&lt;p&gt;Code snippets: &lt;code&gt;MOV R3, #0xDEAD&lt;/code&gt;.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>λ</title><description>On matters computational</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Mon, 28 Dec 2015 03:08:13 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Compilers &amp; Recursion</title><description>&lt;p&gt;What's computable by a recursive model is computable by an iterative one and vice versa. One of the implications of the &lt;strong&gt;Church-Turing&lt;/strong&gt; thesis is that &lt;em&gt;any&lt;/em&gt; recursive function can be re-implemented in an iterative manner, easy to realize if we consider the callstack in memory to be emulated within the&lt;/p&gt;</description><link>http://localhost:2368/compile/</link><guid isPermaLink="false">5fee3215-3fa7-4421-8e8f-2d2d560577a2</guid><dc:creator>Irfan Sharif</dc:creator><pubDate>Mon, 28 Dec 2015 03:04:49 GMT</pubDate><content:encoded>&lt;p&gt;What's computable by a recursive model is computable by an iterative one and vice versa. One of the implications of the &lt;strong&gt;Church-Turing&lt;/strong&gt; thesis is that &lt;em&gt;any&lt;/em&gt; recursive function can be re-implemented in an iterative manner, easy to realize if we consider the callstack in memory to be emulated within the recursive procedure itself.&lt;/p&gt;
+
+&lt;p&gt;One of the very many challenges faced when designing a compiler is according it the ability to compile recursive programs into machine code. We will now explore the procedure of &lt;em&gt;stripping&lt;/em&gt; out the recursion within a given recursive procedure considering the following recursive implementation of a preorder traversal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+    if ( node ) {
+        visit( node );
+        traverse( node-&amp;gt;left );
+        traverse( node-&amp;gt;right );
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;End-recursion removal&lt;/em&gt;, as the name suggests, is the systematic removal of the recursive call at the end of a procedure with no code following it. As in the case above, the second call to &lt;code&gt;traverse&lt;/code&gt; is made with &lt;code&gt;node-&amp;gt;right&lt;/code&gt;, when that call is completed the current invocation of &lt;code&gt;traverse&lt;/code&gt; is also completed. This same sequence of events can however be emulated using a &lt;code&gt;goto&lt;/code&gt; instead giving us the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+
+ l: if ( node ) {
+        visit( node );
+        traverse( node-&amp;gt;left );
+        node = node-&amp;gt;right;
+        goto l;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Removing the second recursive call is slightly more tedious in having to take the approach as stated above where we emulate the callstack within the procedure itself. Most compilers use the following sequence of actions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Save current state (current values of local variables)  &lt;/li&gt;
+&lt;li&gt;Save the address of the next instruction (i.e. the instruction directly after the recursive call as stored in computer memory)  &lt;/li&gt;
+&lt;li&gt;Set local variables to parameters needed by the procedure and then branch to the beginning of the procedure&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;When exiting from the procedure:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Retrieve most recently saved state and restore local variables to the retrieved state  &lt;/li&gt;
+&lt;li&gt;Retrieve most recently saved 'next instruction address' and branch to address pointed to by the pointer retrieved&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To this end it can be readily seen why a stack is the most commonly used data structure and in adopting this approach we derive the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+  l: if ( node ) {
+        visit( node );
+        state_stack.push( node );
+        next_instruction_stack.push( r );
+        node = node-&amp;gt;left;
+        goto l;
+  r:    node = node-&amp;gt;right;
+        goto l;
+    }
+    if( !state_stack.empty() ) {
+        node = state_stack.pop();
+        next_instruction = next_instruction_stack.pop();
+        goto next_instruction;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The additional &lt;code&gt;if&lt;/code&gt; condition relates to exiting from the procedure retrieving and restoring most recently saved state, branch to the retrieved next instruction. The &lt;code&gt;state_stack.empty()&lt;/code&gt; condition is triggered towards the completion of the very first invocation of the &lt;code&gt;traverse&lt;/code&gt; method. The point to note here is that the placement of this section of the code is such that it appears towards the end of the function.&lt;/p&gt;
+
+&lt;p&gt;The label &lt;code&gt;r&lt;/code&gt; was initially introduced to specify the address of the instruction address following the recursive call, the derivation above can be dramatically simplified realizing the return instruction is &lt;code&gt;r&lt;/code&gt;  throughout therefore altogether removing &lt;code&gt;next_instruction_stack&lt;/code&gt;, &lt;code&gt;next_instruction&lt;/code&gt; and simply adding a &lt;code&gt;goto r&lt;/code&gt;. Simplifying further:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+  l: if ( node ) {
+        visit( node );
+        state_stack.push( node );
+        node = node-&amp;gt;left;
+        goto l;
+  r:    node = node-&amp;gt;right;
+        goto l;
+    }
+    if( !state_stack.empty() ) {
+        node = state_stack.pop();
+        goto r;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The recursion now, for all intents and purpose, has been completely removed leaving us with a morass of &lt;code&gt;goto&lt;/code&gt;'s forming a rather obfuscated program. These too however can be mechanically removed by identifying that the label &lt;code&gt;r&lt;/code&gt;, the subsequent code up until the next &lt;code&gt;goto&lt;/code&gt; is effectively surrounded by &lt;code&gt;goto&lt;/code&gt;'s therefore simply moving the encapsulated code and eliminating the &lt;code&gt;r&lt;/code&gt; label effectively gives us the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+  l: if ( node ) {
+        visit( node );
+        state_stack.push( node );
+        node = node-&amp;gt;left;
+        goto l;
+    }
+    if( !state_stack.empty() ) {
+        node = state_stack.pop();
+        node = node-&amp;gt;right;
+        goto l;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also identify that &lt;code&gt;node&lt;/code&gt; is reassigned to &lt;code&gt;node-&amp;gt;right&lt;/code&gt; each time it's popped off &lt;code&gt;state_stack&lt;/code&gt;, we can simplify this by simply pushing &lt;code&gt;node-&amp;gt;right&lt;/code&gt; onto the &lt;code&gt;state_stack&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+  l: if ( node ) {
+        visit( node );
+        state_stack.push( node-&amp;gt;right );
+        node = node-&amp;gt;left;
+        goto l;
+    }
+    if( !state_stack.empty() ) {
+        node = state_stack.pop();
+        goto l;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first &lt;code&gt;if&lt;/code&gt; function with the unconditional branch at the end is effectively a &lt;code&gt;while&lt;/code&gt; loop and can be written to be as so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+  l: while ( node ) {
+        visit( node );
+        state_stack.push( node-&amp;gt;right );
+        node = node-&amp;gt;left;
+    }
+    if( !state_stack.empty() ) {
+        node = state_stack.pop();
+        goto l;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the cost of an extra push to the stack, moving the while loop by the addition of an extra label &lt;code&gt;t&lt;/code&gt; and a corresponding &lt;code&gt;goto&lt;/code&gt; we can transform the above into the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+    state_stack.push( node );
+ t: if( !state_stack.empty() ) {
+        node = state_stack.pop();
+        while ( node ) {
+            visit( node );
+            state_stack.push( node-&amp;gt;right );
+            node = node-&amp;gt;left;
+        }
+        goto t;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;if&lt;/code&gt; statement ending with the unconditional branch is the same as we encountered earlier enabling us to change it into a &lt;code&gt;while&lt;/code&gt; loop as above eliminating &lt;code&gt;t&lt;/code&gt; and it's corresponding &lt;code&gt;goto&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+    state_stack.push( node );
+    while( !state_stack.empty() ) {
+        node = state_stack.pop();
+        while ( node ) {
+            visit( node );
+            state_stack.push( node-&amp;gt;right );
+            node = node-&amp;gt;left;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;while&lt;/code&gt; loop within a &lt;code&gt;while&lt;/code&gt; loop structure can further be simplified at the cost of additional pushes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language- prettyprint lang-cpp"&gt;void traverse(Node* node)  
+{
+    state_stack.push( node );
+    while( !state_stack.empty() ) {
+        node = state_stack.pop();
+        if ( node ) {
+            visit( node );
+            state_stack.push( node-&amp;gt;right );
+            state_stack.push( node-&amp;gt;left );
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We end with a concise readable program, completely iterative in nature. The procedure belabored above is one most compilers follow strictly (the points enumerated above), though more complicated in the general case the example above should provide sufficient an insight into compiler design considerations.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: in C++ the &lt;code&gt;std::stack&lt;/code&gt;'s &lt;code&gt;pop&lt;/code&gt; method is a &lt;code&gt;void&lt;/code&gt; return type but we chose to include it in this manner from brevity and conciseness. Also the following is omitted:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-prettyprint lang-cpp"&gt;#include &amp;lt;stack&amp;gt; 
+std::stack&amp;lt;Node*&amp;gt; state_stack;  
+std::stack&amp;lt;int*&amp;gt; next_instruction_stack;  
+int* next_instruction;
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Blog Functionality</title><description>&lt;p&gt;Listed below are the multiple customisations I added to the framework to better suit my purposes. Most directly arise from the &lt;code&gt;Markdown&lt;/code&gt; standard. Others include $LaTeX$ and &lt;em&gt;syntax highlighting&lt;/em&gt; &lt;/p&gt;
+
+&lt;h1 id="headings"&gt;Headings&lt;/h1&gt;
 
 &lt;h2 id="subheadings"&gt;Subheadings&lt;/h2&gt;
 
-&lt;p&gt;&lt;em&gt;italics&lt;/em&gt; &amp;amp; &lt;strong&gt;bold&lt;/strong&gt;, a list:&lt;/p&gt;
+&lt;h3 id="subsubheadings"&gt;Sub-subheadings&lt;/h3&gt;
+
+&lt;h4 id="subsubsubheadings"&gt;Sub-sub-subheadings&lt;/h4&gt;
+
+&lt;h5 id="subsubsubsubheadings"&gt;Sub-sub-sub-subheadings&lt;/h5&gt;
+
+&lt;h6 id="subsubsubsubsubheadings"&gt;Sub-sub-sub-sub-subheadings&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;Bold&lt;/strong&gt;, &lt;em&gt;italics&lt;/em&gt;, a list:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Item number one&lt;/li&gt;
+&lt;li&gt;Item number two
+&lt;ul&gt;&lt;li&gt;A nested item&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;A final&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/additional-blog-features/</link><guid isPermaLink="false">2be249bf-e533-48de-8298-addc98ca8bd6</guid><dc:creator>Irfan Sharif</dc:creator><pubDate>Mon, 28 Dec 2015 03:04:22 GMT</pubDate><content:encoded>&lt;p&gt;Listed below are the multiple customisations I added to the framework to better suit my purposes. Most directly arise from the &lt;code&gt;Markdown&lt;/code&gt; standard. Others include $LaTeX$ and &lt;em&gt;syntax highlighting&lt;/em&gt; &lt;/p&gt;
+
+&lt;h1 id="headings"&gt;Headings&lt;/h1&gt;
+
+&lt;h2 id="subheadings"&gt;Subheadings&lt;/h2&gt;
+
+&lt;h3 id="subsubheadings"&gt;Sub-subheadings&lt;/h3&gt;
+
+&lt;h4 id="subsubsubheadings"&gt;Sub-sub-subheadings&lt;/h4&gt;
+
+&lt;h5 id="subsubsubsubheadings"&gt;Sub-sub-sub-subheadings&lt;/h5&gt;
+
+&lt;h6 id="subsubsubsubsubheadings"&gt;Sub-sub-sub-sub-subheadings&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;Bold&lt;/strong&gt;, &lt;em&gt;italics&lt;/em&gt;, a list:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Item number one&lt;/li&gt;
@@ -11,53 +236,40 @@
 &lt;li&gt;A final item&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;or with numbers!&lt;/p&gt;
+&lt;p&gt;or with numbers:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Remember to buy some milk  &lt;/li&gt;
-&lt;li&gt;Drink the milk  &lt;/li&gt;
-&lt;li&gt;Tweet that I remembered to buy the milk, and drank it&lt;/li&gt;
+&lt;li&gt;Number one  &lt;/li&gt;
+&lt;li&gt;Number two  &lt;/li&gt;
+&lt;li&gt;Number three&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;h3 id="subsubheadings"&gt;Sub-subheadings&lt;/h3&gt;
-
-&lt;p&gt;URL, like &lt;a href="http://irfansharif.com"&gt;http://irfansharif.&lt;/a&gt;&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">1a7cbbca-a1a5-4dae-8ac5-533b88ce39b0</guid><category>Getting Started</category><dc:creator>Irfan Sharif</dc:creator><pubDate>Wed, 23 Dec 2015 11:51:49 GMT</pubDate><content:encoded>&lt;p&gt;Code snippets: &lt;code&gt;MOV R3, #0xDEAD&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id="subheadings"&gt;Subheadings&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;italics&lt;/em&gt; &amp;amp; &lt;strong&gt;bold&lt;/strong&gt;, a list:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Item number one&lt;/li&gt;
-&lt;li&gt;Item number two
-&lt;ul&gt;&lt;li&gt;A nested item&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;A final item&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;or with numbers!&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Remember to buy some milk  &lt;/li&gt;
-&lt;li&gt;Drink the milk  &lt;/li&gt;
-&lt;li&gt;Tweet that I remembered to buy the milk, and drank it&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id="subsubheadings"&gt;Sub-subheadings&lt;/h3&gt;
 
 &lt;p&gt;URL, like &lt;a href="http://irfansharif.com"&gt;http://irfansharif.com&lt;/a&gt; - it'll automatically be linked up. Customised anchor text, here's a link to my personal &lt;a href="http://irfansharif.com"&gt;website&lt;/a&gt;. &lt;/p&gt;
 
 &lt;h3 id="images"&gt;Images&lt;/h3&gt;
 
 &lt;p&gt;URL of the image you want to include in your article &lt;br&gt;
-&lt;img src="https://ghost.org/images/ghost.png" alt="The Ghost Logo"&gt;&lt;/p&gt;
+&lt;img src="https://www.bhmpics.com/walls/3d_low_poly_abstract-wide.jpg" alt="Abstract Poly"&gt;&lt;/p&gt;
 
 &lt;p&gt;Descriptive placeholder and keep writing.  &lt;/p&gt;
 
 &lt;h3 id="quoting"&gt;Quoting&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Ghost - Just a blogging platform&lt;/p&gt;
+  &lt;p&gt;Science is what we understand well enough to explain to a computer. Art is everything else we do. - Donald Knuth&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;h3 id="divider"&gt;Divider&lt;/h3&gt;
+
+&lt;p&gt;Throw 3 or more dashes down on any new line and you've got yourself a fancy new divider&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3 id="advancedusage"&gt;Advanced Usage&lt;/h3&gt;
+
+&lt;p&gt;Plain old HTML:&lt;/p&gt;
+
+&lt;p&gt;&lt;input type="text" size="28" placeholder="Inject code to try cross-site scripting"&gt;&lt;/p&gt;
 
 &lt;h3 id="workingwithcode"&gt;Working with Code&lt;/h3&gt;
 
@@ -69,17 +281,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id="readyforabreak"&gt;Ready for a Break?&lt;/h3&gt;
-
-&lt;p&gt;Throw 3 or more dashes down on any new line and you've got yourself a fancy new divider&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;h3 id="advancedusage"&gt;Advanced Usage&lt;/h3&gt;
-
-&lt;p&gt;you can write plain old HTML and it'll still work! Very flexible.&lt;/p&gt;
-
-&lt;p&gt;&lt;input type="text" placeholder="I'm an input field!"&gt;&lt;/p&gt;
+&lt;p&gt;Code snippets: &lt;code&gt;MOV R3, #0xDEAD&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Syntax highlighting now works:&lt;/p&gt;
 
