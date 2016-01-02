@@ -1,4 +1,135 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>λ</title><description>On matters computational</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Sat, 02 Jan 2016 09:36:44 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Compilers &amp; Recursion</title><description>&lt;p&gt;What's computable by a recursive model is computable by an iterative one and vice versa. One of the implications of the &lt;strong&gt;Church-Turing&lt;/strong&gt; thesis is that &lt;em&gt;any&lt;/em&gt; recursive function can be re-implemented in an iterative manner, easy to realize if we consider the callstack in memory to be emulated within the&lt;/p&gt;</description><link>http://localhost:2368/compile/</link><guid isPermaLink="false">5fee3215-3fa7-4421-8e8f-2d2d560577a2</guid><dc:creator>Irfan Sharif</dc:creator><pubDate>Mon, 28 Dec 2015 03:04:49 GMT</pubDate><content:encoded>&lt;p&gt;What's computable by a recursive model is computable by an iterative one and vice versa. One of the implications of the &lt;strong&gt;Church-Turing&lt;/strong&gt; thesis is that &lt;em&gt;any&lt;/em&gt; recursive function can be re-implemented in an iterative manner, easy to realize if we consider the callstack in memory to be emulated within the recursive procedure itself.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>λ</title><description>On matters computational</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Sat, 02 Jan 2016 09:40:17 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Introduction to Lambda Calculus (Part 1)</title><description>&lt;p&gt;Alonzo Church's notation for arbitrary functions, $\lambda$-calculus (“lambda calculus”), forms the mathematical foundations for functional programming languages such as &lt;em&gt;ML, Miranda, Lisp and Haskell&lt;/em&gt;. One of the projects I've taken on this term is building the compiler and interpreted programming language based entirely and uncompromisingly on $\lambda$-calculus in&lt;/p&gt;</description><link>http://localhost:2368/lambda-calculus-1/</link><guid isPermaLink="false">5eed2153-c0a3-4ecf-a6af-8be375c76afe</guid><category>functional programming</category><category>compilers</category><dc:creator>Irfan Sharif</dc:creator><pubDate>Sat, 02 Jan 2016 09:39:41 GMT</pubDate><content:encoded>&lt;p&gt;Alonzo Church's notation for arbitrary functions, $\lambda$-calculus (“lambda calculus”), forms the mathematical foundations for functional programming languages such as &lt;em&gt;ML, Miranda, Lisp and Haskell&lt;/em&gt;. One of the projects I've taken on this term is building the compiler and interpreted programming language based entirely and uncompromisingly on $\lambda$-calculus in that simple arithmetic such as &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-prettyprint lang-node"&gt;&amp;gt; 1 + 2
+= 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would be instead expressed as &lt;em&gt;Church Numerals&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;$$\lambda fx.(((\lambda fx.f\ x) f)\ ( ((\lambda fx.f\ (f\ x)) f)\ x))$$
+$$\equiv (\lambda fx.(f\ (f\ (f\ x))))$$&lt;/p&gt;
+
+&lt;p&gt;therefore:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;λfx.(((λfx.f x)f) (((λfx.f (f x))f) x))
+= (λfx.(f (f (f x))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id="expressionsindlambdadcalculus"&gt;Expressions in $\lambda$-calculus&lt;/h6&gt;
+
+&lt;p&gt;$\lambda$-calculus is in effect mathematical notation designed to express functions, under this notation expressions are written in strict prefix form and function with input arguments simply written next to each other without brackets around the argument. To express $cos(x)$, (i.e. $x \mapsto cos(x)$), we would simply denote this as $cos\ x$. Functions with multiple arguments are simply lined up after the function,  $x + y$  (i.e. $x, y \mapsto x + y$) becomes $+\ x\ y$ ($+$ is a $\lambda$-term/function to be defined later, can be thought of a binary function accepting two inputs). Brackets are employed to enforce special grouping order, where we would normally write $cos(x) + sin(x)$, the $\lambda$-calculus formulation is $+\ (cos\ x)\ (sin\ x)$.&lt;/p&gt;
+
+&lt;h6 id="functionsindlambdadcalculus"&gt;Functions in $\lambda$-calculus&lt;/h6&gt;
+
+&lt;p&gt;Let us consider an expression containing variable $x$, one can form a function by considering the mapping from the variable to the resulting evaluation of the expression, the expression itself forming the function body. Function formation, in standard mathematics, is sometimes written as an equation, $f(x) = tan(x)$ or as the mapping $x \mapsto tan(x)$. $\lambda$-calculus provides a notation dispensing the need to name the given function (as in $f$ in $f(x)$). First taking the $\lambda$-calculus notation equivalent of the expression, we rewrite $tan(x)$ into $tan\ x$. We then form the $\lambda$-calculus equivalent of a function by preceding it with $\lambda x.$. We obtain: $\lambda x. tan x$. $\lambda$ (“lambda”) has a role similar to the keyword &lt;code&gt;function&lt;/code&gt;/&lt;code&gt;def&lt;/code&gt; in some programming languages, it can be thought of to declare the the variables/input parameters the function utilises in the following function body. The variable(s) immediately following $\lambda$ is not part of an expression but the formal parameter(s) of the function declaration. The dot after the formal parameter introduces the function body.&lt;/p&gt;
+
+&lt;h6 id="dlambdadtermsindlambdadcalculus"&gt;$\lambda$-terms in $\lambda$-calculus&lt;/h6&gt;
+
+&lt;p&gt;Similar to designing a programming language, in a formal system we must provide clear rules for what sequence of symbols are allowable and the ways that they can be transformed. Formulating further for variables we first fix a set of letters, denoting this by $x, y$. We then inductively proceed to define what constitutes as valid $\lambda$-terms:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;if $x$ is a variable, $x$ is a valid $\lambda$-term&lt;/li&gt;
+&lt;li&gt;if $x, t$ are valid $\lambda$-terms, then $(\lambda x.t)$ is a valid $\lambda$-term ($\lambda$-&lt;em&gt;abstraction&lt;/em&gt;) &lt;/li&gt;
+&lt;li&gt;if $f, x$ are valid lambda terms, then $(f\ x)$  is a valid $\lambda$-term ( $\lambda$-&lt;em&gt;application&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With the definition above and $x$, $y$ as variables/$\lambda$-terms, we determine the following to be valid lambda terms: &lt;br&gt;
+$$(\lambda x.x)$$
+$$ (y\ y)$$
+$$ ((\lambda x.x)\ (y\ y))$$ 
+$$(\lambda y.((\lambda x.x)\ (y\ y)))$$&lt;/p&gt;
+
+&lt;p&gt;So far the $\lambda$-terms above are merely symbols, by defining rules to manipulate them (reduction rules) we attach meaning. There are three rules for manipulating $\lambda$-terms:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$\alpha$-equivalence: renaming &lt;em&gt;bound&lt;/em&gt; variables, lets us convert $(\lambda x.x)$ to $(\lambda y.y)$.
+Intuitively this is akin to lexical scoping for programming:  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class="language-prettyprint lang-cpp"&gt;int x = 0;  
+int sum_function(int x, int y) {  
+  return x + y;
+}
+
+int y = sum_function(1, 3);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$\beta$-reduction captures the notion of function application. Intuitively we would like $(f\ x)$ to denote the application of function $f$ to and input $x$ (It might be tempting to think of $f$ as being strictly 'function' type and $x$ as an 'input' type like &lt;code&gt;int&lt;/code&gt; but we advise thinking of the application as to being merely applying one $\lambda$-type to another despite us describing), which in turn can then be thought of to be evaluating functions. Let us consider the following $\lambda$-term:
+$$(\lambda y.(y\ y))\ (\lambda x.x)$$ where $(\lambda y.(y\ y))$ is our 'function' $f$ with $(\lambda x.x)$, the identity function (returns whatever it's input is), as our 'input' $x$ that $f$ is applied to (i.e. $(f\ x)$).
+Evaluating this function we substitute the 'input' variable in $f$/$(\lambda y.(y\ y))$ (i.e. $y$) with the input itself (i.e. $x$/$(\lambda x.x)$) within the expression body, in doing so we then drop the $\lambda y.$ from $f$ and the $x$/$(\lambda x.x)$ in $(f\ x)$, the resulting expression is the outcome of the 'function' $f$ having being applied to $x$. We obtain:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;$$(\lambda y.(y\ y))\ (\lambda x.x)$$
+$$(\color{red}{\lambda y.}((\lambda x.x)\ (\lambda x.x)))\ \color{red}{(\lambda x.x)}$$
+$$(((\lambda x.x)\ (\lambda x.x)))$$
+$$(\lambda x.x)\ (\lambda x.x)$$
+$$(\color{red}{\lambda x.}(\lambda x.x))\ \color{red}{(\lambda x.x)}$$
+$$((\lambda x.x))$$
+$$(\lambda x.x)$$&lt;/p&gt;
+
+&lt;p&gt;Formally we define $\beta$-reduction as follows. Let $$((\lambda x.e)\ i)$$ be a valid lambda term with $e$, $i$ as valid $\lambda$-terms and $x$ as a variable. Applying $\beta$-reduction this reduces to $$e[i/x]$$ &lt;br&gt;
+where $e[i/x]$ denotes the result of replacing every occurrence of variable $x$ in expression $e$ with input $i$.&lt;/p&gt;
+
+&lt;h6 id="programmingconstructs"&gt;Programming Constructs&lt;/h6&gt;
+
+&lt;p&gt;Insofar we have only considered the subject as a purely mathematical discourse on functions, to relate it to more 'programming' constructs it is imperative that we define constructs such as numbers, arithmetic operations, booleans, conditionals and recursion within the restrictions set by $\lambda$-calculus. We will cover the standard formulation of natural numbers called &lt;em&gt;Church Numerals&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Intuition:&lt;/strong&gt; The number &lt;em&gt;n&lt;/em&gt; is &lt;em&gt;n&lt;/em&gt;-fold composition in that it takes a function returning the &lt;em&gt;n&lt;/em&gt;-th fold composite of that function. That is:
+$$\textbf{n}(f) = f \circ f \circ f\ ... \circ f$$ which we alternatively denote as $f^{\circ \textbf{n}}$.&lt;/p&gt;
+
+&lt;p&gt;Formally, &lt;br&gt;
+$$\textbf{0} \equiv f \mapsto \textbf{identity fn.} \equiv (\lambda f.(\lambda x.x)) $$
+$$\textbf{1} \equiv f \mapsto f \equiv (\lambda f.(\lambda x.(f\ x)))$$
+$$\textbf{2} \equiv f \mapsto f \mapsto f \equiv (\lambda f.(\lambda x.(f\ ( f(x)))))$$
+$$\textbf{3} \equiv f \mapsto f \mapsto f \mapsto f \equiv (\lambda f.(\lambda x.(f\ (f\ ( f(x))))))$$&lt;/p&gt;
+
+&lt;p&gt;And so on.. &lt;br&gt;
+This can be reduced to two rules to generate any number:&lt;/p&gt;
+
+&lt;p&gt;$$\textbf{0} \equiv (\lambda f.(\lambda x.x))$$&lt;/p&gt;
+
+&lt;p&gt;and if $\textbf{n}$ is a natural number,&lt;/p&gt;
+
+&lt;p&gt;$$\textbf{n + 1} \equiv \textbf{succ(n)} \equiv (\lambda f.(\lambda x.(f\ (\ (\textbf {n}\ f) x))))$$
+This makes intuitive sense in that the inner $(\textbf{n}\ f)$ takes the $\textbf{n}$-th composite of $f$,  $((\textbf{n}\ f)\ x)$ passes in $x$ to give $(f\ (f\ ...\ (f\ (f\ (f(x)))\ ...\ ))$, $f$ is then applied again to this result giving us the $(\textbf{n + 1})$-th composite.&lt;/p&gt;
+
+&lt;p&gt;Verifying this definition: &lt;br&gt;
+$$\textbf{1} \equiv \textbf{succ(0)} \equiv  (\lambda f.(\lambda x.(f\ ((\textbf {0}\ f)\ x)))) $$
+$$(\lambda f.(\lambda x.(f\ (((\lambda f.(\lambda x.x))\ f)\ x)))) $$
+$$(\lambda f.(\lambda x.(f\ ((\color{red}{\lambda f.}(\lambda x.x)\ \color{red}{f})\ x)))) $$
+$$(\lambda f.(\lambda x.(f\ ((\lambda x.x)\ x)))) $$
+$$(\lambda f.(\lambda x.(f\ ((\color{red}{\lambda x.}x)\ \color{red}{x})))) $$
+$$(\lambda f.(\lambda x.(f(x)))) \equiv \textbf{1}$$&lt;/p&gt;
+
+&lt;p&gt;$\textbf{succ(n)}$ can therefore also be thought of as to being the following $\lambda$-term:
+$$ (\lambda n.(\lambda f.(\lambda x.(f\ ((n\ f)\ x)))))$$&lt;/p&gt;
+
+&lt;p&gt;What about addition? Our defined use case, abiding pre-fix notation, would appear be $(\lambda n.(\lambda m.( +\ m\ n )))$, i.e. a function returning the $(n + m)$-th composite of it's input function. Our strategy in designing this would be a function that applies $f$ $m$ times &lt;em&gt;then&lt;/em&gt; applies it $n$ times, &lt;em&gt;then&lt;/em&gt; here meaning further composition. &lt;br&gt;
+$$ + \equiv (\lambda n.(\lambda m.(\lambda f.(\lambda x.( (n\ f) ((m\ f)\ x) ))))) $$&lt;/p&gt;
+
+&lt;p&gt;Applying this definition to attempt the arithmetic operation defined at the start of this post (&lt;code&gt;1 + 2 = 3&lt;/code&gt;), our equivalent here is &lt;br&gt;
+$(\lambda f.(\lambda x.(((\lambda f.(\lambda x.(f\ x))) f)\ ( ((\lambda f.(\lambda x.(f\ (f\ x))) f)\ x)))))\equiv (\lambda f.(\lambda x.(f\ (f\ (f\ x)))))$&lt;/p&gt;
+
+&lt;p&gt;Proving $(+\ \textbf{1}\ \textbf{2}) \equiv \textbf{3}$, we identify $+ \equiv (\lambda n.(\lambda m.(\lambda f.(\lambda x.( (n\ f) ((m\ f)\ x) )))))$ $\equiv \lambda n.\lambda m.\lambda f. \lambda x.( (n\ f) ((m\ f)\ x) )$ $\equiv \lambda nmfx.( (n\ f) ((m\ f)\ x) )$, $\textbf{1} \equiv (\lambda f.(\lambda x.(f\ x)))$ $ \equiv \lambda f.\lambda x.(f\ x)$ $ \equiv \lambda fx.(f\ x)$ and $\textbf{2} \equiv (\lambda f.(\lambda x.(f\ ( f(x)))))$ $\equiv \lambda f.\lambda x.(f\ ( f(x)))$ $\equiv \lambda fx.(f\ ( f(x))) $&lt;/p&gt;
+
+&lt;p&gt;$$(+\ \textbf{1}\ \textbf{2})$$
+$$\equiv (\lambda n.\lambda mfx.( (n\ f) ((m\ f)\ x) )\ \textbf{1}\ \textbf{2})$$
+$$\equiv (\color{red}{\lambda n.}\lambda mfx.( (\textbf{1}\ f) ((m\ f)\ x) )\ \color{red}{\textbf{1}}\ \textbf{2})$$
+$$\equiv (\lambda m.\lambda fx.( (\textbf{1}\ f) ((m\ f)\ x) )\ \textbf{2})$$
+$$\equiv (\color{red}{\lambda m.}\lambda fx.( (\textbf{1}\ f) ((\textbf{2}\ f)\ x) )\ \color{red}{\textbf{2}})$$
+$$\equiv (\lambda fx.( (\textbf{1}\ f) ((\textbf{2}\ f)\ x)))$$
+$$\equiv (\lambda fx.( (\textbf{1}\ f) (((\lambda f.\lambda x.(f\ ( f(x))))\ f)\ x)))$$
+$$\equiv (\lambda fx.( (\textbf{1}\ f) (((\color{red}{\lambda f}.\lambda x.(f\ ( f(x))))\ \color{red}{f})\ x)))$$
+$$\equiv (\lambda fx.( (\textbf{1}\ f) ((\lambda x.(f\ ( f(x))))\ x)))$$
+$$\equiv (\lambda fx.( (\textbf{1}\ f) ((\color{red}{\lambda x.}(f\ ( f(x))))\ \color{red}{x})))$$
+$$\equiv (\lambda fx.( (\textbf{1}\ f) (((f\ ( f(x))))\ ))) \equiv (\lambda fx.( ((\lambda f.(\lambda x.(f(x))))\ f) (f\ ( f(x)))))$$
+$$\equiv (\lambda fx.( ((\color{red}{\lambda f.}(\lambda x.(f(x))))\ \color{red}{f}) (f\ ( f(x)))))$$
+$$\equiv (\lambda fx.(\lambda x.(f(x)) (f\ ( f(x)))))$$
+$$\equiv (\lambda fx.(\color{red}{\lambda x.}(f((f\ ( f(x))))) \color{red}{(f\ ( f(x)))}))$$
+$$\equiv (\lambda fx.(f(f\ ( f(x))))) \equiv \textbf{3}$$&lt;/p&gt;
+
+&lt;p&gt;See? Simple and fun. We will explore other arithmetic operations including multiplication, exponentiation, subtraction, booleans and conditionals and recursion in a later post. &lt;/p&gt;</content:encoded></item><item><title>Compilers &amp; Recursion</title><description>&lt;p&gt;What's computable by a recursive model is computable by an iterative one and vice versa. One of the implications of the &lt;strong&gt;Church-Turing&lt;/strong&gt; thesis is that &lt;em&gt;any&lt;/em&gt; recursive function can be re-implemented in an iterative manner, easy to realize if we consider the callstack in memory to be emulated within the&lt;/p&gt;</description><link>http://localhost:2368/compile/</link><guid isPermaLink="false">5fee3215-3fa7-4421-8e8f-2d2d560577a2</guid><dc:creator>Irfan Sharif</dc:creator><pubDate>Mon, 28 Dec 2015 03:04:49 GMT</pubDate><content:encoded>&lt;p&gt;What's computable by a recursive model is computable by an iterative one and vice versa. One of the implications of the &lt;strong&gt;Church-Turing&lt;/strong&gt; thesis is that &lt;em&gt;any&lt;/em&gt; recursive function can be re-implemented in an iterative manner, easy to realize if we consider the callstack in memory to be emulated within the recursive procedure itself.&lt;/p&gt;
 
 &lt;p&gt;One of the very many challenges faced when designing a compiler is according it the ability to compile recursive programs into machine code. We will now explore the procedure of &lt;em&gt;stripping&lt;/em&gt; out the recursion within a given recursive procedure considering the following recursive implementation of a preorder traversal:&lt;/p&gt;
 
