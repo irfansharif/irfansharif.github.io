@@ -1,0 +1,16 @@
+<pre>
+  <code data-language='ruby'>
+Human.new(
+        id: '<a href='https://www.onename.com/thibaudgg' title='My blockchain ID'>thibaudgg</a>',
+      name: '<h1>Thibaud Guillaume-Gentil</h1>',
+      info: '<h2>Ruby/Rails Senior™ Developer</h2>',
+      work: '<h2><a href='http://www.electricfeel.com' title='ElectricFeel Mobility Systems GmbH'>ElectricFeel</a></h2>',
+      urls: %i[<a href='https://github.com/thibaudgg' title='GitHub/thibaudgg'>github</a> <a href='https://rubygems.org/profiles/thibaudgg' title='My Ruby Gems'>rubygems</a> <a href='https://twitter.com/thibaudgg' title='@thibaudgg on Twitter'>twitter</a>],
+   privacy: '<a href='https://keybase.io/thibaudgg/key.asc' title='PGP Public Key on Keybase.io'>PGP Public Key</a>',
+  contacts: %i[<a href='mailto:thibaud@thibaud.gg' title='Email me at thibaud@thibaud.gg'>email</a> <a href='imessage://thibaud@thibaud.gg' title='iMessage me at thibaud@thibaud.gg'>appleid</a> <a href='xmpp:thibaud@thibaud.gg' title='XMPP me at thibaud@thibaud.gg'>jabber</a>],
+  location: '<a href='https://maps.google.com/maps?q=La+Chaux-de-Fonds%2C+Switzerland' title='Google Maps: La Chaux-de-Fonds, Switzerland'>Switzerland</a>'
+    <%# resume: '<a href="irfan-sharif-résumé.pdf" title='Résumé' >Resume</a>' %>
+    <%# <a href='blog/static/index.html' title='Blog'>blog</a> %>
+)
+  </code>
+</pre>
