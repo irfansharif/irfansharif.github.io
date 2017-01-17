@@ -1,0 +1,24 @@
+# Permalink
+permalink: /posts/:title/
+
+name: irfansharif.github.io
+url: https://irfansharif.github.io
+
+author:
+  name: Irfan Sharif
+  email: irfan@irfansharif.io
+
+sass:
+  sass_dir: _scss
+  style: compressed
+
+gems:
+  - jemoji
+  - jekyll-mentions
+  - jekyll-feed
+
+exclude:
+  - script
+  - Gemfile
+  - Gemfile.lock
+  - vendor

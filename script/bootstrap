@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# script/bootstrap: Resolve all dependencies that the application requires to
+#                   run.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+if [ "$(uname -s)" = "Darwin" ]; then
+  echo "==> Bootstrapping Homebrew OSX environment"
+  brew update >/dev/null
+  brew bundle check &>/dev/null || brew bundle
+
+  brew bootstrap-rbenv-ruby
+fi
+
+echo "==> Installing gem dependencies…"
+bundle install --without production
