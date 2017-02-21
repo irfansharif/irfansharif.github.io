@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Irfan Sharif</title>
+    <link>https://irfansharif.github.io/blog/</link>
+    <description>Recent content on Irfan Sharif</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Feb 2016 13:56:01 -0800</lastBuildDate>
+    <atom:link href="https://irfansharif.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugo-Tufte Features</title>
+      <link>https://irfansharif.github.io/blog/post/tufte-features/</link>
+      <pubDate>Sat, 20 Feb 2016 13:56:01 -0800</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/tufte-features/</guid>
+      <description>
+
+&lt;p&gt;This is a quick demonstration post.  It serves as an example of the features
+of this theme.  One of them is \( \LaTeX \) via MathJax.
+
+
+  &lt;section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;h2 id=&#34;a-bit-about-mathematics:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;A Bit About Mathematics&lt;/h2&gt;
+
+&lt;div class=&#34;epigraph&#34;&gt;
+&lt;blockquote&gt;
+
+&lt;p&gt;&lt;p&gt;This is an example of an epigraph with some math
+\(\mathbb N \subseteq \mathbb R \)
+to start the beginning of a section.&lt;/p&gt;
+&lt;/p&gt;
+
+&lt;footer&gt;
+Shawn O&amp;#39;Hare, 
+&lt;cite&gt;Math is Fun&lt;/cite&gt;
+
+&lt;/footer&gt;
+
+&lt;blockquote&gt;
+&lt;/div&gt;
+
+
+&lt;h3 id=&#34;inline:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Inline&lt;/h3&gt;
+
+&lt;p&gt;Some inline math:
+&lt;label for=&#34;mn-example&#34; class=&#34;margin-toggle&#34;&gt;&amp;#8853;&lt;/label&gt;
+&lt;input type=&#34;checkbox&#34; id=&#34;mn-example&#34; class=&#34;margin-toggle&#34;/&gt;
+&lt;span class=&#34;marginnote&#34;&gt;This is a margin note.&lt;/span&gt;
+
+$e^{i \pi} = -1$ and \(\sqrt{-1} = i \)
+and \( a_2 = 3 \).&lt;/p&gt;
+
+&lt;h3 id=&#34;display:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Display&lt;/h3&gt;
+
+&lt;p&gt;And display math using escaped brackets &lt;code&gt;\\[&lt;/code&gt;:
+&lt;label for=&#34;error: cannot access positional params by string name&#34; class=&#34;margin-toggle sidenote-number&#34;&gt;&lt;/label&gt;
+&lt;input type=&#34;checkbox&#34; id=&#34;error: cannot access positional params by string name&#34; class=&#34;margin-toggle&#34;/&gt;
+&lt;span class=&#34;sidenote&#34;&gt;This is a sidenote!&lt;/span&gt; 
+
+\[
+  &amp;ndash; \cdot_H &amp;ndash; \colon B(G,H) \times B(H, K) \to B(G, K), \quad ([X], [Y]) \mapsto [X \times_H Y].
+\]&lt;/p&gt;
+
+&lt;h3 id=&#34;environments:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Environments&lt;/h3&gt;
+
+&lt;p&gt;Currently, certain $\LaTeX$ environments need to be escaped so that
+the markdown processor does not override MathJax.  Currently, display
+environments should be enclosed in &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tags and blank lines.
+For instance:&lt;/p&gt;
+
+&lt;p&gt;
+\begin{align*}  
+  \mu(A) &amp;= \iint_{I^2} \chi_A (x,y) \ d(x,y) 
+  = \int_I \left( \int_I  \chi_A (x,y) \ dx\right) dy 
+  = \int_I 0 \ dy= 0 \quad \text{and} \\  
+  \mu(A) &amp;=\iint_{I^2}  \chi_A (x,y) \ d(x,y) 
+  = \int_I \left(  \int_I \chi_A (x,y) \ dy \right) dx 
+  =\int_I dx = 1,
+\end{align*} 
+&lt;/p&gt;
+
+&lt;p&gt;is produced from&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;
+\begin{align*}  
+  \mu(A) &amp;amp;= \iint_{I^2} \chi_A (x,y) \ d(x,y) 
+  = \int_I \left( \int_I  \chi_A (x,y) \ dx\right) dy 
+  = \int_I 0 \ dy= 0 \quad \text{and} \\  
+  \mu(A) &amp;amp;=\iint_{I^2}  \chi_A (x,y) \ d(x,y) 
+  = \int_I \left(  \int_I \chi_A (x,y) \ dy \right) dx 
+  =\int_I dx = 1,
+\end{align*} 
+&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;blockquotes:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Blockquotes&lt;/h3&gt;
+
+&lt;p&gt;Some blockquotes.  But first, we try to manually cite via
+&lt;cite&gt;This is between cite tags and has math: \(e^x \)&lt;/cite&gt;&lt;/p&gt;
+
+&lt;blockquote cite=&#34;www.shawnohare.com&#34;&gt;
+  &lt;p&gt;This is a blockquote with two paragraphs, that employs the
+theme&amp;rsquo;s &lt;code&gt;blockquote&lt;/code&gt; shortcode. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.&lt;/p&gt;
+
+&lt;p&gt;Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.&lt;/p&gt;
+
+  &lt;footer&gt;Shawn O&amp;#39;Hare&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h3 id=&#34;new-thoughts:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;New thoughts&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&#34;newthought&#34;&gt;Sometimes a new thought&lt;/span&gt; distinguishes a section,
+as here.  There are currently two ways to create one.  One way is with raw
+HTML such as: &lt;code&gt;&amp;lt;span class=&amp;quot;newthought&amp;quot;&amp;gt;...&amp;lt;/span&amp;gt;&amp;quot;&lt;/code&gt;.  The theme also provides
+the &lt;code&gt;newthought&lt;/code&gt; shortcode.&lt;/p&gt;
+
+&lt;h3 id=&#34;code:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Code&lt;/h3&gt;
+
+&lt;p&gt;As an example of some inline code: &lt;code&gt;go test -v -short&lt;/code&gt;.
+And this is some block-code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import &amp;quot;log&amp;quot;
+
+func add(x int, y int) int {
+  log.Println(&amp;quot;We are going to take the sum of two numbers, and leave a long comment.&amp;quot;)
+  return x + y
+}
+
+func main() {
+  y := add(1, 2)
+  log.Println(y)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;figure:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Figure&lt;/h3&gt;
+
+&lt;p&gt;Below we have an example of a regular width figure.
+
+
+
+  
+    &lt;figure  class=&#34;class param&#34;&gt;
+  
+
+
+
+  &lt;label for=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;⊕&lt;/label&gt;
+  &lt;input type=&#34;checkbox&#34; id=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;
+  &lt;span class=&#34;marginnote&#34;&gt;
+  
+
+  &lt;strong&gt;The image title. &lt;/strong&gt;
+  This is the image caption.
+  &lt;a href=&#34;attribute%20link&#34;&gt;
+  Image attribution
+  &lt;/a&gt;
+
+  &lt;/span&gt;
+
+
+  &lt;a href=&#34;link&#34;&gt;
+  &lt;img src=&#34;https://raw.githubusercontent.com/edwardtufte/tufte-css/master/img/exports-imports.png&#34; alt=&#34;alt&#34;&gt;
+  &lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+
+
+
+  &lt;/section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;p&gt;And now we exhibit a margin figure.
+
+
+
+
+
+  &lt;label for=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;⊕&lt;/label&gt;
+  &lt;input type=&#34;checkbox&#34; id=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;
+  &lt;span class=&#34;marginnote&#34;&gt;
+  
+    &lt;a href=&#34;link&#34;&gt;
+    &lt;img src=&#34;https://edwardtufte.github.io/tufte-css/img/rhino.png&#34; alt=&#34;alt&#34;&gt;
+    &lt;/a&gt;
+  
+
+  &lt;strong&gt;The image title. &lt;/strong&gt;
+  This is the image caption.
+  &lt;a href=&#34;attribute%20link&#34;&gt;
+  Image attribution
+  &lt;/a&gt;
+
+  &lt;/span&gt;
+
+
+
+
+
+
+
+  &lt;/section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;p&gt;Below is a full-width figure.
+
+
+
+  
+    &lt;figure class=&#34;fullwidth&#34;&gt;
+  
+
+
+
+  &lt;a href=&#34;link&#34;&gt;
+  &lt;img src=&#34;https://edwardtufte.github.io/tufte-css/img/napoleons-march.png&#34; alt=&#34;Napoleonic wars&#34;&gt;
+  &lt;/a&gt;
+  &lt;figcaption&gt;
+
+  &lt;strong&gt;Napoleonic wars &lt;/strong&gt;
+  This the image caption.
+  &lt;a href=&#34;attribute%20link&#34;&gt;
+  Image attribution
+  &lt;/a&gt;
+
+  &lt;/figcaption&gt;
+
+
+
+
+&lt;/figure&gt;
+
+
+
+
+  &lt;/section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;p&gt;
+
+  &lt;div  class=&#34;myclass&#34;&gt;
+
+&lt;/p&gt;
+
+&lt;h2 id=&#34;a-story-about-cats:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;A Story About Cats&lt;/h2&gt;
+
+&lt;p&gt;Climb a tree, wait for a fireman jump to fireman then scratch his face sleep on dog bed, force dog to sleep on floor cat snacks, and eat prawns daintily with a claw then lick paws clean wash down prawns with a lap of carnation milk then retire to the warmest spot on the couch to claw at the fabric before taking a catnap climb a tree, wait for a fireman jump to fireman then scratch his face put toy mouse in food bowl run out of litter box at full speed . See owner, run in terror chase mice, so thinking longingly about tuna brine for eat a plant, kill a hand for wake up human for food at 4am. Human is washing you why halp oh the horror flee scratch hiss bite scratch the furniture and rub face on owner. Loves cheeseburgers see owner, run in terror chew on cable. Thug cat ignore the squirrels, you&amp;rsquo;ll never catch them anyway. Eat a plant, kill a hand find empty spot in cupboard and sleep all day so hide head under blanket so no one can see yet love to play with owner&amp;rsquo;s hair tie rub face on everything i like big cats and i can not lie. Wake up human for food at 4am stare at the wall, play with food and get confused by dust yet then cats take over the world scamper. Inspect anything brought into the house get video posted to internet for chasing red dot. Brown cats with pink ears chew foot spit up on light gray carpet instead of adjacent linoleum. I am the best wake up human for food at 4am, meow spread kitty litter all over house, for meow. Knock dish off table head butt cant eat out of my own dish jump off balcony, onto stranger&amp;rsquo;s head, chase ball of string scream at teh bath but climb leg, so unwrap toilet paper but destroy couch. Climb a tree, wait for a fireman jump to fireman then scratch his face. Leave hair everywhere swat turds around the house eat grass, throw it back up, and eat grass, throw it back up. Chase after silly colored fish toys around the house.
+
+
+  &lt;/div&gt;
+
+&lt;/p&gt;
+
+&lt;h3 id=&#34;we-really-like-cats:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;We really like cats.&lt;/h3&gt;
+
+&lt;p&gt;Yes, they are fluffy and happy.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hide Date</title>
+      <link>https://irfansharif.github.io/blog/post/nodate/</link>
+      <pubDate>Fri, 15 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/nodate/</guid>
+      <description>&lt;p&gt;Here is an example post where the date set, but hidden from display.&lt;br /&gt;
+Moreover, the reading time is also hidden.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Blockquotes</title>
+      <link>https://irfansharif.github.io/blog/post/blockquote/</link>
+      <pubDate>Mon, 19 Jan 2015 23:57:58 -0800</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/blockquote/</guid>
+      <description>
+
+&lt;p&gt;Below is a blockquote.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.&lt;/p&gt;
+
+&lt;p&gt;Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now we have nested blockquotes.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This is the first level of quoting.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This is nested blockquote.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Back to the first level.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And finally a blockquote with some markdown.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;h2 id=&#34;this-is-a-header:ab1bbd872b30db85479ebfb7576e896e&#34;&gt;This is a header.&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;This is the first list item.&lt;/li&gt;
+&lt;li&gt;This is the second list item.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Here&amp;rsquo;s some example code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;return shell_exec(&amp;quot;echo $input | $markdown_script&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Just another sample post</title>
+      <link>https://irfansharif.github.io/blog/post/new/</link>
+      <pubDate>Sat, 29 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/new/</guid>
+      <description>
+
+&lt;h2 id=&#34;first-heading:b7a73ff21accb7e89945477d6c352c48&#34;&gt;First Heading&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, consequatur aspernatur omnis iste. Voluptates, id inventore ea natus ab sed amet ipsa ratione sunt dignissimos. Soluta illum aliquid repellendus recusandae.&lt;/p&gt;
+
+&lt;h3 id=&#34;sub:b7a73ff21accb7e89945477d6c352c48&#34;&gt;Sub&lt;/h3&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, perferendis saepe voluptatem a nesciunt architecto voluptas deleniti dolor tempora quasi quidem odit rem fugit magnam minima quam dolores vel id?&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion:b7a73ff21accb7e89945477d6c352c48&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, numquam ipsa ad! Quasi, deleniti quae sint consequatur error corporis dicta inventore alias soluta dignissimos? Molestias, quia ab deserunt repellat ut.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>First Post</title>
+      <link>https://irfansharif.github.io/blog/post/old/</link>
+      <pubDate>Fri, 28 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/old/</guid>
+      <description>
+
+&lt;h2 id=&#34;sample-post-1:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;Sample Post 1&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+
+&lt;h3 id=&#34;sub-heading:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;Sub-heading&lt;/h3&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, non, ratione, molestiae illo optio quia sequi id fuga natus nihil ad architecto dolor alias ex sunt iste aperiam eius itaque.&lt;/p&gt;
+
+&lt;h2 id=&#34;foo:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;foo&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, neque, eveniet voluptate eos debitis illum qui nostrum eius maxime ratione assumenda suscipit impedit deserunt voluptatibus odio ducimus non. Ex, ratione.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About This Site</title>
+      <link>https://irfansharif.github.io/blog/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/page/about/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m Irfan Sharif, welcome to my blog.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Publications</title>
+      <link>https://irfansharif.github.io/blog/page/papers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/page/papers/</guid>
+      <description>
+
+&lt;p&gt;After each reference, &lt;em&gt;Paper&lt;/em&gt; links to papers; &lt;em&gt;Info&lt;/em&gt; to further information
+about that paper, including code and data.&lt;/p&gt;
+
+&lt;h3 id=&#34;preprints:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;Preprints&lt;/h3&gt;
+
+&lt;p&gt;Cutts CS, Eglen SJ (2016) A Bayesian framework for comparing the
+structure of spontaneous correlated activity recorded under different
+conditions. bioRxiv:037358
+&lt;a href=&#34;http://biorxiv.org/content/early/2016/01/19/037358&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ (2015) Bivariate spatial point patterns in the retina: a
+reproducible review. bioRxiv:029348
+&lt;a href=&#34;http://biorxiv.org/content/early/2015/10/16/029348&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;
+&lt;a href=&#34;http://github.com/sje30/eglen2015&#34;&gt;&lt;em&gt;Info&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Gjorgjieva J, Evers JF, Eglen S (2015) Homeostatic activity-dependent
+tuning of recurrent networks for robust propagation of
+activity. bioRxiv:033548 &lt;a href=&#34;http://biorxiv.org/content/early/2015/12/02/033548&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2016:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2016&lt;/h3&gt;
+
+&lt;p&gt;Leiwe MN, Hendry AC, Bard AD, Eglen SJ, Lowe AS, Thompson ID (2016)
+Geniculo-cortical projection diversity revealed within the mouse
+visual thalamus. PLoS One
+11:e0144846. &lt;a href=&#34;http://dx.doi.org/10.1371/journal.pone.0144846&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Charlesworth P, Morton A, Eglen SJ, Komiyama NH, Grant SGN (2016)
+Canalization of genetic and pharmacological perturbations in
+developing primary neuronal activity patterns. Neuropharmacology
+100:47–55. &lt;a href=&#34;http://dx.doi.org/10.1016/j.neuropharm.2015.07.027&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;
+&lt;a href=&#34;http://damtp.cam.ac.uk/user/sje30/papers/charlesworth2015_data.pdf&#34;&gt;&lt;em&gt;Info&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2015:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2015&lt;/h3&gt;
+
+&lt;p&gt;Hjorth JJJ, Savier E, Sterratt DC, Reber M, Eglen SJ (2015b)
+Estimating the location and size of retinal injections from orthogonal
+images of an intact retina. BMC Neurosci 16:80.
+&lt;a href=&#34;http://dx.doi.org/10.1186/s12868-015-0217-8&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;
+&lt;a href=&#34;https://github.com/Hjorthmedh/IntactEye&#34;&gt;&lt;em&gt;Info&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Budd JML, Cuntz H, Eglen SJ, Krieger P (2015) Editorial: Quantitative
+Analysis of Neuroanatomy. Front Neuroanat 9:143.
+&lt;a href=&#34;http://dx.doi.org/10.3389/fnana.2015.00143&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Hjorth JJJ, Sterratt DC, Cutts CS, Willshaw DJ, Eglen SJ (2015a)
+Quantitative assessment of computational models for retinotopic map
+formation. Dev Neurobiol 75:641–666.
+&lt;a href=&#34;http://dx.doi.org/10.1002/dneu.22241&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;
+&lt;a href=&#34;https://github.com/Hjorthmedh/RetinalMap&#34;&gt;&lt;em&gt;Info&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Charlesworth P, Cotterill E, Morton A, Grant SGN, Eglen SJ (2015)
+Quantitative differences in developmental profiles of spontaneous
+activity in cortical and hippocampal cultures. Neural Dev 10:1.
+&lt;a href=&#34;http://www.neuraldevelopment.com/content/10/1/1/&#34;&gt;&lt;em&gt;Paper&lt;/em&gt;&lt;/a&gt;
+&lt;a href=&#34;https://github.com/sje30/g2chvc&#34;&gt;&lt;em&gt;Info&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2014:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2014&lt;/h3&gt;
+
+&lt;p&gt;Cutts CS, Eglen SJ (2014) Detecting Pairwise Correlations in Spike
+Trains: An Objective Comparison of Methods and Application to the
+Study of Retinal Waves. JNeuroscience 34:14288–14303.
+[&lt;em&gt;Paper&lt;/em&gt;]()
+[&lt;em&gt;Info&lt;/em&gt;]()&lt;/p&gt;
+
+&lt;p&gt;Eglen S (2014a) Open access: sharing your data is easier than you think. Nature 510:340.
+[&lt;em&gt;Paper&lt;/em&gt;]()
+[&lt;em&gt;Info&lt;/em&gt;]()&lt;/p&gt;
+
+&lt;p&gt;Maccione A, Hennig MH, Gandolfo M, Muthmann O, van Coppenhagen J, Eglen SJ, Berdondini L, Sernagor E (2014) Following the ontogeny of retinal waves: pan-retinal recordings of population dynamics in the neonatal mouse. J Physiol 592:1545–1563.
+[&lt;em&gt;Paper&lt;/em&gt;]()
+[&lt;em&gt;Info&lt;/em&gt;]()&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ (2014b) Retinotopic Development, Models of. In: Encyclopedia of Computational Neuroscience, pp 1–4. Springer New York.
+[&lt;em&gt;Paper&lt;/em&gt;]()
+[&lt;em&gt;Info&lt;/em&gt;]()&lt;/p&gt;
+
+&lt;p&gt;Schottdorf M, Eglen SJ, Wolf F, Keil W (2014) Can retinal ganglion cell dipoles seed iso-orientation domains in the visual cortex? PLoS One 9:e86139.
+[&lt;em&gt;Paper&lt;/em&gt;]()
+[&lt;em&gt;Info&lt;/em&gt;]()&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ, Weeks M, Jessop M, Simonotto J, Jackson T, Sernagor E (2014)
+A data repository and analysis framework for spontaneous neural
+activity recordings in developing retina. Gigascience 3:3.
+[&lt;em&gt;Paper&lt;/em&gt;]()
+[&lt;em&gt;Info&lt;/em&gt;]()&lt;/p&gt;
+
+&lt;h3 id=&#34;2013:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2013&lt;/h3&gt;
+
+&lt;p&gt;Gjorgjieva J, Berni J, Evers JF, Eglen SJ (2013) Neural circuits for
+peristaltic wave propagation in crawling Drosophila larvae: analysis
+and modeling. Front Comput Neurosci 7:24.&lt;/p&gt;
+
+&lt;h3 id=&#34;2012:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2012&lt;/h3&gt;
+
+&lt;p&gt;Hore VRA, Troy JB, Eglen SJ (2012) Parasol cell mosaics are unlikely
+to drive the formation of structured orientation maps in primary
+visual cortex. Vis Neurosci 29:283–299.&lt;/p&gt;
+
+&lt;p&gt;Keeley PW, Sliff BJ, Lee SCS, Fuerst PG, Burgess RW, Eglen SJ, Reese
+BE (2012) Neuronal clustering and fasciculation phenotype in Dscam-
+and Bax-deficient mouse retinas. J Comp Neurol 520:1349–1364.&lt;/p&gt;
+
+&lt;p&gt;Chabrol FP, Eglen SJ, Sernagor E (2012) GABAergic control of retinal
+ganglion cell dendritic development. Neuroscience 227:30–43.&lt;/p&gt;
+
+&lt;h3 id=&#34;2011:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2011&lt;/h3&gt;
+
+&lt;p&gt;Gjorgjieva J, Eglen SJ (2011) Modeling developmental patterns of
+spontaneous activity. Curr Opin Neurobiol 21:679–684.&lt;/p&gt;
+
+&lt;h3 id=&#34;2009:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2009&lt;/h3&gt;
+
+&lt;p&gt;Gjorgjieva J, Toyoizumi T, Eglen SJ (2009) Burst-time-dependent plasticity robustly guides ON/OFF segregation in the lateral geniculate nucleus. PLoS Comput Biol 5:e1000618.&lt;/p&gt;
+
+&lt;p&gt;Godfrey KB, Eglen SJ, Swindale NV (2009) A multi-component model of the developing retinocollicular pathway incorporating axonal and synaptic growth. PLoS Comput Biol 5:e1000600.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ (2009) A Quick Guide to Teaching R Programming to Computational Biology Students. PLoS Comput Biol 5:e1000482.&lt;/p&gt;
+
+&lt;h3 id=&#34;2008:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2008&lt;/h3&gt;
+
+&lt;p&gt;Eglen SJ, Lofgreen DD, Raven MA, Reese BE (2008) Analysis of spatial relationships in three dimensions: tools for the study of nerve cell patterning. BMC Neurosci 9:68.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ, Wong JCT (2008) Spatial constraints underlying the retinal mosaics of two types of horizontal cells in cat and macaque. Vis Neurosci 25:209–214.
+p&lt;/p&gt;
+
+&lt;h3 id=&#34;2007:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2007&lt;/h3&gt;
+
+&lt;h3 id=&#34;2006:3040ef68935035b2c4d6e100309f4ec9&#34;&gt;2006&lt;/h3&gt;
+
+&lt;p&gt;Eglen SJ (2006) Development of regular cellular spacing in the retina: theoretical models. Math Med Biol 23:79–99.&lt;/p&gt;
+
+&lt;p&gt;Sernagor E, Eglen SJ, Harris WA, Wong ROL eds. (2006) Retinal Development. Cambridge University Press.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ, Diggle PJ, Troy JB (2005) Homotypic constraints dominate positioning of on- and off-center beta retinal ganglion cells. Vis Neurosci 22:859–871.&lt;/p&gt;
+
+&lt;p&gt;Kishi M, Kummer TT, Eglen SJ, Sanes JR (2005) LL5beta: a regulator of postsynaptic differentiation identified in a screen for synaptically enriched transcripts at the neuromuscular junction. J Cell Biol 169:355–366.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ, Raven MA, Tamrazian E, Reese BE (2003b) Dopaminergic amacrine cells in the inner nuclear layer and ganglion cell layer comprise a single functional retinal mosaic. J Comp Neurol 466:343–355.&lt;/p&gt;
+
+&lt;p&gt;Sernagor E, Young C, Eglen SJ (2003) Developmental Modulation of Retinal Wave Dynamics: Shedding Light on the GABA Saga. JNeuroscience 23:7621–7629.&lt;/p&gt;
+
+&lt;p&gt;Raven MA, Eglen SJ, Ohab JJ, Reese BE (2003) Determinants of the exclusion zone in dopaminergic amacrine cell mosaics. J Comp Neurol 461:123–136.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ, Galli-Resta L, Reese BE (2003a) Theoretical models of retinal mosaic formation. In: Modeling neural development (van Ooyen A, ed), pp 133–150. MIT Press.&lt;/p&gt;
+
+&lt;p&gt;Lee CW, Eglen SJ, Wong ROL (2002) Segregation of on and off Retinogeniculate Connectivity Directed by Patterned Spontaneous Activity. J Neurophysiol 88:2311–2321.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ, van Ooyen A, Willshaw DJ (2000) Lateral cell movement driven by dendritic interactions is sufficient to form retinal mosaics. Network 11:103–118.&lt;/p&gt;
+
+&lt;p&gt;Sernagor E, Eglen SJ, O’Donovan MJ (2000) Differential Effects of Acetylcholine and Glutamate Blockade on the Spatiotemporal Dynamics of Retinal Waves. JNeuroscience 20:RC56.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ, Willshaw DJ (2000) Estimating the influence of cell fate, mediated by lateral inhibition, upon the development of retinal mosaics. EurJNeuroscience 12 (Supplement 11):486.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ (2000) An evaluation of competitive and cell death mechanisms in forming on- and off-centre retinal ganglion cell mosaics. In: Ninth Annual Computational Neuroscience Meeting, CNS-2000, pp 45.&lt;/p&gt;
+
+&lt;p&gt;Eglen SJ (1999) The role of retinal waves and synaptic normalization in retinogeniculate development. Philos Trans R Soc Lond B Biol Sci 354:497–506.&lt;/p&gt;
+
+&lt;p&gt;Bowns L, Eglen SJ (1994) Extraction of non-fourier orientation information for texture classification. Investigative Opthalmology and Visual Science 35:1406.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

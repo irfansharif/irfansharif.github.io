@@ -1,0 +1,80 @@
+==================================================================
+https://keybase.io/irfansharif
+--------------------------------------------------------------------
+
+I hereby claim:
+
+* I am an admin of http://irfansharif.io
+* I am irfansharif (https://keybase.io/irfansharif) on keybase.
+* I have a public key with fingerprint D9D6 604F EFAB 8EC1 7052  3C9C 204F 7D6C 3D8F A045
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101dc61581bb3ac1d1b28cf16f80001ac981017ffb269cae22bb0d281baa8cb11490a",
+      "fingerprint": "d9d6604fefab8ec170523c9c204f7d6c3d8fa045",
+      "host": "keybase.io",
+      "key_id": "204f7d6c3d8fa045",
+      "kid": "0101dc61581bb3ac1d1b28cf16f80001ac981017ffb269cae22bb0d281baa8cb11490a",
+      "uid": "83652306920c4917ac9bd35e9986fd19",
+      "username": "irfansharif"
+    },
+    "revoke": {
+      "sig_ids": [
+        "e8f88f4a0ae651e6d8f1815777f997969f27c94b03f5cce84c4ce58c4b91fadf0f"
+      ]
+    },
+    "service": {
+      "hostname": "irfansharif.io",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1488128333,
+  "expire_in": 157680000,
+  "prev": "a881309a829b7617e586888db5de1a2df1e22cd5c356f87d198171a02bc8842f",
+  "seqno": 17,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.64
+Comment: https://keybase.io/crypto
+
+yMOCAnicrZJtUFRVGMeX1wIRVHIm1IK5DLrZut5z7917z12GacwgsWAXSWgQXO/L
+uXCFdmF3YWEWBnBAg4ZImNJRQxomtqbR4mXFUdQBs2jI0lDSUHFJ0qKhgA8amXSW
+6lN97NOZ85z/8zv/8z/Pp0uDNOEBcaaqoqTm9uSA4YEHpZpXe8LS3IRokysIo5so
+RIsLKpKRw2kpVGXCSJCABLLEAgMEokgLEpCBSEFJAawCSZIEgsRDLOEURaRYXhIQ
+RYkiKVNYLghQEgFgeFIgdISiWvORvdiuWp0YK/Myy5KMghRBhEgCHGmgaImXKFzj
+ZFaiZagIJGPAjQU2h78DmxMFB9KrNlzDG8uivf/Q/8++SxdxkGaxQZLlKVJieMDh
+dlGmDYjnIavIgPcLHchuFV5DWK3aFcHqKBDsqkJU6Qg7KrMVIn+0DjUf+3YQxh0E
+ggqECiOQAmINALH4AQACA8dxCs9zPMsrFCfxjEjSikGSEGQkRkIGKDEiDxRBVkiF
+yMNsfGmZKi3C/UH928BfgRXbbU6bZCvCZwVOZ7HRb8tZUezXupBo+ZtiEVWrjP8J
+N5Qhu0O1WQkjwErJqfqxgIEQUJCmaR2ByotVO7KofoWBY/2Zkv5rUBlGClhHk7wA
+KV7kWMBh3yyEUBYNMgICJSsAxy3JBok24O/gcH4QcEAgKVGCkKEUwv+uEqsNszns
+U8jHTBydVXCW2hFRNTiQG6wJCNeEhgT6B1gTHrbsn7Eua496uORM/apPmIPR1m2+
+W63wrvdQ3Z33O2o6HsRrTo6FNO+5HmoO/Dq/If6+yugcMW/PH5uKmdNe3tR0qM0c
+ETW4tT8sc8Z0dXvDfWPA0clcV1XuwFPBWd3blZxfPZFOeuYYM/Ry7K2Z2nIr164+
+6jNfWlcw49MmJrQRvRkfeRtPrJn4g9ug11em16c+nzg3suvj2oXxc9vaL/aWemtC
+vecyfEdqu+c76n+7Pr0+YXhC21lS/TB2c+Xp4MSWp2/Hhr11vNFz0HHY6979Uw7v
+8dbvT/rlsRvZI3uHI61d7+oGPti8cezKsLBu1Y6zGd1ZkRk7NWnmV36PpV/I+Dk9
+QVvDubNi1LP2975d22SaXXqgeTbad3go/fMh/exXC/G7Jldncl3X5COmF++d9Hw5
+7woJTw0YFX3fac39z63x6kaeWQujnojsPeNzR0R3tRWOL7+wR9wdtvDjtRVbjh8d
+Xl5+o9p1ryu+bdTbUld905R32qg29uVlWa5Mueo2fjNws2T6HUvPqdSxgQ9bub4U
+95Ol0V+Yg+b6rqaPBq48P1vh1W15czq7e8V0SkP26gO1uT1bic6YeGlyf9N6be+U
+aVPno9eXnBhtytrX/8N4UNJKXzN1OzPmjUp9ynC+qX7DhKc1Lsq173Jtcv33EeSl
+vRcvDNZ2uJM/O68/xaaZWu7kjL70+F1P3M5nl2ks3X8CYrrbSw==
+=Ox3b
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/irfansharif
+
+==================================================================

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Irfan Sharif</title>
+    <link>https://irfansharif.github.io/blog/post/</link>
+    <description>Recent content in Posts on Irfan Sharif</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Feb 2016 13:56:01 -0800</lastBuildDate>
+    <atom:link href="https://irfansharif.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugo-Tufte Features</title>
+      <link>https://irfansharif.github.io/blog/post/tufte-features/</link>
+      <pubDate>Sat, 20 Feb 2016 13:56:01 -0800</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/tufte-features/</guid>
+      <description>
+
+&lt;p&gt;This is a quick demonstration post.  It serves as an example of the features
+of this theme.  One of them is \( \LaTeX \) via MathJax.
+
+
+  &lt;section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;h2 id=&#34;a-bit-about-mathematics:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;A Bit About Mathematics&lt;/h2&gt;
+
+&lt;div class=&#34;epigraph&#34;&gt;
+&lt;blockquote&gt;
+
+&lt;p&gt;&lt;p&gt;This is an example of an epigraph with some math
+\(\mathbb N \subseteq \mathbb R \)
+to start the beginning of a section.&lt;/p&gt;
+&lt;/p&gt;
+
+&lt;footer&gt;
+Shawn O&amp;#39;Hare, 
+&lt;cite&gt;Math is Fun&lt;/cite&gt;
+
+&lt;/footer&gt;
+
+&lt;blockquote&gt;
+&lt;/div&gt;
+
+
+&lt;h3 id=&#34;inline:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Inline&lt;/h3&gt;
+
+&lt;p&gt;Some inline math:
+&lt;label for=&#34;mn-example&#34; class=&#34;margin-toggle&#34;&gt;&amp;#8853;&lt;/label&gt;
+&lt;input type=&#34;checkbox&#34; id=&#34;mn-example&#34; class=&#34;margin-toggle&#34;/&gt;
+&lt;span class=&#34;marginnote&#34;&gt;This is a margin note.&lt;/span&gt;
+
+$e^{i \pi} = -1$ and \(\sqrt{-1} = i \)
+and \( a_2 = 3 \).&lt;/p&gt;
+
+&lt;h3 id=&#34;display:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Display&lt;/h3&gt;
+
+&lt;p&gt;And display math using escaped brackets &lt;code&gt;\\[&lt;/code&gt;:
+&lt;label for=&#34;error: cannot access positional params by string name&#34; class=&#34;margin-toggle sidenote-number&#34;&gt;&lt;/label&gt;
+&lt;input type=&#34;checkbox&#34; id=&#34;error: cannot access positional params by string name&#34; class=&#34;margin-toggle&#34;/&gt;
+&lt;span class=&#34;sidenote&#34;&gt;This is a sidenote!&lt;/span&gt; 
+
+\[
+  &amp;ndash; \cdot_H &amp;ndash; \colon B(G,H) \times B(H, K) \to B(G, K), \quad ([X], [Y]) \mapsto [X \times_H Y].
+\]&lt;/p&gt;
+
+&lt;h3 id=&#34;environments:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Environments&lt;/h3&gt;
+
+&lt;p&gt;Currently, certain $\LaTeX$ environments need to be escaped so that
+the markdown processor does not override MathJax.  Currently, display
+environments should be enclosed in &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tags and blank lines.
+For instance:&lt;/p&gt;
+
+&lt;p&gt;
+\begin{align*}  
+  \mu(A) &amp;= \iint_{I^2} \chi_A (x,y) \ d(x,y) 
+  = \int_I \left( \int_I  \chi_A (x,y) \ dx\right) dy 
+  = \int_I 0 \ dy= 0 \quad \text{and} \\  
+  \mu(A) &amp;=\iint_{I^2}  \chi_A (x,y) \ d(x,y) 
+  = \int_I \left(  \int_I \chi_A (x,y) \ dy \right) dx 
+  =\int_I dx = 1,
+\end{align*} 
+&lt;/p&gt;
+
+&lt;p&gt;is produced from&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;
+\begin{align*}  
+  \mu(A) &amp;amp;= \iint_{I^2} \chi_A (x,y) \ d(x,y) 
+  = \int_I \left( \int_I  \chi_A (x,y) \ dx\right) dy 
+  = \int_I 0 \ dy= 0 \quad \text{and} \\  
+  \mu(A) &amp;amp;=\iint_{I^2}  \chi_A (x,y) \ d(x,y) 
+  = \int_I \left(  \int_I \chi_A (x,y) \ dy \right) dx 
+  =\int_I dx = 1,
+\end{align*} 
+&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;blockquotes:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Blockquotes&lt;/h3&gt;
+
+&lt;p&gt;Some blockquotes.  But first, we try to manually cite via
+&lt;cite&gt;This is between cite tags and has math: \(e^x \)&lt;/cite&gt;&lt;/p&gt;
+
+&lt;blockquote cite=&#34;www.shawnohare.com&#34;&gt;
+  &lt;p&gt;This is a blockquote with two paragraphs, that employs the
+theme&amp;rsquo;s &lt;code&gt;blockquote&lt;/code&gt; shortcode. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.&lt;/p&gt;
+
+&lt;p&gt;Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.&lt;/p&gt;
+
+  &lt;footer&gt;Shawn O&amp;#39;Hare&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+
+&lt;h3 id=&#34;new-thoughts:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;New thoughts&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&#34;newthought&#34;&gt;Sometimes a new thought&lt;/span&gt; distinguishes a section,
+as here.  There are currently two ways to create one.  One way is with raw
+HTML such as: &lt;code&gt;&amp;lt;span class=&amp;quot;newthought&amp;quot;&amp;gt;...&amp;lt;/span&amp;gt;&amp;quot;&lt;/code&gt;.  The theme also provides
+the &lt;code&gt;newthought&lt;/code&gt; shortcode.&lt;/p&gt;
+
+&lt;h3 id=&#34;code:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Code&lt;/h3&gt;
+
+&lt;p&gt;As an example of some inline code: &lt;code&gt;go test -v -short&lt;/code&gt;.
+And this is some block-code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import &amp;quot;log&amp;quot;
+
+func add(x int, y int) int {
+  log.Println(&amp;quot;We are going to take the sum of two numbers, and leave a long comment.&amp;quot;)
+  return x + y
+}
+
+func main() {
+  y := add(1, 2)
+  log.Println(y)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;figure:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;Figure&lt;/h3&gt;
+
+&lt;p&gt;Below we have an example of a regular width figure.
+
+
+
+  
+    &lt;figure  class=&#34;class param&#34;&gt;
+  
+
+
+
+  &lt;label for=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;⊕&lt;/label&gt;
+  &lt;input type=&#34;checkbox&#34; id=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;
+  &lt;span class=&#34;marginnote&#34;&gt;
+  
+
+  &lt;strong&gt;The image title. &lt;/strong&gt;
+  This is the image caption.
+  &lt;a href=&#34;attribute%20link&#34;&gt;
+  Image attribution
+  &lt;/a&gt;
+
+  &lt;/span&gt;
+
+
+  &lt;a href=&#34;link&#34;&gt;
+  &lt;img src=&#34;https://raw.githubusercontent.com/edwardtufte/tufte-css/master/img/exports-imports.png&#34; alt=&#34;alt&#34;&gt;
+  &lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+
+
+
+  &lt;/section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;p&gt;And now we exhibit a margin figure.
+
+
+
+
+
+  &lt;label for=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;⊕&lt;/label&gt;
+  &lt;input type=&#34;checkbox&#34; id=&#34;mn-export-import&#34; class=&#34;margin-toggle&#34;&gt;
+  &lt;span class=&#34;marginnote&#34;&gt;
+  
+    &lt;a href=&#34;link&#34;&gt;
+    &lt;img src=&#34;https://edwardtufte.github.io/tufte-css/img/rhino.png&#34; alt=&#34;alt&#34;&gt;
+    &lt;/a&gt;
+  
+
+  &lt;strong&gt;The image title. &lt;/strong&gt;
+  This is the image caption.
+  &lt;a href=&#34;attribute%20link&#34;&gt;
+  Image attribution
+  &lt;/a&gt;
+
+  &lt;/span&gt;
+
+
+
+
+
+
+
+  &lt;/section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;p&gt;Below is a full-width figure.
+
+
+
+  
+    &lt;figure class=&#34;fullwidth&#34;&gt;
+  
+
+
+
+  &lt;a href=&#34;link&#34;&gt;
+  &lt;img src=&#34;https://edwardtufte.github.io/tufte-css/img/napoleons-march.png&#34; alt=&#34;Napoleonic wars&#34;&gt;
+  &lt;/a&gt;
+  &lt;figcaption&gt;
+
+  &lt;strong&gt;Napoleonic wars &lt;/strong&gt;
+  This the image caption.
+  &lt;a href=&#34;attribute%20link&#34;&gt;
+  Image attribution
+  &lt;/a&gt;
+
+  &lt;/figcaption&gt;
+
+
+
+
+&lt;/figure&gt;
+
+
+
+
+  &lt;/section&gt;
+
+    
+&lt;/p&gt;
+
+&lt;p&gt;
+
+  &lt;div  class=&#34;myclass&#34;&gt;
+
+&lt;/p&gt;
+
+&lt;h2 id=&#34;a-story-about-cats:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;A Story About Cats&lt;/h2&gt;
+
+&lt;p&gt;Climb a tree, wait for a fireman jump to fireman then scratch his face sleep on dog bed, force dog to sleep on floor cat snacks, and eat prawns daintily with a claw then lick paws clean wash down prawns with a lap of carnation milk then retire to the warmest spot on the couch to claw at the fabric before taking a catnap climb a tree, wait for a fireman jump to fireman then scratch his face put toy mouse in food bowl run out of litter box at full speed . See owner, run in terror chase mice, so thinking longingly about tuna brine for eat a plant, kill a hand for wake up human for food at 4am. Human is washing you why halp oh the horror flee scratch hiss bite scratch the furniture and rub face on owner. Loves cheeseburgers see owner, run in terror chew on cable. Thug cat ignore the squirrels, you&amp;rsquo;ll never catch them anyway. Eat a plant, kill a hand find empty spot in cupboard and sleep all day so hide head under blanket so no one can see yet love to play with owner&amp;rsquo;s hair tie rub face on everything i like big cats and i can not lie. Wake up human for food at 4am stare at the wall, play with food and get confused by dust yet then cats take over the world scamper. Inspect anything brought into the house get video posted to internet for chasing red dot. Brown cats with pink ears chew foot spit up on light gray carpet instead of adjacent linoleum. I am the best wake up human for food at 4am, meow spread kitty litter all over house, for meow. Knock dish off table head butt cant eat out of my own dish jump off balcony, onto stranger&amp;rsquo;s head, chase ball of string scream at teh bath but climb leg, so unwrap toilet paper but destroy couch. Climb a tree, wait for a fireman jump to fireman then scratch his face. Leave hair everywhere swat turds around the house eat grass, throw it back up, and eat grass, throw it back up. Chase after silly colored fish toys around the house.
+
+
+  &lt;/div&gt;
+
+&lt;/p&gt;
+
+&lt;h3 id=&#34;we-really-like-cats:b2bd8a0f11c6df979325d4c9d5c361e7&#34;&gt;We really like cats.&lt;/h3&gt;
+
+&lt;p&gt;Yes, they are fluffy and happy.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hide Date</title>
+      <link>https://irfansharif.github.io/blog/post/nodate/</link>
+      <pubDate>Fri, 15 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/nodate/</guid>
+      <description>&lt;p&gt;Here is an example post where the date set, but hidden from display.&lt;br /&gt;
+Moreover, the reading time is also hidden.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Blockquotes</title>
+      <link>https://irfansharif.github.io/blog/post/blockquote/</link>
+      <pubDate>Mon, 19 Jan 2015 23:57:58 -0800</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/blockquote/</guid>
+      <description>
+
+&lt;p&gt;Below is a blockquote.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.&lt;/p&gt;
+
+&lt;p&gt;Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now we have nested blockquotes.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This is the first level of quoting.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This is nested blockquote.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Back to the first level.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And finally a blockquote with some markdown.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;h2 id=&#34;this-is-a-header:ab1bbd872b30db85479ebfb7576e896e&#34;&gt;This is a header.&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;This is the first list item.&lt;/li&gt;
+&lt;li&gt;This is the second list item.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Here&amp;rsquo;s some example code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;return shell_exec(&amp;quot;echo $input | $markdown_script&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Just another sample post</title>
+      <link>https://irfansharif.github.io/blog/post/new/</link>
+      <pubDate>Sat, 29 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/new/</guid>
+      <description>
+
+&lt;h2 id=&#34;first-heading:b7a73ff21accb7e89945477d6c352c48&#34;&gt;First Heading&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, consequatur aspernatur omnis iste. Voluptates, id inventore ea natus ab sed amet ipsa ratione sunt dignissimos. Soluta illum aliquid repellendus recusandae.&lt;/p&gt;
+
+&lt;h3 id=&#34;sub:b7a73ff21accb7e89945477d6c352c48&#34;&gt;Sub&lt;/h3&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, perferendis saepe voluptatem a nesciunt architecto voluptas deleniti dolor tempora quasi quidem odit rem fugit magnam minima quam dolores vel id?&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion:b7a73ff21accb7e89945477d6c352c48&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, numquam ipsa ad! Quasi, deleniti quae sint consequatur error corporis dicta inventore alias soluta dignissimos? Molestias, quia ab deserunt repellat ut.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>First Post</title>
+      <link>https://irfansharif.github.io/blog/post/old/</link>
+      <pubDate>Fri, 28 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.github.io/blog/post/old/</guid>
+      <description>
+
+&lt;h2 id=&#34;sample-post-1:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;Sample Post 1&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+
+&lt;h3 id=&#34;sub-heading:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;Sub-heading&lt;/h3&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, non, ratione, molestiae illo optio quia sequi id fuga natus nihil ad architecto dolor alias ex sunt iste aperiam eius itaque.&lt;/p&gt;
+
+&lt;h2 id=&#34;foo:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;foo&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, neque, eveniet voluptate eos debitis illum qui nostrum eius maxime ratione assumenda suscipit impedit deserunt voluptatibus odio ducimus non. Ex, ratione.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
