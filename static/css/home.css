@@ -58,7 +58,8 @@ tag { font-style: bold;
   font-size: 1.0rem;
   margin-top: 0rem;
   margin-bottom: 0;
-line-height: 1; }
+  line-height: 1.2;
+}
 
 a {
   font-weight: bold;
