@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://irfansharif.github.io/blog/</loc>
+    <loc>https://irfansharif.io/blog/</loc>
     <lastmod>2016-02-20T13:56:01-08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://irfansharif.github.io/blog/post/tufte-features/</loc>
+    <loc>https://irfansharif.io/blog/post/tufte-features/</loc>
     <lastmod>2016-02-20T13:56:01-08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://irfansharif.github.io/blog/post/nodate/</loc>
+    <loc>https://irfansharif.io/blog/post/nodate/</loc>
     <lastmod>2015-05-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://irfansharif.github.io/blog/post/blockquote/</loc>
+    <loc>https://irfansharif.io/blog/post/blockquote/</loc>
     <lastmod>2015-01-19T23:57:58-08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://irfansharif.github.io/blog/post/new/</loc>
+    <loc>https://irfansharif.io/blog/post/new/</loc>
     <lastmod>2014-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://irfansharif.github.io/blog/post/old/</loc>
+    <loc>https://irfansharif.io/blog/post/old/</loc>
     <lastmod>2014-03-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://irfansharif.github.io/blog/page/about/</loc>
+    <loc>https://irfansharif.io/blog/page/about/</loc>
   </url>
   
   <url>
-    <loc>https://irfansharif.github.io/blog/page/papers/</loc>
+    <loc>https://irfansharif.io/blog/page/papers/</loc>
   </url>
   
 </urlset>

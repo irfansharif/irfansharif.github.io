@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Irfan Sharif</title>
-    <link>https://irfansharif.github.io/blog/</link>
+    <link>https://irfansharif.io/blog/</link>
     <description>Recent content on Irfan Sharif</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 Feb 2016 13:56:01 -0800</lastBuildDate>
-    <atom:link href="https://irfansharif.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://irfansharif.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo-Tufte Features</title>
-      <link>https://irfansharif.github.io/blog/post/tufte-features/</link>
+      <link>https://irfansharif.io/blog/post/tufte-features/</link>
       <pubDate>Sat, 20 Feb 2016 13:56:01 -0800</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/post/tufte-features/</guid>
+      <guid>https://irfansharif.io/blog/post/tufte-features/</guid>
       <description>
 
 &lt;p&gt;This is a quick demonstration post.  It serves as an example of the features
@@ -280,10 +280,10 @@ func main() {
     
     <item>
       <title>Hide Date</title>
-      <link>https://irfansharif.github.io/blog/post/nodate/</link>
+      <link>https://irfansharif.io/blog/post/nodate/</link>
       <pubDate>Fri, 15 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/post/nodate/</guid>
+      <guid>https://irfansharif.io/blog/post/nodate/</guid>
       <description>&lt;p&gt;Here is an example post where the date set, but hidden from display.&lt;br /&gt;
 Moreover, the reading time is also hidden.&lt;/p&gt;
 </description>
@@ -291,10 +291,10 @@ Moreover, the reading time is also hidden.&lt;/p&gt;
     
     <item>
       <title>Blockquotes</title>
-      <link>https://irfansharif.github.io/blog/post/blockquote/</link>
+      <link>https://irfansharif.io/blog/post/blockquote/</link>
       <pubDate>Mon, 19 Jan 2015 23:57:58 -0800</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/post/blockquote/</guid>
+      <guid>https://irfansharif.io/blog/post/blockquote/</guid>
       <description>
 
 &lt;p&gt;Below is a blockquote.&lt;/p&gt;
@@ -340,10 +340,10 @@ id sem consectetuer libero luctus adipiscing.&lt;/p&gt;
     
     <item>
       <title>Just another sample post</title>
-      <link>https://irfansharif.github.io/blog/post/new/</link>
+      <link>https://irfansharif.io/blog/post/new/</link>
       <pubDate>Sat, 29 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/post/new/</guid>
+      <guid>https://irfansharif.io/blog/post/new/</guid>
       <description>
 
 &lt;h2 id=&#34;first-heading:b7a73ff21accb7e89945477d6c352c48&#34;&gt;First Heading&lt;/h2&gt;
@@ -362,10 +362,10 @@ id sem consectetuer libero luctus adipiscing.&lt;/p&gt;
     
     <item>
       <title>First Post</title>
-      <link>https://irfansharif.github.io/blog/post/old/</link>
+      <link>https://irfansharif.io/blog/post/old/</link>
       <pubDate>Fri, 28 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/post/old/</guid>
+      <guid>https://irfansharif.io/blog/post/old/</guid>
       <description>
 
 &lt;h2 id=&#34;sample-post-1:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;Sample Post 1&lt;/h2&gt;
@@ -389,20 +389,20 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&g
     
     <item>
       <title>About This Site</title>
-      <link>https://irfansharif.github.io/blog/page/about/</link>
+      <link>https://irfansharif.io/blog/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/page/about/</guid>
+      <guid>https://irfansharif.io/blog/page/about/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m Irfan Sharif, welcome to my blog.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Publications</title>
-      <link>https://irfansharif.github.io/blog/page/papers/</link>
+      <link>https://irfansharif.io/blog/page/papers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/page/papers/</guid>
+      <guid>https://irfansharif.io/blog/page/papers/</guid>
       <description>
 
 &lt;p&gt;After each reference, &lt;em&gt;Paper&lt;/em&gt; links to papers; &lt;em&gt;Info&lt;/em&gt; to further information

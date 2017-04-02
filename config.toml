@@ -5,7 +5,7 @@ config = "config.toml"
 defaultextension = "html"
 defaultlayout = "post"
 
-baseurl = "https://irfansharif.github.io/blog/"
+baseurl = "https://irfansharif.io/blog/"
 title = "Irfan Sharif"
 languageCode = "en-us"
 buildDrafts = true

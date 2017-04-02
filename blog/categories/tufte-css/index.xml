@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tufte-css on Irfan Sharif</title>
-    <link>https://irfansharif.github.io/blog/categories/tufte-css/</link>
+    <link>https://irfansharif.io/blog/categories/tufte-css/</link>
     <description>Recent content in Tufte-css on Irfan Sharif</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 Feb 2016 13:56:01 -0800</lastBuildDate>
-    <atom:link href="https://irfansharif.github.io/blog/categories/tufte-css/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://irfansharif.io/blog/categories/tufte-css/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo-Tufte Features</title>
-      <link>https://irfansharif.github.io/blog/post/tufte-features/</link>
+      <link>https://irfansharif.io/blog/post/tufte-features/</link>
       <pubDate>Sat, 20 Feb 2016 13:56:01 -0800</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/post/tufte-features/</guid>
+      <guid>https://irfansharif.io/blog/post/tufte-features/</guid>
       <description>
 
 &lt;p&gt;This is a quick demonstration post.  It serves as an example of the features

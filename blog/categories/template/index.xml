@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Template on Irfan Sharif</title>
-    <link>https://irfansharif.github.io/blog/categories/template/</link>
+    <link>https://irfansharif.io/blog/categories/template/</link>
     <description>Recent content in Template on Irfan Sharif</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 28 Mar 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://irfansharif.github.io/blog/categories/template/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://irfansharif.io/blog/categories/template/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>First Post</title>
-      <link>https://irfansharif.github.io/blog/post/old/</link>
+      <link>https://irfansharif.io/blog/post/old/</link>
       <pubDate>Fri, 28 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://irfansharif.github.io/blog/post/old/</guid>
+      <guid>https://irfansharif.io/blog/post/old/</guid>
       <description>
 
 &lt;h2 id=&#34;sample-post-1:a67ef2eaf22cfa61c4a781a82f90479c&#34;&gt;Sample Post 1&lt;/h2&gt;
