@@ -322,7 +322,6 @@ body {
   width: 87.5%;
   margin-left: auto;
   margin-right: auto;
-  /* padding-left: 12.5%; */
   font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
   background-color: #ffffff;
   color: #111;
@@ -347,8 +346,9 @@ tag {
   line-height: 1.25;
 }
 
-header tag a {
-  color: #2a6f95;
+a {
+  color: #000000;
+  text-decoration: underline;
   font-weight: bold;
 }
 
@@ -356,19 +356,4 @@ header ul li {
   display: inline;
   padding: 0 15px;
   font-size: 1.15rem;
-  font-weight: bold;
-  color: #9a9a9a;
-}
-
-header ul li a {
-  color: #9a9a9a;
-}
-
-header ul li a:hover {
-  -webkit-transition: color .25s ease-in;
-  -moz-transition: color .25s ease-in;
-  -o-transition: color .25s ease-in;
-  -ms-transition: color .25s ease-in;
-  transition: color .25s ease-in;
-  color: #2a6f95;
 }
