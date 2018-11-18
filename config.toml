@@ -1,0 +1,15 @@
+baseURL = "https://irfansharif.io/blog/"
+canonifyURLs = "true"
+languageCode = "en-us"
+theme = "central"
+title = "TODO(irfansharif): Blog title here."
+
+[permalinks]
+  post = "/:year/:month/:title/"
+  page = "/:slug/"
+
+# Theme variables>
+[params]
+  description = "TODO(irfansharif): Description here."
+
+# vim: ts=2 sw=2 et ft=conf
