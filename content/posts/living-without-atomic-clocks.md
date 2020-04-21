@@ -6,10 +6,9 @@ date: 2020-04-21
 <figure>
   <label for="first-atomic-clock" class="margin-toggle">&#8853;</label>
   <input type="checkbox" id="first-atomic-clock" class="margin-toggle"/>
-  <span class="marginnote">The world's first caesium-133 atomic clock (1955), and mostly unrelated everything else here.</span>
+  <span class="marginnote">The world's first caesium-133 atomic clock (1955), and otherwise unrelated everything else here.</span>
   <img src="/img/first-atomic-clock.jpg" alt=" The world's first caesium-133 atomic clock, 1955." />
 </figure>
-
 
 ---
 
@@ -17,7 +16,6 @@ _This was originally authored by Spencer about four years ago, and we
 figured it could do with a refresh. You'll also find it on our company
 [engineering blog](https://www.cockroachlabs.com/blog/living-without-atomic-clocks/)._
 
----
 
 One of the more inspired facets of
 [Spanner](https://research.google/pubs/pub39966/) comes from its use of atomic
@@ -75,13 +73,13 @@ that wish to establish a complete global ordering must communicate with a
 single source of time on every operation. This was the motivation behind the
 "timestamp oracle" as used by Google's
 [Percolator](https://research.google/pubs/pub36726/). A system which orders
-transactions T1 and T2 in the order [T1, T2] provided that T2 starts after T1
-finishes, regardless of observer, provides for the strongest guarantee of
-consistency called ['external consistency'](https://dl.acm.org/doi/book/10.5555/910052).
-To confuse things further, this is what folks interchangeably refer to as
-"linearizability" or "strict serializability". Andrei has more words on this
-soup of consistency models
-[here](https://www.cockroachlabs.com/blog/consistency-model/).
+transactions \\(T_1\\) and \\(T_2\\) in the order \\([T_1, T_2]\\) provided
+that \\(T_2\\) starts after \\(T_1\\) finishes, regardless of observer,
+provides for the strongest guarantee of consistency called ['external
+consistency'](https://dl.acm.org/doi/book/10.5555/910052). To confuse things
+further, this is what folks interchangeably refer to as "linearizability" or
+"strict serializability". Andrei has more words on this soup of consistency
+models [here](https://www.cockroachlabs.com/blog/consistency-model/).
 
 ## Serializability
 
@@ -91,30 +89,36 @@ isolation level provided by the ANSI SQL standard. It guarantees that the
 constituent reads and writes within a transaction occur as though that
 transaction were given exclusive access to the database for the length of its
 execution, guaranteeing that no transactions interfere with each other. In
-other words, no concurrent transaction T2 is able to read any partially-written
-state of transaction T1 or perform writes causing transaction T1 to read
-different values for the same key over the course of its execution.
+other words, no concurrent transaction \\(T_2\\) is able to read any
+partially-written state of transaction \\(T_1\\) or perform writes
+causing transaction \\(T_1\\) to read different values for the same key
+over the course of its execution.
 
 In a non-distributed database, serializability implies linearizability for
 transactions because a single node has a monotonically increasing clock (or
-should, anyway!). If transaction T1 is committed before starting transaction
-T2, then transaction T2 can only commit at a later time.
+should, anyway!). If transaction \\(T_1\\) is committed before starting
+transaction \\(T_2\\), then transaction \\(T_2\\) can only
+commit at a later time.
 
 In a distributed database, things can get dicey. It's easy to see how the
 ordering of causally-related transactions can be violated if nodes in the
-system have unsynchronized clocks. Assume there are two nodes, N1 and N2, and
-two transactions, T1 and T2, committing at N1 and N2 respectively. Because
-we’re not consulting a single, global source of time, transactions use the
-node-local clocks to generate commit timestamps. To illustrate the trickiness
-around this stuff, let's say N1 has an accurate one but N2 has a clock lagging
-by 100ms. We start with T1, addressing N1, which is able to commit at ts =
-150ms.  An external observer sees T1 commit and consequently starts T2
-(addressing N2) 50ms later (at t = 200ms). Since T2 is annotated using the
-timestamp retrieved from N2’s lagging clock, it commits "in the past", at ts =
-100ms. Now, any observer reading keys across N1 and N2 will see the reversed
-ordering, T2's writes (at ts = 100ms) will appear to have happened before T1's
-(at ts = 150ms), despite the opposite being true. ¡No bueno! (Note that this
-can only happen when the two transactions access a disjoint set of keys.)
+system have unsynchronized clocks. Assume there are two nodes, \\(N_1\\) and
+\\(N_2\\), and two transactions, \\(T_1\\) and \\(T_2\\), committing at
+\\(N_1\\) and \\(N_2\\) respectively. Because we’re not consulting a single,
+global source of time \\(t\\), transactions use the node-local clocks to generate
+commit timestamps \\(ts\\). To illustrate the trickiness around this stuff,
+let's say \\(N_1\\) has an accurate one but \\(N_2\\) has a clock lagging by
+\\(100ms\\). We start with \\(T_1\\), addressing \\(N_1\\), which is able to
+commit at \\(ts = 150ms\\). An external observer sees \\(T_1\\) commit
+and consequently starts \\(T_2\\), addressing \\(N_2\\),
+\\(50ms\\) later (at \\(t = 200ms\\)). Since \\(T_2\\)
+is annotated using the timestamp retrieved from \\(N_2\\)’s lagging
+clock, it commits "in the past", at \\(ts = 100ms\\).  Now, any
+observer reading keys across \\(N_1\\) and \\(N_2\\) will see
+the reversed ordering, \\(T_2\\)'s writes (at \\(ts = 100ms\\))
+will appear to have happened before \\(T_1\\)'s (at \\(ts =
+150ms\\)), despite the opposite being true. ¡No bueno! (Note that this can only
+happen when the two transactions access a disjoint set of keys.)
 
 <figure>
 <label for="first-atomic-clock" class="margin-toggle">&#8853;</label>
@@ -125,17 +129,17 @@ Causally related transactions committing out of order due to unsynchronized cloc
 <img src="/img/causal-reverse.png" alt="Causally related transactions committing out of order due to unsynchronized clocks." />
 </figure>
 
-The anomaly described here, and shown in the figure above, is something we
-call "causal reverse". While Spanner provides linearizability, CRDB only goes
-as far as to claim serializability, though with some features to help bridge
-the gap in practice. I’ll (lazily) defer to Andrei again, he really does cover
-a lot of ground with [this one](https://www.cockroachlabs.com/blog/consistency-model/).
+The anomaly described here, and shown in the figure above, is something we call
+"causal reverse". While Spanner provides linearizability, CRDB only goes as far
+as to claim serializability, though with some features to help bridge the gap
+in practice. I’ll (lazily) defer to Andrei again, he really does cover a lot of
+ground with [this one](https://www.cockroachlabs.com/blog/consistency-model/).
 
 ## How does TrueTime provide linearizability?
 
-So, back to Spanner and TrueTime. It's important to keep in mind that
-TrueTime does not guarantee perfectly synchronized clocks. Rather, TrueTime
-gives an upper bound for clock offsets between nodes in a cluster. The use of
+So, back to Spanner and TrueTime. It's important to keep in mind that TrueTime
+does not guarantee perfectly synchronized clocks. Rather, TrueTime gives an
+upper bound for clock offsets between nodes in a cluster. The use of
 synchronized atomic clocks is what helps minimize the upper bound. In Spanner's
 case, Google mentions an upper bound of 7ms. That's pretty tight; by contrast,
 using [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol) for clock
@@ -156,7 +160,7 @@ would of course be impractical to have to eat NTP offsets on every write,
 though perhaps [recent research](https://www.usenix.org/system/files/conference/nsdi18/nsdi18-geng.pdf)
 in this area may help bring that down to under a millisecond.
 
-Fun fact: early CRDB had a hidden `--linearizable` switch that would do
+Fun fact: early CRDB had a hidden '--linearizable' switch that would do
 essentially the above, so theoretically, if you _did_ have atomic clocks lying
 around (or generally an acceptable maximum clock offset), you'd get
 Spanner-like behavior out of the box. We've since removed it given how
@@ -171,12 +175,12 @@ Stronger guarantees are a good thing, but some are more useful than others. The
 possibility of reordering commit timestamps for causally related transactions
 is likely a marginal problem in practice. What could happen is that examining
 the database at a historical timestamp might yield paradoxical situations where
-transaction T1 is not yet visible while transaction T2 is, even though
-transaction T1 is known to have preceded T2, as they're causally related.
-However, this can only happen if (a) there's no overlap between the keys read
-or written during the transactions, and (b) there's an external low-latency
-communication channel between clients that could potentially impact activity on
-the DBMS.
+transaction \\(T_1\\) is not yet visible while transaction \\(
+T_2\\) is, even though transaction \\(T_1\\) is known to have preceded
+\\(T_2\\), as they're causally related.  However, this can only happen
+if (a) there's no overlap between the keys read or written during the
+transactions, and (b) there's an external low-latency communication channel
+between clients that could potentially impact activity on the database.
 
 For situations where reordering could be problematic, CRDB makes use of
 a "causality token", which is just the maximum timestamp encountered during a
@@ -231,8 +235,8 @@ does, though with much looser clock synchronization requirements. Put simply:
 When CRDB starts a transaction, it chooses a provisional commit
 timestamp based on the current node's wall time. It also establishes an upper
 bound on the selected wall time by adding the maximum clock offset for the
-cluster ([commit timestamp, commit timestamp + maximum clock offset]). This
-time interval represents the window of uncertainty.
+cluster. This time interval, \\([\\mathit{commit\ timestamp}, \\mathit{commit\ timestamp} +
+\\mathit{maximum\ clock\ offset}]\\), represents the window of uncertainty.
 
 As the transaction reads data from various nodes, it proceeds without
 difficulty so long as it doesn't encounter a key written within this interval.
