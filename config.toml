@@ -2,14 +2,17 @@ baseURL = "https://irfansharif.io/blog/"
 canonifyURLs = "true"
 languageCode = "en-us"
 theme = "central"
-title = "TODO(irfansharif): Blog title here."
+title = "irfansharif.io"
 
 [permalinks]
-  post = "/:year/:month/:title/"
+  posts = "/:title/"
   page = "/:slug/"
 
-# Theme variables>
+# Theme variables.
 [params]
-  description = "TODO(irfansharif): Description here."
+  description = "Notes on system design for young(er) bloods."
+
+[markup]
+  defaultMarkdownHandler = "blackfriday"
 
 # vim: ts=2 sw=2 et ft=conf
