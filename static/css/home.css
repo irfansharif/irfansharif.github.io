@@ -340,10 +340,12 @@ h1 {
 tag {
   font-style: bold;
   font-weight: 400;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   margin-top: 0rem;
   margin-bottom: 0;
-  line-height: 1.25;
+  line-height: 1.6rem;
+  width: 45%;
+  display: inline-block;
 }
 
 a {
@@ -356,4 +358,9 @@ header ul li {
   display: inline;
   padding: 0 15px;
   font-size: 1.15rem;
+}
+
+@media (max-width: 850px) {
+  tag { width: 100%; }
+  header ul li { padding: 0 0.5rem; }
 }
