@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>irfansharif.io</title>
-    <link>https://irfansharif.io/blog/</link>
-    <description>Recent content on irfansharif.io</description>
+    <title>Posts on irfansharif.io</title>
+    <link>https://irfansharif.io/blog/posts/</link>
+    <description>Recent content in Posts on irfansharif.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 21 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://irfansharif.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://irfansharif.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -28,33 +28,6 @@ One of the more inspired facets of Spanner comes from its use of atomic clocks t
       
       <guid>https://irfansharif.io/blog/template/</guid>
       <description>Donec vehicula massa mi Nunc tempus, mauris quis convallis vestibulum, dui quam cursus nulla, ut ornare arcu erat vitae mi. Quisque varius porttitor mattis. Donec ornare convallis enim facilisis dignissim. Morbi sit amet tristique odio. Nulla luctus bibendum justo. Nam orci mauris, dapibus at ultricies at, rhoncus vel dolor. Donec at lectus at velit pulvinar bibendum vel nec arcu. Ut viverra luctus velit nec tincidunt. Donec hendrerit, nulla sit amet rhoncus rutrum, orci est sodales ligula, quis malesuada lacus felis non leo.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://irfansharif.io/blog/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://irfansharif.io/blog/about/</guid>
-      <description> About. Lover. Fighter. Rapper. </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://irfansharif.io/blog/newsletter/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://irfansharif.io/blog/newsletter/</guid>
-      <description> Newsletter. Subscribe to get new posts in handy e-mail form. var submitted=false;  Subscribe   </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://irfansharif.io/blog/subscribed/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://irfansharif.io/blog/subscribed/</guid>
-      <description> Thanks for subscribing! </description>
     </item>
     
   </channel>
