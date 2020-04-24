@@ -10,12 +10,12 @@ date: 2020-04-21
   <img src="/img/first-atomic-clock.jpg" alt=" The world's first caesium-133 atomic clock, 1955." />
 </figure>
 
+_This was originally authored by Spencer about four years ago, and we figured
+it could do with a refresh. You'll also find it on our company [engineering
+blog](https://www.cockroachlabs.com/blog/living-without-atomic-clocks/). To get
+posted on new writing, [subscribe](/newsletter)._
+
 ---
-
-_This was originally authored by Spencer about four years ago, and we
-figured it could do with a refresh. You'll also find it on our company
-[engineering blog](https://www.cockroachlabs.com/blog/living-without-atomic-clocks/)._
-
 
 One of the more inspired facets of
 [Spanner](https://research.google/pubs/pub39966/) comes from its use of atomic
