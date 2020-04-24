@@ -17,8 +17,8 @@
       <pubDate>Tue, 21 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://irfansharif.io/blog/living-without-atomic-clocks/</guid>
-      <description>&amp;#8853; The world&#39;s first caesium-133 atomic clock (1955), and otherwise unrelated everything else here.  This was originally authored by Spencer about four years ago, and we figured it could do with a refresh. You&amp;rsquo;ll also find it on our company engineering blog.
-One of the more inspired facets of Spanner comes from its use of atomic clocks to give participating nodes really accurate wall time synchronization. The designers of Spanner call this &amp;lsquo;TrueTime&amp;rsquo;, and it provides a tight bound on clock offset between any two nodes in the system.</description>
+      <description>&amp;#8853; The world&#39;s first caesium-133 atomic clock (1955), and otherwise unrelated everything else here.  This was originally authored by Spencer about four years ago, and we figured it could do with a refresh. You&amp;rsquo;ll also find it on our company engineering blog. To get posted on new writing, subscribe.
+One of the more inspired facets of Spanner comes from its use of atomic clocks to give participating nodes really accurate wall time synchronization.</description>
     </item>
     
     <item>
