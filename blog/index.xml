@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on irfansharif.io</title>
+    <link>https://irfansharif.io/blog/</link>
+    <description>Recent content in Blogs on irfansharif.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://irfansharif.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rubbing Control Theory On Scheduler Latencies</title>
+      <link>https://irfansharif.io/blog/rubbing-control-theory-on-scheduler-latencies/</link>
+      <pubDate>Thu, 15 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.io/blog/rubbing-control-theory-on-scheduler-latencies/</guid>
+      <description>Scheduling latencies, control theory, and the tiniest patch to the Go runtime.</description>
+    </item>
+    
+    <item>
+      <title>From Interns, With Love</title>
+      <link>https://irfansharif.io/blog/from-interns-with-love/</link>
+      <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.io/blog/from-interns-with-love/</guid>
+      <description>A peek into what interns at CRDB work on.</description>
+    </item>
+    
+    <item>
+      <title>Living Without Atomic Clocks</title>
+      <link>https://irfansharif.io/blog/living-without-atomic-clocks/</link>
+      <pubDate>Tue, 21 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://irfansharif.io/blog/living-without-atomic-clocks/</guid>
+      <description>A brief primer on how CRDB provides serializability without the use of atomic clocks.</description>
+    </item>
+    
+  </channel>
+</rss>
