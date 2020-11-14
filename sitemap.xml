@@ -1,46 +1,61 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://irfansharif.io/</loc>
+    <lastmod>2022-12-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://irfansharif.io/blog/</loc>
-    <lastmod>2020-04-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2022-12-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/blog/rubbing-control-theory-on-scheduler-latencies/</loc>
+    <lastmod>2022-12-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/blog/from-interns-with-love/</loc>
+    <lastmod>2020-12-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/</loc>
+    <lastmod>2020-09-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/the-three-body-problem/</loc>
+    <lastmod>2020-09-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/dune/</loc>
+    <lastmod>2020-09-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/interpreter-of-maladies/</loc>
+    <lastmod>2020-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/the-greatest-urdu-stories-ever-told/</loc>
+    <lastmod>2020-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/one-hundred-years-of-solitude/</loc>
+    <lastmod>2020-09-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/between-the-world-and-me/</loc>
+    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/the-fire-next-time/</loc>
+    <lastmod>2020-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/americanah/</loc>
+    <lastmod>2020-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://irfansharif.io/books/1971-a-global-history-of-the-creation-of-bangladesh/</loc>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://irfansharif.io/blog/living-without-atomic-clocks/</loc>
     <lastmod>2020-04-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://irfansharif.io/blog/posts/</loc>
-    <lastmod>2020-04-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://irfansharif.io/blog/template/</loc>
-    <lastmod>2020-04-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://irfansharif.io/blog/about/</loc>
-  </url>
-  
-  <url>
-    <loc>https://irfansharif.io/blog/newsletter/</loc>
-  </url>
-  
-  <url>
-    <loc>https://irfansharif.io/blog/subscribed/</loc>
+  </url><url>
+    <loc>https://irfansharif.io/meta/</loc>
+  </url><url>
+    <loc>https://irfansharif.io/newsletter/</loc>
+  </url><url>
+    <loc>https://irfansharif.io/subscribed/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://irfansharif.io/categories/</loc>
+  </url><url>
+    <loc>https://irfansharif.io/tags/</loc>
   </url>
-  
-  <url>
-    <loc>https://irfansharif.io/blog/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://irfansharif.io/blog/tags/</loc>
-  </url>
-  
 </urlset>

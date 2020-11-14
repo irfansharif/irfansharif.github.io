@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="canonical" href="https://irfansharif.io/blog/living-without-atomic-clocks/">
+
+    
+      
+      <title>Living Without Atomic Clocks :: irfansharif.io</title>
+    
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+    <link href="https://irfansharif.io/css/tufte.css" rel="stylesheet">
+    <link href="https://irfansharif.io/css/latex.css" rel="stylesheet">
+    <link href="https://irfansharif.io/css/style.css" rel="stylesheet"> 
+    <link href="https://irfansharif.io/css/custom.css" rel="stylesheet"> 
+    <link rel="icon" href="https://irfansharif.io/favicon.ico">
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-92294257-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+
+<meta property="og:title" content="Living Without Atomic Clocks" />
+<meta property="og:description" content="A brief primer on how CRDB provides serializability without the use of atomic clocks."/>
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://irfansharif.io/blog/living-without-atomic-clocks/" />
+
+  <meta property="og:image" content="https://irfansharif.io/img/living-without-atomic-clocks/first-atomic-clock.jpg" />
+
+  
+    <meta property="article:published_time" content="2020-04-21T00:00:00+00:00" />
+  
+
+
+<meta property="og:site_name" content="irfansharif.io" />
+
+    
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="https://irfansharif.io/img/living-without-atomic-clocks/first-atomic-clock.jpg"/>
+
+
+<meta name="twitter:title" content="Living Without Atomic Clocks"/>
+<meta name="twitter:description" content="A brief primer on how CRDB provides serializability without the use of atomic clocks."/>
+
+  </head>
+
+  <div class="nav-bar">
+    <ul>
+      <li><a href="https://irfansharif.io/meta">Meta</a></li>
+      <li><a href="https://irfansharif.io/newsletter">Newsletter</a></li>
+      <li><a href="https://irfansharif.io/blog">Blog</a></li>
+    </ul>
+  </div>
+
+  <body>
+    
+
+
+
+  <h1 class="single-title">Living Without Atomic Clocks</h1>
+  <script defer src="https://irfansharif.io/js/permalink.js"></script>
+
+
+
+
+
+  <p class="single-time"><time>April 21, 2020</time></p>
+
+
+<section class="single-content">
+  
+
+<p><span class="marginnote">
+  The world&rsquo;s first caesium-133 atomic clock (1955), and otherwise unrelated
+  everything else here.
+</span>
+
+<div class="gallery caption-position-bottom caption-effect-none hover-effect-none hover-transition" itemscope itemtype="http://schema.org/ImageGallery">
+  
+  
+
+
+
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="https://irfansharif.io/img/living-without-atomic-clocks/first-atomic-clock.jpg" alt="The world&#39;s first caesium-133 atomic clock (1955), and otherwise unrelated everything else here."/>
+    </div>
+
+    <a href="https://irfansharif.io/img/living-without-atomic-clocks/first-atomic-clock.jpg" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+</div>
+
+<span class="collapsed-marginnote">
+  The world&rsquo;s first caesium-133 atomic clock (1955), and otherwise unrelated
+  everything else here.
+</span></p>
+
+<p><em>This was originally authored by Spencer Kimball about four years ago; I
+tried re-writing it to understand it better. You&rsquo;ll also find it on our company
+<a href="https://www.cockroachlabs.com/blog/living-without-atomic-clocks/">engineering blog</a>.
+To keep up with new writing, sign up for my (entirely inactive)
+<a href="https://irfansharif.io/newsletter">newsletter</a>.</em></p>
+
+<hr />
+
+<p>One of the more inspired facets of Spanner<sup class="footnote-ref" id="fnref:spanner"><a href="#fn:spanner">1</a></sup> comes from its use of atomic
+clocks to give participating nodes really accurate wall time synchronization.
+The designers of Spanner call this
+<a href="https://cloud.google.com/spanner/docs/true-time-external-consistency"><em>TrueTime</em></a>,
+and it provides a tight bound on clock offset between any two nodes in the
+system. This lets them do pretty nifty things! We&rsquo;ll elaborate on a few of
+these below, but chief among them is their ability to leverage tightly
+synchronized clocks to provide a high level of external consistency (we&rsquo;ll
+explain what this is too).</p>
+
+<p>Seeing as how CockroachDB<sup class="footnote-ref" id="fnref:crdb"><a href="#fn:crdb">2</a></sup> (abbrev. <abbrev>CRDB</abbrev>) is supposedly
+the <em>open source Spanner</em>, for folks even remotely familiar with Spanner
+internals a reasonable ask at this point is something along the lines of <em>&lsquo;you
+can&rsquo;t be using atomic clocks if you’re building an open source system, so how
+does <abbrev>CRDB</abbrev> even work?&rsquo;</em></p>
+
+<p>It&rsquo;s a good question, and one we (try) to elaborate on here. As a
+Spanner-derived system, our challenges lie in providing similar guarantees of
+external consistency without having these magical clocks at hand. <abbrev>CRDB</abbrev> was
+intended to be run on off-the-shelf commodity hardware, on any arbitrary
+collection of nodes. It&rsquo;s <em>cloud neutral</em> in that it can very well span
+multiple public and/or private clouds using your flavor-of-the-month
+virtualization layer. It&rsquo;d be a showstopper to require an external dependency
+on specialized hardware for clock synchronization.</p>
+
+<p>So what does <abbrev>CRDB</abbrev> do instead? Well, before answering that question,
+let&rsquo;s dig a little deeper into why TrueTime was conceived for Spanner in the
+first place.</p>
+
+<h2 id="1-time-in-distributed-systems">1. Time in Distributed Systems</h2>
+
+<p>Time is a fickle thing. For readers unfamiliar with the complexities around
+time in distributed systems research, the thing to know about it all is this:
+each node in the system maintains its own view of time, usually powered by its
+own on-chip clock device. This clock device is rarely ever going to be
+perfectly in sync with other nodes in the system, and as such, there’s no
+<em>absolute</em> time to refer to.</p>
+
+<p>Existentialism aside, perfectly synchronized clocks are a holy grail of sorts
+for distributed systems research. They provide, in essence, a means to
+absolutely order events, regardless of which node an event originated at. This
+can be especially useful when performance is at stake, allowing subsets of
+nodes to make forward progress without regard to the rest of the cluster
+(seeing as every other node is seeing the same <em>absolute</em> time), while still
+maintaining global ordering guarantees. Our favorite Turing award winner has
+written a few words on the subject<sup class="footnote-ref" id="fnref:sync-clocks"><a href="#fn:sync-clocks">3</a></sup>.</p>
+
+<h2 id="2-linearizability">2. Linearizability</h2>
+
+<p>By contrast, systems without perfectly synchronized clocks (read: every system)
+that wish to establish a complete global ordering must communicate with a
+single source of time on every operation. This was the motivation behind the
+<em>timestamp oracle</em> as used by Google&rsquo;s Percolator<sup class="footnote-ref" id="fnref:percolator"><a href="#fn:percolator">4</a></sup>. A system which
+orders transactions \(T_1\) and \(T_2\) in the order \([T_1, T_2]\)
+provided that \(T_2\) starts after \(T_1\) finishes, regardless of
+observer, provides for the strongest guarantee of consistency called <em>external
+consistency</em><sup class="footnote-ref" id="fnref:extern-consistency"><a href="#fn:extern-consistency">5</a></sup>. To confuse things
+further, this is what folks interchangeably refer to as <em>linearizability</em> or
+<em>strict serializability</em>. Andrei has more words on this soup of consistency
+models <a href="https://www.cockroachlabs.com/blog/consistency-model/">here</a>.</p>
+
+<h2 id="3-serializability">3. Serializability</h2>
+
+<p>Let&rsquo;s follow one more tangent and introduce the concept of <em>serializability</em>.
+Most database developers are familiar with serializability as the highest
+isolation level provided by the <abbrev>ANSI SQL</abbrev> standard. It guarantees that the
+constituent reads and writes within a transaction occur as though that
+transaction were given exclusive access to the database for the length of its
+execution, guaranteeing that no transactions interfere with each other. In
+other words, no concurrent transaction \(T_2\) is able to read any
+partially-written state of transaction \(T_1\) or perform writes
+causing transaction \(T_1\) to read different values for the same key
+over the course of its execution.</p>
+
+<p>In a non-distributed database, serializability implies linearizability for
+transactions because a single node has a monotonically increasing clock (or
+should, anyway!). If transaction \(T_1\) is committed before starting
+transaction \(T_2\), then transaction \(T_2\) can only
+commit at a later time.</p>
+
+<p>In a distributed database, things can get dicey. It&rsquo;s easy to see how the
+ordering of causally-related transactions can be violated if nodes in the
+system have unsynchronized clocks. Assume there are two nodes, \(N_1\) and
+\(N_2\), and two transactions, \(T_1\) and \(T_2\), committing at
+\(N_1\) and \(N_2\) respectively. Because we’re not consulting a single,
+global source of time \(t\), transactions use the node-local clocks to generate
+commit timestamps \(ts\). To illustrate the trickiness around this stuff,
+let&rsquo;s say \(N_1\) has an accurate one but \(N_2\) has a clock lagging by
+\(100ms\). We start with \(T_1\), addressing \(N_1\), which is able to
+commit at \(ts = 150ms\). An external observer sees \(T_1\) commit
+and consequently starts \(T_2\), addressing \(N_2\),
+\(50ms\) later (at \(t = 200ms\)). Since \(T_2\)
+is annotated using the timestamp retrieved from \(N_2\)’s lagging
+clock, it commits <em>in the past</em>, at \(ts = 100ms\).  Now, any
+observer reading keys across \(N_1\) and \(N_2\) will see
+the reversed ordering, \(T_2\)&rsquo;s writes (at \(ts = 100ms\))
+will appear to have happened before \(T_1\)&rsquo;s (at \(ts =
+150ms\)), despite the opposite being true. ¡No bueno! (Note that this can only
+happen when the two transactions access a disjoint set of keys.)</p>
+
+<p><span class="marginnote">
+  Causally related transactions committing out of order due to unsynchronized
+  clocks.
+</span>
+
+<div class="gallery caption-position-bottom caption-effect-none hover-effect-none hover-transition" itemscope itemtype="http://schema.org/ImageGallery">
+  
+  
+
+
+
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="https://irfansharif.io/img/living-without-atomic-clocks/causal-reverse.png" alt="Causally related transactions committing out of order due to unsynchronized clocks."/>
+    </div>
+
+    <a href="https://irfansharif.io/img/living-without-atomic-clocks/causal-reverse.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+</div>
+
+<span class="collapsed-marginnote">
+  Figure 1. Causally related transactions committing out of order due to
+  unsynchronized clocks.
+</span></p>
+
+<p>The anomaly described here, and shown in the figure above, is something we call
+<em>causal reverse</em>. While Spanner provides linearizability, <abbrev>CRDB</abbrev> only goes as far
+as to claim serializability, though with some features to help bridge the gap
+in practice. I’ll (lazily) defer to Andrei again, he really does cover a lot of
+ground <a href="https://www.cockroachlabs.com/blog/consistency-model/">here</a>.</p>
+
+<h2 id="4-how-does-truetime-provide-linearizability">4. How does TrueTime provide linearizability?</h2>
+
+<p>So, back to Spanner and TrueTime. It&rsquo;s important to keep in mind that TrueTime
+does not guarantee perfectly synchronized clocks. Rather, TrueTime gives an
+upper bound for clock offsets between nodes in a cluster. The use of
+synchronized atomic clocks is what helps minimize the upper bound. In Spanner&rsquo;s
+case, Google mentions an upper bound of 7ms. That&rsquo;s pretty tight; by contrast,
+using <abbrev><a href="https://en.wikipedia.org/wiki/Network_Time_Protocol">NTP</a></abbrev> for clock
+synchronization is likely to give somewhere between 100ms and 250ms.</p>
+
+<p>So how does Spanner use TrueTime to provide linearizability given that there
+are still inaccuracies between clocks? It&rsquo;s actually surprisingly simple. It
+waits. Before a node is allowed to report that a transaction has committed, it
+must wait 7ms. Because all clocks in the system are within 7ms of each other,
+waiting 7ms means that no subsequent transaction may commit at an earlier
+timestamp, even if the earlier transaction was committed on a node with a clock
+which was fast by the maximum 7ms. Pretty clever.</p>
+
+<p>Careful readers will observe that the whole <em>wait out the uncertainty</em> idea is
+not predicated on having atomic clocks lying around. One could very well wait
+out the maximum clock offset in any system and achieve linearizability. It
+would of course be impractical to have to eat <abbrev>NTP</abbrev> offsets on every write,
+though perhaps recent research<sup class="footnote-ref" id="fnref:huygens"><a href="#fn:huygens">6</a></sup> in this area may help bring that down
+to under a millisecond.</p>
+
+<p>Fun fact: early <abbrev>CRDB</abbrev> had a hidden <em>&ndash;linearizable</em> switch that would do
+essentially the above, so theoretically, if you <em>did</em> have atomic clocks lying
+around (or generally an acceptable maximum clock offset), you&rsquo;d get
+Spanner-like behavior out of the box. We&rsquo;ve since removed it given how
+under-tested it was, but perhaps it would make sense to resurrect it as cloud
+providers trend towards exposing <a href="https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-the-amazon-time-sync-service/">TrueTime-like</a>
+APIs. Chip-scale atomic clocks are a reality; putting one on server
+motherboards would beat the pants off a quartz crystal oscillator.</p>
+
+<h2 id="5-how-important-is-linearizability">5. How important is linearizability?</h2>
+
+<p>Stronger guarantees are a good thing, but some are more useful than others. The
+possibility of reordering commit timestamps for causally related transactions
+is likely a marginal problem in practice. What could happen is that examining
+the database at a historical timestamp might yield paradoxical situations where
+transaction \(T_1\) is not yet visible while transaction \(
+T_2\) is, even though transaction \(T_1\) is known to have preceded
+\(T_2\), as they&rsquo;re causally related.  However, this can only happen
+if (a) there&rsquo;s no overlap between the keys read or written during the
+transactions, and (b) there&rsquo;s an external low-latency communication channel
+between clients that could potentially impact activity on the database.</p>
+
+<p>For situations where reordering could be problematic, <abbrev>CRDB</abbrev> makes use of
+a <em>causality token</em>, which is just the maximum timestamp encountered during a
+transaction. It&rsquo;s passed from one actor to the next in a causal chain, and
+serves as a minimum timestamp for successive transactions to guarantee that
+each has a properly ordered commit timestamp. Of course, this mechanism doesn&rsquo;t
+properly order independent causal chains, though imagining a use case where
+that&rsquo;s a problem requires creativity.</p>
+
+<p>But there&rsquo;s a more critical use for TrueTime than ordering transactions. When
+starting a transaction reading data from multiple nodes, a timestamp must be
+chosen which is guaranteed to be at least as large as the highest commit time
+across all nodes. If that&rsquo;s not true, then the new transaction might fail to
+read already-committed data – an unacceptable breach of consistency. With
+TrueTime at your disposal, the solution is easy; simply choose the current
+TrueTime. Since every already-committed transaction must have committed at
+least 7ms ago, the current node&rsquo;s wall clock must have a time greater than or
+equal to the most recently committed transaction. Wow, that&rsquo;s easy and
+efficient. So what does <abbrev>CRDB</abbrev> do?</p>
+
+<h2 id="6-how-does-cockroachdb-choose-transaction-timestamps">6. How does CockroachDB choose transaction timestamps?</h2>
+
+<p>The short answer? Something not as easy and not as efficient. The longer answer
+is that <abbrev>CRDB</abbrev> discovers an appropriate timestamp for the transaction as
+it proceeds, sometimes restarting it at a later timestamp if needed.</p>
+
+<p>As mentioned earlier, the timestamp we choose for the transaction must be
+greater than or equal to the maximum commit timestamp across all nodes we
+intend to read from. If we knew the nodes which would be read from in advance,
+we could send a parallel request for the maximum timestamp from each and use
+the latest. But this is a bit clumsy, since <abbrev>CRDB</abbrev> was designed to support
+conversational <abbrev>SQL</abbrev> where the read/write sets are indeterminate, we <em>can’t</em> know
+the nodes in advance. It&rsquo;s also inefficient because we would have to wait for
+the slowest node to respond before even starting execution. Aside: readers may
+be interested in Calvin<sup class="footnote-ref" id="fnref:calvin"><a href="#fn:calvin">7</a></sup> and <abbrev>SLOG</abbrev><sup class="footnote-ref" id="fnref:slog"><a href="#fn:slog">8</a></sup>, a family of research systems
+developed around declaring read/write sets upfront (though giving up
+conversational <abbrev>SQL</abbrev>) which consequently manages to avoid this class of problems.</p>
+
+<p>What <abbrev>CRDB</abbrev> does instead is actually surprisingly similar to what Spanner
+does, though with much looser clock synchronization requirements. Put simply:</p>
+
+<p><blockquote>
+    <p>
+      <em>While Spanner always waits after writes, CockroachDB
+      sometimes waits before reads.</em>
+    </p>
+  </blockquote></p>
+
+<p>When <abbrev>CRDB</abbrev> starts a transaction, it chooses a provisional commit
+timestamp based on the current node&rsquo;s wall time. It also establishes an upper
+bound on the selected wall time by adding the maximum clock offset for the
+cluster. This time interval, \([\ \mathit{commit\ ts},  \mathit{commit\ ts} +
+\mathit{max\ clock\ offset}\ ]\), represents the window of uncertainty.</p>
+
+<p>As the transaction reads data from various nodes, it proceeds without
+difficulty so long as it doesn&rsquo;t encounter a key written within this interval.
+If the transaction encounters a value at a timestamp below its provisional
+commit timestamp, it trivially observes the value during reads and overwrites
+the value at the higher timestamp during writes. It&rsquo;s only when a value is
+observed to be within the uncertainty interval that <abbrev>CRDB</abbrev>-specific
+machinery kicks in. The central issue here is that given the clock offsets, we
+can&rsquo;t say for certain whether the encountered value was committed <em>before</em> our
+transaction started. In such cases, we simply make it so by performing an
+<em>uncertainty restart</em>, bumping the provisional commit timestamp just above the
+timestamp encountered. Crucially, the upper bound of the uncertainty interval
+does not change on restart, so the window of uncertainty shrinks. Transactions
+reading constantly updated data from many nodes may be forced to restart
+multiple times, though never for longer than the uncertainty interval, nor more
+than once per node.</p>
+
+<p>As mentioned above, the contrast between Spanner and <abbrev>CRDB</abbrev> is that
+Spanner always waits on writes for a short interval, whereas <abbrev>CRDB</abbrev>
+sometimes waits on reads for a longer interval. How long is that interval?
+Well, it depends on how clocks on <abbrev>CRDB</abbrev> nodes are being synchronized.
+Using <abbrev>NTP</abbrev>, it could very well be up to 250ms. Not great, but the kind of
+transaction that would restart for the full interval would have to be reading
+constantly updated values across many nodes. These kinds of patterns do exist
+in practice, but are the exception.</p>
+
+<p>Because <abbrev>CRDB</abbrev> relies on clock synchronization, nodes periodically compare
+clock offsets amongst themselves. If the configured maximum offset is exceeded
+by any node, it self-terminates. If you’re curious about what happens when
+maximum clock offsets are violated, we’ve thought about it a bit
+<a href="https://www.cockroachlabs.com/docs/stable/operational-faqs.html#what-happens-when-node-clocks-are-not-properly-synchronized">here</a>.</p>
+
+<h2 id="8-concluding-thoughts">8. Concluding thoughts</h2>
+
+<p>If you&rsquo;ve made it this far, thanks for hanging in there. If you&rsquo;re new to it
+all, this is tricky stuff to grok. Even we occasionally need reminding about
+how it all fits together, and we built the damn thing.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:spanner">James C. Corbett, Jeffrey Dean, et. al. 2012. <a href="https://research.google/pubs/pub39966/">Spanner: Google’s Globally-Distributed Database</a>.
+ <a class="footnote-return" href="#fnref:spanner">⤻</a></li>
+<li id="fn:crdb">Rebecca Taft, Irfan Sharif et. al. 2020. <a href="https://dl.acm.org/doi/pdf/10.1145/3318464.3386134">CockroachDB: The Resilient Geo-Distributed SQL Database</a>.
+ <a class="footnote-return" href="#fnref:crdb">⤻</a></li>
+<li id="fn:sync-clocks">Barbara Liskov. 1991. <a href="https://dl.acm.org/doi/10.1145/112600.112601">Practical uses of synchronized clocks in distributed systems</a>.
+ <a class="footnote-return" href="#fnref:sync-clocks">⤻</a></li>
+<li id="fn:percolator">Daniel Peng, Frank Dabek. 2010. <a href="https://research.google/pubs/pub36726/">Large-scale Incremental Processing Using Distributed Transactions and Notifications</a>.
+ <a class="footnote-return" href="#fnref:percolator">⤻</a></li>
+<li id="fn:extern-consistency">David Kenneth Gifford. 1981. <a href="https://dl.acm.org/doi/book/10.5555/910052">Information storage in a decentralized computer system</a>.
+ <a class="footnote-return" href="#fnref:extern-consistency">⤻</a></li>
+<li id="fn:huygens">Yilong Geng, Shiyu Liu, et. al. 2018. <a href="https://www.usenix.org/system/files/conference/nsdi18/nsdi18-geng.pdf">Exploiting a Natural Network Effect for Scalable, Fine-grained Clock Synchronization</a>
+ <a class="footnote-return" href="#fnref:huygens">⤻</a></li>
+<li id="fn:calvin">Daniel Abadi et. al. 2012. <a href="http://cs.yale.edu/homes/thomson/publications/calvin-sigmod12.pdf">Calvin: Fast Distributed Transactions for Partitioned Database Systems</a>.
+ <a class="footnote-return" href="#fnref:calvin">⤻</a></li>
+<li id="fn:slog">Daniel Abadi et. al. 2019. <a href="https://www.cs.umd.edu/~abadi/papers/1154-Abadi.pdf">SLOG: Serializable, Low-latency, Geo-replicated Transactions</a>.
+ <a class="footnote-return" href="#fnref:slog">⤻</a></li>
+</ol>
+</div>
+
+  <hr>
+
+<div>
+  <p class="byline">
+    To get posted on new writing, sign up for my (entirely inactive) <a href="https://irfansharif.io/newsletter">newsletter</a>. 
+  </p>
+</div>
+
+</section>
+
+  </body>
+
+    <footer>
+      
+  </footer>
+</html>
