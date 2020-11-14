@@ -3,12 +3,17 @@ title: "Living Without Atomic Clocks"
 date: 2020-04-21
 ---
 
-<figure>
-  <label for="first-atomic-clock" class="margin-toggle">&#8853;</label>
-  <input type="checkbox" id="first-atomic-clock" class="margin-toggle"/>
-  <span class="marginnote">The world's first caesium-133 atomic clock (1955), and otherwise unrelated everything else here.</span>
-  <img src="/img/first-atomic-clock.jpg" alt=" The world's first caesium-133 atomic clock, 1955." />
-</figure>
+{{< load-photoswipe >}}
+
+<label for="mn-blue-links" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-blue-links" class="margin-toggle"/>
+<span class="marginnote">
+  The world's first caesium-133 atomic clock (1955), and otherwise unrelated
+  everything else here.
+</span>
+{{< gallery hover-effect="none" caption-effect="none" >}}
+  {{< figure src="img/first-atomic-clock.jpg" size="1000x408" thumb="img/first-atomic-clock.jpg" caption="The world's first caesium-133 atomic clock (1955), and otherwise unrelated everything else here." >}}
+{{< /gallery >}}
 
 _This was originally authored by Spencer about four years ago, and we figured
 it could do with a refresh. You'll also find it on our company [engineering
@@ -17,8 +22,7 @@ posted on new writing, [subscribe](/newsletter)._
 
 ---
 
-One of the more inspired facets of
-[Spanner](https://research.google/pubs/pub39966/) comes from its use of atomic
+One of the more inspired facets of Spanner[^spanner] comes from its use of atomic
 clocks to give participating nodes really accurate wall time synchronization.
 The designers of Spanner call this
 ['TrueTime'](https://cloud.google.com/spanner/docs/true-time-external-consistency),
@@ -28,11 +32,10 @@ these below, but chief among them is their ability to leverage tightly
 synchronized clocks to provide a high level of external consistency (we'll
 explain what this is too).
 
-Seeing as how [CockroachDB](https://github.com/cockroachdb/cockroach/) (abbrev.
-CRDB) is supposedly the 'open source Spanner', for folks even remotely familiar
-with Spanner internals a reasonable ask at this point is something along the
-lines of "you can’t be using atomic clocks if you’re building an open source
-system; so how does CRDB even work?"
+Seeing as how CockroachDB[^crdb] \(abbrev. CRDB) is supposedly the 'open source
+Spanner', for folks even remotely familiar with Spanner internals a reasonable
+ask at this point is something along the lines of "you can't be using atomic
+clocks if you’re building an open source system, so how does CRDB even work?"
 
 It's a good question, and one we (try) to elaborate on here. As a
 Spanner-derived system, our challenges lie in providing similar guarantees of
@@ -63,20 +66,18 @@ can be especially useful when performance is at stake, allowing subsets of
 nodes to make forward progress without regard to the rest of the cluster
 (seeing as every other node is seeing the same “absolute” time), while still
 maintaining global ordering guarantees. Our favorite Turing award winner has
-written a few words on the subject
-[here](https://dl.acm.org/doi/10.1145/112600.112601).
+written a few words on the subject[^sync-clocks].
 
 ## Linearizability
 
 By contrast, systems without perfectly synchronized clocks (read: every system)
 that wish to establish a complete global ordering must communicate with a
 single source of time on every operation. This was the motivation behind the
-"timestamp oracle" as used by Google's
-[Percolator](https://research.google/pubs/pub36726/). A system which orders
-transactions \\(T_1\\) and \\(T_2\\) in the order \\([T_1, T_2]\\) provided
-that \\(T_2\\) starts after \\(T_1\\) finishes, regardless of observer,
-provides for the strongest guarantee of consistency called ['external
-consistency'](https://dl.acm.org/doi/book/10.5555/910052). To confuse things
+"timestamp oracle" as used by Google's Percolator[^percolator]. A system which
+orders transactions \\(T_1\\) and \\(T_2\\) in the order \\([T_1, T_2]\\)
+provided that \\(T_2\\) starts after \\(T_1\\) finishes, regardless of
+observer, provides for the strongest guarantee of consistency called 'external
+consistency'[^extern-consistency]. To confuse things
 further, this is what folks interchangeably refer to as "linearizability" or
 "strict serializability". Andrei has more words on this soup of consistency
 models [here](https://www.cockroachlabs.com/blog/consistency-model/).
@@ -120,14 +121,15 @@ will appear to have happened before \\(T_1\\)'s (at \\(ts =
 150ms\\)), despite the opposite being true. ¡No bueno! (Note that this can only
 happen when the two transactions access a disjoint set of keys.)
 
-<figure>
-<label for="first-atomic-clock" class="margin-toggle">&#8853;</label>
-<input type="checkbox" id="first-atomic-clock" class="margin-toggle"/>
+<label for="mn-blue-links" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-blue-links" class="margin-toggle"/>
 <span class="marginnote">
-Causally related transactions committing out of order due to unsynchronized clocks.
+  Causally related transactions committing out of order due to unsynchronized
+  clocks.
 </span>
-<img src="/img/causal-reverse.png" alt="Causally related transactions committing out of order due to unsynchronized clocks." />
-</figure>
+{{< gallery hover-effect="none" caption-effect="none" >}}
+  {{< figure src="img/causal-reverse.png" size="3130x1676" thumb="img/causal-reverse.png" caption="Causally related transactions committing out of order due to unsynchronized clocks." >}}
+{{< /gallery >}}
 
 The anomaly described here, and shown in the figure above, is something we call
 "causal reverse". While Spanner provides linearizability, CRDB only goes as far
@@ -157,8 +159,8 @@ Careful readers will observe that the whole "wait out the uncertainty" idea is
 not predicated on having atomic clocks lying around. One could very well wait
 out the maximum clock offset in any system and achieve linearizability. It
 would of course be impractical to have to eat NTP offsets on every write,
-though perhaps [recent research](https://www.usenix.org/system/files/conference/nsdi18/nsdi18-geng.pdf)
-in this area may help bring that down to under a millisecond.
+though perhaps recent research[^huygens] in this area may help bring that down
+to under a millisecond.
 
 Fun fact: early CRDB had a hidden '--linearizable' switch that would do
 essentially the above, so theoretically, if you _did_ have atomic clocks lying
@@ -215,12 +217,9 @@ the latest. But this is a bit clumsy, since CRDB was designed to support
 conversational SQL where the read/write sets are indeterminate, we _can’t_ know
 the nodes in advance. It's also inefficient because we would have to wait for
 the slowest node to respond before even starting execution. Aside: readers may
-be interested in
-[Calvin](http://cs.yale.edu/homes/thomson/publications/calvin-sigmod12.pdf) and
-[SLOG](https://www.cs.umd.edu/~abadi/papers/1154-Abadi.pdf), a family of
-research systems developed around declaring read/write sets upfront (though
-giving up conversational SQL) which consequently manages to avoid this class of
-problems.
+be interested in Calvin[^calvin] and SLOG[^slog], a family of research systems
+developed around declaring read/write sets upfront (though giving up
+conversational SQL) which consequently manages to avoid this class of problems.
 
 What CRDB does instead is actually surprisingly similar to what Spanner
 does, though with much looser clock synchronization requirements. Put simply:
@@ -274,3 +273,12 @@ maximum clock offsets are violated, we’ve thought about it a bit
 If you've made it this far, thanks for hanging in there. If you're new to it
 all, this is tricky stuff to grok. Even we occasionally need reminding about
 how it all fits together, and we built the damn thing.
+
+[^calvin]: Daniel Abadi et. al. 2012. [Calvin: Fast Distributed Transactions for Partitioned Database Systems](http://cs.yale.edu/homes/thomson/publications/calvin-sigmod12.pdf).
+[^slog]: Daniel Abadi et. al. 2019. [SLOG: Serializable, Low-latency, Geo-replicated Transactions](https://www.cs.umd.edu/~abadi/papers/1154-Abadi.pdf).
+[^spanner]: James C. Corbett, Jeffrey Dean, et. al. 2012. [Spanner: Google’s Globally-Distributed Database](https://research.google/pubs/pub39966/).
+[^crdb]: Rebecca Taft, Irfan Sharif et. al. 2020. [CockroachDB: The Resilient Geo-Distributed SQL Database](https://dl.acm.org/doi/pdf/10.1145/3318464.3386134).
+[^percolator]: Daniel Peng, Frank Dabek. 2010. [Large-scale Incremental Processing Using Distributed Transactions and Notifications](https://research.google/pubs/pub36726/).
+[^extern-consistency]: David Kenneth Gifford. 1981. [Information storage in a decentralized computer system](https://dl.acm.org/doi/book/10.5555/910052).
+[^huygens]: Yilong Geng, Shiyu Liu, et. al. 2018. [Exploiting a Natural Network Effect for Scalable, Fine-grained Clock Synchronization](https://www.usenix.org/system/files/conference/nsdi18/nsdi18-geng.pdf)
+[^sync-clocks]: Barbara Liskov. 1991. [Practical uses of synchronized clocks in distributed systems](https://dl.acm.org/doi/10.1145/112600.112601).

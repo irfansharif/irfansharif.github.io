@@ -3,6 +3,7 @@ canonifyURLs = "true"
 languageCode = "en-us"
 theme = "central"
 title = "irfansharif.io"
+footnoteReturnLinkContents = "↩"
 
 [permalinks]
   posts = "/:title/"
