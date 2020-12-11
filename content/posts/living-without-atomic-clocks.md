@@ -3,10 +3,6 @@ title: "Living Without Atomic Clocks"
 date: 2020-04-21
 ---
 
-{{< load-photoswipe >}}
-
-<label for="mn-blue-links" class="margin-toggle">&#8853;</label>
-<input type="checkbox" id="mn-blue-links" class="margin-toggle"/>
 <span class="marginnote">
   The world's first caesium-133 atomic clock (1955), and otherwise unrelated
   everything else here.
@@ -14,11 +10,16 @@ date: 2020-04-21
 {{< gallery hover-effect="none" caption-effect="none" >}}
   {{< figure src="img/first-atomic-clock.jpg" size="1000x408" thumb="img/first-atomic-clock.jpg" caption="The world's first caesium-133 atomic clock (1955), and otherwise unrelated everything else here." >}}
 {{< /gallery >}}
+<span class="collapsed-marginnote">
+  The world's first caesium-133 atomic clock (1955), and otherwise unrelated
+  everything else here.
+</span>
 
-_This was originally authored by Spencer about four years ago, and we figured
-it could do with a refresh. You'll also find it on our company [engineering
-blog](https://www.cockroachlabs.com/blog/living-without-atomic-clocks/). To get
-posted on new writing, [subscribe](/newsletter)._
+_This was originally authored by Spencer Kimball about four years ago; I
+tried re-writing it to understand it better. You'll also find it on our company
+[engineering blog](https://www.cockroachlabs.com/blog/living-without-atomic-clocks/).
+To keep up with new writing, sign up for my (entirely inactive)
+[newsletter](/newsletter)._
 
 ---
 
@@ -121,15 +122,19 @@ will appear to have happened before \\(T_1\\)'s (at \\(ts =
 150ms\\)), despite the opposite being true. ¡No bueno! (Note that this can only
 happen when the two transactions access a disjoint set of keys.)
 
-<label for="mn-blue-links" class="margin-toggle">&#8853;</label>
-<input type="checkbox" id="mn-blue-links" class="margin-toggle"/>
 <span class="marginnote">
   Causally related transactions committing out of order due to unsynchronized
   clocks.
 </span>
 {{< gallery hover-effect="none" caption-effect="none" >}}
-  {{< figure src="img/causal-reverse.png" size="3130x1676" thumb="img/causal-reverse.png" caption="Causally related transactions committing out of order due to unsynchronized clocks." >}}
+  {{< figure src="img/causal-reverse.png" size="3130x1676"
+      thumb="img/causal-reverse.png"
+      caption="Causally related transactions committing out of order due to unsynchronized clocks." >}}
 {{< /gallery >}}
+<span class="collapsed-marginnote">
+  Figure 1. Causally related transactions committing out of order due to
+  unsynchronized clocks.
+</span>
 
 The anomaly described here, and shown in the figure above, is something we call
 "causal reverse". While Spanner provides linearizability, CRDB only goes as far
@@ -234,8 +239,8 @@ does, though with much looser clock synchronization requirements. Put simply:
 When CRDB starts a transaction, it chooses a provisional commit
 timestamp based on the current node's wall time. It also establishes an upper
 bound on the selected wall time by adding the maximum clock offset for the
-cluster. This time interval, \\([\\mathit{commit\ timestamp}, \\mathit{commit\ timestamp} +
-\\mathit{maximum\ clock\ offset}]\\), represents the window of uncertainty.
+cluster. This time interval, \\([\ \\mathit{commit\ ts},  \\mathit{commit\ ts} +
+\\mathit{max\ clock\ offset}\ ]\\), represents the window of uncertainty.
 
 As the transaction reads data from various nodes, it proceeds without
 difficulty so long as it doesn't encounter a key written within this interval.
