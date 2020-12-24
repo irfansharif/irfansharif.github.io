@@ -24,7 +24,7 @@ TabName: About
     }
   }
 </style>
-<figure class="face-figure"><img src="/img/face.jpg" class="face"/></figure>
+<figure class="face-figure"><img src="/img/about/face.jpg" class="face"/></figure>
 
 I'm an engineer on the distributed key-value store underlying
 [CRDB](https://github.com/cockroachdb/cockroach). I've interned here twice

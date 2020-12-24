@@ -8,7 +8,7 @@ date: 2020-04-21
   everything else here.
 </span>
 {{< gallery hover-effect="none" caption-effect="none" >}}
-  {{< figure src="img/first-atomic-clock.jpg" size="1000x408" thumb="img/first-atomic-clock.jpg" caption="The world's first caesium-133 atomic clock (1955), and otherwise unrelated everything else here." >}}
+  {{< figure src="img/living-without-atomic-clocks/first-atomic-clock.jpg" size="1000x408" thumb="img/living-without-atomic-clocks/first-atomic-clock.jpg" caption="The world's first caesium-133 atomic clock (1955), and otherwise unrelated everything else here." >}}
 {{< /gallery >}}
 <span class="collapsed-marginnote">
   The world's first caesium-133 atomic clock (1955), and otherwise unrelated
@@ -127,8 +127,8 @@ happen when the two transactions access a disjoint set of keys.)
   clocks.
 </span>
 {{< gallery hover-effect="none" caption-effect="none" >}}
-  {{< figure src="img/causal-reverse.png" size="3130x1676"
-      thumb="img/causal-reverse.png"
+  {{< figure src="img/living-without-atomic-clocks/causal-reverse.png" size="3130x1676"
+      thumb="img/living-without-atomic-clocks/causal-reverse.png"
       caption="Causally related transactions committing out of order due to unsynchronized clocks." >}}
 {{< /gallery >}}
 <span class="collapsed-marginnote">
