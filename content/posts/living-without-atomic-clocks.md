@@ -1,6 +1,8 @@
 ---
 title: "Living Without Atomic Clocks"
 date: 2020-04-21
+summary: A brief primer on how CRDB provides serializability without the use of atomic clocks.
+preview: img/living-without-atomic-clocks/first-atomic-clock.jpg
 ---
 
 <span class="marginnote">

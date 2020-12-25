@@ -4,6 +4,7 @@ languageCode = "en-us"
 theme = "central"
 title = "irfansharif.io"
 footnoteReturnLinkContents = "⤻" # Options: ↩
+googleAnalytics = "UA-92294257-1"
 
 [permalinks]
   posts = "/:title/"
@@ -11,7 +12,9 @@ footnoteReturnLinkContents = "⤻" # Options: ↩
 
 # Theme variables.
 [params]
+  title = "irfansharif.io"
   description = "Notes on system design for young(er) bloods."
+  summary = "Notes on system design for young(er) bloods."
 
 [markup]
   defaultMarkdownHandler = "blackfriday"

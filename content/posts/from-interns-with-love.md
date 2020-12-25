@@ -1,6 +1,8 @@
 ---
 title: "From Interns, With Love"
 date: 2020-12-16
+summary: Spoke with CRDB's most recent intern cohort to understand what they were working on.
+preview: img/from-interns-with-love/watson-lab.jpg
 ---
 
 <span class="marginnote">
@@ -117,16 +119,6 @@ sampling process checked for overlapping SSTs across the various levels in the
 LSM. If an oft-read SST was found to overlap with ones from lower levels, it
 was scored higher to prioritize its compaction.
 
-As expected, we [found](https://github.com/cockroachdb/pebble/issues/29#issuecomment-744514344)
-that read-based compactions led to significant improvement in read heavy
-workloads. Our benchmarks running YCSB-C (100% reads) using 1KB writes saw
-read amplification reduced by ~71% and throughput increased by ~133%. With
-YCSB-B (95% reads) using small value reads/writes (64 bytes), we reduced
-read-amplification by ~15% which led to a throughput increase of ~20%.  These
-benchmarks targeted Pebble directly, and there's still a bit of legwork to be
-done around parameter tuning (we're necessarily trading off some
-write-amplification in this process), but the results are encouraging.
-
 <span class="marginnote">
   Benchmarks showing the effect of read-based compactions on throughput,
   read-amplification and write-amplification.
@@ -157,6 +149,17 @@ ycsb/B/values=64    4.29 ± 1%   14.86 ± 3%  +246.80%  (p=0.008 n=5+5)
   Figure 2. Benchmarks showing the effect of read-based compactions on
   throughput, read-amplification and write-amplification.
 </span>
+
+
+As expected, we [found](https://github.com/cockroachdb/pebble/issues/29#issuecomment-744514344)
+that read-based compactions led to significant improvement in read heavy
+workloads. Our benchmarks running YCSB-C (100% reads) using 1KB writes saw
+read amplification reduced by ~71% and throughput increased by ~133%. With
+YCSB-B (95% reads) using small value reads/writes (64 bytes), we reduced
+read-amplification by ~15% which led to a throughput increase of ~20%.  These
+benchmarks targeted Pebble directly, and there's still a bit of legwork to be
+done around parameter tuning (we're necessarily trading off some
+write-amplification in this process), but the results are encouraging.
 
 ## Query denylists (and our RFC process)
 
