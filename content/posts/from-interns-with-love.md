@@ -3,52 +3,51 @@ title: "From Interns, With Love"
 date: 2020-12-16
 ---
 
-_Spoke a bit with our interns this year to understand what they were working
-on. Some version of this will eventually find its way to the company's
-[engineering blog](https://www.cockroachlabs.com/blog/engineering/). Until
-then, sign up for my (entirely inactive) [newsletter](/newsletter)._
+<span class="marginnote">
+  The world's most powerful computer (1954) at Columbia University's [Watson Lab](http://www.columbia.edu/cu/computinghistory/).
+</span>
+{{< gallery hover-effect="none" caption-effect="none" >}}
+  {{< figure src="img/from-interns-with-love/watson-lab.jpg" size="1080x460" thumb="img/from-interns-with-love/watson-lab.jpg" caption="The world's most powerful computer (1954) at Columbia University's Watson Lab." >}}
+{{< /gallery >}}
+<span class="collapsed-marginnote">
+  The world's most powerful computer (1954) at Columbia University's [Watson Lab](http://www.columbia.edu/cu/computinghistory/).
+</span>
+
+_Spoke with our interns this year to understand what they were working on. Some
+version of this will post eventually find its way to the company's [engineering
+blog](https://www.cockroachlabs.com/blog/engineering/). To keep up with new
+writing, sign up for my [newsletter](/newsletter)._
 
 ---
 
 While not exactly _envious_ of our current crop of interns (cause, you know,
 the whole work from home thing), I'll admit I find myself reminiscing back to
-when I was one myself (I'm also writing this while on-call, which is wholly
-unrelated to the sentiment).
-
-I'm still surprised they let me anywhere near the stuff they did. When I first
-interned four years ago, we had just declared a [code yellow](https://www.cockroachlabs.com/blog/cockroachdb-stability-from-1-node-to-100-nodes/)
-to focus our energy towards [stabilizing CRDB](https://www.cockroachlabs.com/blog/cant-run-100-node-cockroachdb-cluster/)
-(read: shit hit the fan). What that meant for me, having joined a team that
-just finalized the design for a new distributed query execution
-engine[^distsql-rfc] but now with its focus directed elsewhere, was free rein
-to build the first version of it all from ground up.
-Concretely, I got to flesh out [distributed hash joins](https://github.com/cockroachdb/cockroach/pull/10438)[^better-joins],
-[merge joins](https://github.com/cockroachdb/cockroach/pull/10346), several
-[aggregation primitives](https://github.com/cockroachdb/cockroach/pull/9793)
+when I was one myself. I'm still surprised they let me anywhere near the stuff
+they did. When I first interned four years ago, we had declared a just [code yellow](https://www.cockroachlabs.com/blog/cockroachdb-stability-from-1-node-to-100-nodes/)
+to focus our energy towards [stabilizing CRDB](https://www.cockroachlabs.com/blog/cant-run-100-node-cockroachdb-cluster/).
+Having joined the newly-formed distributed query execution[^distsql-rfc] team,
+but now with its focus directed elsewhere, what this meant for me was free rein
+to flesh out distributed [hash](https://github.com/cockroachdb/cockroach/pull/10438)
+and [merge](https://github.com/cockroachdb/cockroach/pull/10346)
+joins[^better-joins], few [aggregation primitives](https://github.com/cockroachdb/cockroach/pull/9793)
 (think `SUM`, `COUNT`, [`DISTINCT`](https://github.com/cockroachdb/cockroach/pull/10034),
-etc.), and [distributed sorting algorithms](https://github.com/cockroachdb/cockroach/pull/9224).
+etc.), and some [sorting algorithms](https://github.com/cockroachdb/cockroach/pull/9224).
 
-That was more than enough bait to rope me back a second time, in part to get
-closer to the distributed, consistent key-value store (where shit had formerly
-hit the fan --- I was curious). This time I brought my dear friend
-[Bilal](https://www.cockroachlabs.com/blog/from-intern-to-full-time-engineer-at-cockroach-labs/)
-along, who similarly went on to intern twice (and later helped me start a
-Canadian engineering office), and then sneaked my brother in (a strictly worse
-engineer), also as a two-time intern (parentheses).
+That was more than enough to rope me back in for a second internship. This time
+I brought my dear friend [Bilal](https://www.cockroachlabs.com/blog/from-intern-to-full-time-engineer-at-cockroach-labs/)
+along also went on to intern twice. I even managed to sneak my [brother](https://ridwanmsharif.github.io/)
+in (a strictly worse engineer) as a two-time intern.
 
-All of which is to say that I think internships here can be [fairly decent](https://www.cockroachlabs.com/blog/equity-for-interns/).
-CRDB is a mostly-cool system to be working on, and culturally we're still at
-the point where we're happy to let junior engineers take on work that (I think)
-would otherwise only be accessible to someone further along career-wise. This
-still rings true for me, and I'd say the same applied for our most recent
-cohort.
+All of which is to say that I think internships here can be pretty great.
+CRDB is a mostly-cool system to be working on, and we're still at the point
+where we're happy to let junior engineers take on work that, I think, would
+otherwise only be accessible to someone further along career-wise. This was
+true for me then, and I'd say the same applied for our most recent cohort.
 
 We hosted several interns over the year across various engineering teams,
 all working on projects deserving of full-length blog posts. Today however
-we'll focus on our most recent batch, going into detail for two specific
-projects (they showcase some unique aspects of internships here) and
-give a briefer treatment for the remaining (but with plenty of links to follow
-up on).
+we'll highlight two projects from our most recent batch and give a briefer
+treatment for the remaining.
 
 ## Read-based compaction heuristics
 
@@ -61,7 +60,7 @@ what read-amplification and compactions are.
 
 ### Compactions and read-amplification in LSMs
 
-In LSMs, keys and values are stored as sorted strings in blobs
+In LSMs, keys and values are stored as sorted strings in immutable blobs
 called SSTs (sorted string tables). SSTs are stacked across multiple levels
 (L1, L2, ...), don't overlap within a level, and when searching for a key that
 overlaps with multiple SSTs (necessarily across multiple levels), the one found
@@ -77,36 +76,35 @@ but larger) lower level SSTs. At one level (sorry) this lets LSMs reclaim
 storage (range deletion tombstones and newer revisions mask out older values),
 but also helps bound the read IOPS required to sustain a fixed workload. Like
 all things, this is counter-balanced[^compaction-1][^compaction-2][^compaction-3][^compaction-4]
-with the need to maintain sane {write,space}-amplification (which the rate of
-compactions directly play into).
+with the need to maintain sane {write,space}-amplification, which the rate of
+compactions directly play into.
 
 <span class="marginnote">
-  Compacting an SST from L1 into L2; the SST overlaps with two SSTs down below.
+  An SST compaction; the L1 SST overlaps with two L2 SSTs and is compacted into it.
 </span>
 {{< gallery hover-effect="none" caption-effect="none" >}}
   {{< figure src="img/from-interns-with-love/compaction.png" size="3515x1080"
       thumb="img/from-interns-with-love/compaction.png"
-      caption="Compacting an SST from L1 into L2; the SST overlaps with two SSTs down below." >}}
+      caption="An SST compaction; the L1 SST overlaps with two L2 SSTs and is compacted into it." >}}
 {{< /gallery >}}
 <span class="collapsed-marginnote">
-  Figure 1. Compacting an SST from L1 into L2; the SST overlaps with two SSTs down below.
+  Figure 1. An SST compaction; the L1 SST overlaps with two L2 SSTs and is compacted into it.
 </span>
 
 (Aside: there's something to be said about how storage engines are
 characterized in terms of resource utilization[^perf-util] as opposed to
 unqualified "throughput" or "latency". System-wide measures like $/tpmC are
 another example of the same. These feel comparatively easier to reason about,
-more useful for capacity planning, and verifiable; let's strive to think in
-these terms for other measures of performance.)
+more useful for capacity planning, and easily verifiable.)
 
 ### Optimizing compactions for read-amplification
 
-Compacting LSMs based on reads isn't a wild idea. It was originally
+Compacting LSMs based on reads isn't a novel idea. It was originally
 implemented in [google/leveldb](https://github.com/google/leveldb), and later
 dropped in [facebook/rocksdb](https://github.com/facebook/rocksdb/). As for
 the Go re-implementation of it ([golang/leveldb](https://github.com/golang/leveldb),
-incidentally where we had forked Pebble from), it hadn't ported over the
-heuristic as yet. Part of the motivation for using a purpose-built storage
+incidentally where we had forked Pebble from), it hasn't ported over the
+heuristic yet. Part of the motivation for using a purpose-built storage
 engine was to let us pull on threads exactly like this.
 
 We hypothesized that by scheduling compactions for oft-read key ranges, we
@@ -166,29 +164,27 @@ ycsb/B/values=64    4.29 ± 1%   14.86 ± 3%  +246.80%  (p=0.008 n=5+5)
 Experience team, which owns the frontier where SQL clients meet the database.
 During her internship Angela worked on introducing a mechanism to gate certain
 classes of queries from being run against the database. This was motivated by
-[our cloud](https://www.cockroachlabs.com/product/cockroachcloud/) SREs running
-large CRDB installations, and wanting the ability to deny queries when emergent
-situations (think "queries-of-death"[^queries-of-death]) call for it ("circuit
+[our Cloud](https://www.cockroachlabs.com/product/cockroachcloud/) SREs running
+large CRDB installations, and wanting the ability to deny
+queries(-of-death[^queries-of-death]) when emergent situations call for it (think "circuit
 breakers"[^circuit-breakers]).
 
 Angela's experience captures the kind of broad leeway accorded to
 interns that I'm arguing we do a bit better than elsewhere. A general purpose
-[query denylist](https://github.com/cockroachdb/cockroach/issues/51643)
-facility is a very open-ended problem, with many personas you could
-design it for, and one took deliberate effort to build consensus
-on. The [process](https://github.com/cockroachdb/cockroach/blob/v20.2.3/docs/RFCS/README.md)
+[query denylist](https://github.com/cockroachdb/cockroach/issues/51643) is a
+very open-ended problem, with many personas you could design it for, and one
+took deliberate effort to build consensus on. The [process](https://github.com/cockroachdb/cockroach/blob/v20.2.3/docs/RFCS/README.md)
 we use to structure these conversations are RFCs, and we ended up authoring one
 here as well.
 
 The [RFC](https://github.com/cockroachdb/cockroach/pull/55778) and the ensuing
-discussions (worth reading in full if you're really into query denylists for
-some reason) clarified who the intended users were, the "must
+discussions clarified who the intended users were, the "must
 haves"/"nice-to-haves", catalogued the various classes of deniable queries, and
 most importantly, outlined the actual mechanics of the denial itself. For all
 my gripes with RFCs, I find the process of actually writing one edifying. It
-can foster real agency over a component's design and works decently well as
-a pedagogical tool (also I imagine it's cool to have public design documents to
-share with friends also super into query denylists for some reason).
+can foster real agency over a component's design and works decently well as a
+pedagogical tool (also I imagine it's cool to have public design documents to
+share with friends similarly into query denylists).
 
 We ended up eschewing our original proposal to implement file-mounted
 regex-based denylists (the contentions here being around usability, deployment,
@@ -202,13 +198,13 @@ gossip[^gossip]. Individual nodes listen in on these updates use the deltas to
 keep an in-memory block-cache (sorry) up-to-date. This is later checked against
 during query execution to determine whether or it's an allowable operation.
 
-Like mentioned above, we scrapped lots of alternate designs during this
-process, and were (probably) better off for it. We re-sized our scope to focus
+Like mentioned earlier, we scrapped lots of alternate designs during this
+process, and were better off for it. We re-sized our scope to focus
 instead on certain classes of queries as opposed to more granularly matching
 specific ones. This came after observing that a vast majority of problematic
 queries during prior incidents were well understood, and could be structurally
-grouped/gated wholesale. That said, we [modularized our work](https://github.com/cockroachdb/cockroach/pull/57040)
-to make it simple to introduce [new categories](https://github.com/cockroachdb/cockroach/pull/57076)
+grouped/gated wholesale. That said, we [modularized](https://github.com/cockroachdb/cockroach/pull/57040)
+our work to make it simple to introduce [new categories](https://github.com/cockroachdb/cockroach/pull/57076)
 as needed.
 
 ## Observability, design tokens, data-loss repair, and more!
@@ -217,20 +213,20 @@ We hosted a few other interns this semester, and there's much to be said
 about their individual contributions. We typically structure our programs to
 have folks work on one or two "major" projects, building up to them with
 ["starter"](https://www.cockroachlabs.com/blog/onboarding-starter-projects/)
-ones. Here we'll briefly touch what they worked on.
+ones. Here we'll briefly touch what these were.
 
 ### Query runtime statistics
 
 <span class="marginnote">
-  Query execution plan for a full table scan followed by an `AVG`.
+  The query execution plan for a full table scan followed by an `AVG`.
 </span>
 {{< gallery hover-effect="none" caption-effect="none" >}}
   {{< figure src="img/from-interns-with-love/explain-analyze.png" size="2222x1754"
       thumb="img/from-interns-with-love/explain-analyze.png"
-      caption="Query execution plan for a full table scan followed by an `AVG`." >}}
+      caption="The query execution plan for a full table scan followed by an `AVG`." >}}
 {{< /gallery >}}
 <span class="collapsed-marginnote">
-  Figure 3. Query execution plan for a full table scan followed by an `AVG`.
+  Figure 3. The query execution plan for a full table scan followed by an `AVG`.
 </span>
 
 [Cathy Wang](https://www.linkedin.com/in/cathy-m-wang) interned on our SQL
@@ -268,7 +264,7 @@ brand consistency throughout.
 ### Quorum recovery
 
 [Sam Huang](https://www.linkedin.com/in/samshuang) interned on the KV team
-(they let me mentor this fellow!), and one of the projects we worked on was
+(they let me mentor this fellow), and one of the projects we worked on was
 to introduce a [quorum recovery](https://github.com/cockroachdb/cockroach/pull/56333)
 mechanism within CRDB. Because CRDB is built atop raft-replicated key-ranges,
 when a cluster permanently loses quorum for a given set of keys (think
@@ -276,13 +272,13 @@ persistent node/disk failures), it's unable to recover from it. This necessarily
 entails data-loss, but we still want the ability to [paper over](https://github.com/cockroachdb/cockroach/issues/41411)
 such keys and provide [tooling](https://github.com/cockroachdb/cockroach/pull/57034)
 for manual repair. Sam worked on introducing an out-of-band mechanism to
-"reset" the quorum for a given key-range, and somewhat nicely, we were able to
+"reset" the quorum for a given key-range, and somewhat cleanly, we were able to
 leverage existing Raft machinery to do so. This came from the observation that
 if we were to construct a synthetic snapshot (seeded using data from extant
 replicas, if any), and configured it to specify a new set of participants, we
 would essentially trick the underlying replication sub-system into recovering
-quorum for this key-range. Our snapshot construction incremented the relevant
-counters to "come after" the existing data, which also in-turn purges older
+quorum for this key-range. Our synthetic snapshot incremented the relevant
+counters to "come after" the existing data, which also in-turn purged older
 replicas from the system.
 
 ### Metamorphic schema changes
@@ -294,7 +290,7 @@ stability, including use of [fuzzers](https://www.cockroachlabs.com/blog/sqlsmit
 [metamorphic](https://en.wikipedia.org/wiki/Metamorphic_testing) and
 [chaos](https://www.cockroachlabs.com/blog/diy-jepsen-testing-cockroachdb/)
 testing, [Jepsen](https://www.cockroachlabs.com/blog/jepsen-tests-lessons/)[^crdb-jepsen],
-and much more. Having observed some latent fragility in this area as of late,
+and much more. Having observed some latent fragility in this area recently,
 Jayant fleshed out an [equivalent test harness](https://github.com/cockroachdb/cockroach/pull/55521)
 but focusing instead on [schema changes](https://github.com/cockroachdb/cockroach/pull/54889).
 We constructed a workload generator to execute randomly generated DDL
@@ -315,11 +311,11 @@ possible interleavings and uncovered [several](https://github.com/cockroachdb/co
 [Monica Xu](https://monicaxu.me/) took a brief hiatus from her aspiring [music
 career](https://youtu.be/vYrI1rcj-z4) to intern on our Bulk IO team. Her team's
 broadly responsible for getting data in and out of CRDB as fast as possible
-(think import/export and backup/restore). Monica made several contributions in
+(specifically import/export and backup/restore). Monica made several contributions in
 this area, including enabling [progress tracking](https://github.com/cockroachdb/cockroach/pull/55511)
 for dump files, supporting [dry run](https://github.com/cockroachdb/cockroach/pull/56080)
 [imports](https://github.com/cockroachdb/cockroach/pull/56587), and
-improving `pg_dump`[^pg-dump] compatibility. There were kinks to be worked out
+improving `pg_dump`[^pg-dump] compatibility. There were kinks to be work out
 with the latter seeing as how CRDB only supports a [subset](https://www.cockroachlabs.com/blog/why-postgres/)
 of Postgres syntax, which can be problematic when processing `pg_dump` files as
 is. The particular set of questions Monica helped address was what
@@ -331,7 +327,6 @@ our product teams when forming these judgements (we now simply [defer to the use
 with instructive messaging), and helped [significantly](https://github.com/cockroachdb/cockroach/pull/55126)
 [ease](https://github.com/cockroachdb/cockroach/pull/57339) the onboarding
 experience for developers migrating off of their existing installations.
-
 
 ## Parting thoughts
 
@@ -353,4 +348,3 @@ database-speak throw you off, most of us didn't know any of it coming in.
 [^crdb-jepsen]: Kyle Kingsbury, 2016. [Jepsen Testing CockroachDB](https://jepsen.io/analyses/cockroachdb-beta-20160829).
 [^pg-dump]: PostgreSQL 9.6.20 Documentation, [`pg_dump`](https://www.postgresql.org/docs/9.6/app-pgdump.html)
 [^gossip]: Abhinandan Das, Indranil Gupta, et. al. 2002. [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)
-
