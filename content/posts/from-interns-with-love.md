@@ -1,7 +1,7 @@
 ---
 title: "From Interns, With Love"
 date: 2020-12-16
-summary: Spoke with CRDB's most recent intern cohort to understand what they were working on.
+summary: A peek into what interns at CRDB work on.
 preview: img/from-interns-with-love/watson-lab.jpg
 ---
 
@@ -25,26 +25,26 @@ writing, sign up for my [newsletter](/newsletter)._
 While not exactly _envious_ of our current crop of interns (cause, you know,
 the whole work from home thing), I'll admit I find myself reminiscing back to
 when I was one myself. I'm still surprised they let me anywhere near the stuff
-they did. When I first interned four years ago, we had declared a just [code yellow](https://www.cockroachlabs.com/blog/cockroachdb-stability-from-1-node-to-100-nodes/)
+they did. When I first interned four years ago, we had just declared a [code yellow](https://www.cockroachlabs.com/blog/cockroachdb-stability-from-1-node-to-100-nodes/)
 to focus our energy towards [stabilizing CRDB](https://www.cockroachlabs.com/blog/cant-run-100-node-cockroachdb-cluster/).
 Having joined the newly-formed distributed query execution[^distsql-rfc] team,
-but now with its focus directed elsewhere, what this meant for me was free rein
-to flesh out distributed [hash](https://github.com/cockroachdb/cockroach/pull/10438)
-and [merge](https://github.com/cockroachdb/cockroach/pull/10346)
-joins[^better-joins], few [aggregation primitives](https://github.com/cockroachdb/cockroach/pull/9793)
+but now with its attention directed elsewhere, what that meant for me was free
+rein to flesh out a few nifty things: distributed [hash](https://github.com/cockroachdb/cockroach/pull/10438)
+and [merge](https://github.com/cockroachdb/cockroach/pull/10346) joins[^better-joins],
+[aggregation primitives](https://github.com/cockroachdb/cockroach/pull/9793)
 (think `SUM`, `COUNT`, [`DISTINCT`](https://github.com/cockroachdb/cockroach/pull/10034),
-etc.), and some [sorting algorithms](https://github.com/cockroachdb/cockroach/pull/9224).
+etc.), and various [sorting algorithms](https://github.com/cockroachdb/cockroach/pull/9224).
 
 That was more than enough to rope me back in for a second internship. This time
-I brought my dear friend [Bilal](https://www.cockroachlabs.com/blog/from-intern-to-full-time-engineer-at-cockroach-labs/)
-along also went on to intern twice. I even managed to sneak my [brother](https://ridwanmsharif.github.io/)
-in (a strictly worse engineer) as a two-time intern.
+I brought my dear friend [Bilal Akhtar](https://www.cockroachlabs.com/blog/from-intern-to-full-time-engineer-at-cockroach-labs/)
+along, who similarly went on to intern twice. I even managed to sneak [my brother](https://ridwanmsharif.github.io/)
+in (a strictly worse engineer), also as a two-time intern.
 
 All of which is to say that I think internships here can be pretty great.
 CRDB is a mostly-cool system to be working on, and we're still at the point
 where we're happy to let junior engineers take on work that, I think, would
 otherwise only be accessible to someone further along career-wise. This was
-true for me then, and I'd say the same applied for our most recent cohort.
+true for me back when, and I'd say the same applied for our most recent cohort.
 
 We hosted several interns over the year across various engineering teams,
 all working on projects deserving of full-length blog posts. Today however
@@ -78,7 +78,7 @@ but larger) lower level SSTs. At one level (sorry) this lets LSMs reclaim
 storage (range deletion tombstones and newer revisions mask out older values),
 but also helps bound the read IOPS required to sustain a fixed workload. Like
 all things, this is counter-balanced[^compaction-1][^compaction-2][^compaction-3][^compaction-4]
-with the need to maintain sane {write,space}-amplification, which the rate of
+with the need to maintain sane write/space-amplification, which the rate of
 compactions directly play into.
 
 <span class="marginnote">
@@ -95,8 +95,8 @@ compactions directly play into.
 
 (Aside: there's something to be said about how storage engines are
 characterized in terms of resource utilization[^perf-util] as opposed to
-unqualified "throughput" or "latency". System-wide measures like $/tpmC are
-another example of the same. These feel comparatively easier to reason about,
+unqualified "throughput" or "latency". System-wide measures like `$/tpmC`[^tpmc]
+are another example of this. These feel comparatively easier to reason about,
 more useful for capacity planning, and easily verifiable.)
 
 ### Optimizing compactions for read-amplification
@@ -105,9 +105,9 @@ Compacting LSMs based on reads isn't a novel idea. It was originally
 implemented in [google/leveldb](https://github.com/google/leveldb), and later
 dropped in [facebook/rocksdb](https://github.com/facebook/rocksdb/). As for
 the Go re-implementation of it ([golang/leveldb](https://github.com/golang/leveldb),
-incidentally where we had forked Pebble from), it hasn't ported over the
-heuristic yet. Part of the motivation for using a purpose-built storage
-engine was to let us pull on threads exactly like this.
+incidentally where we forked Pebble from), it hasn't ported over the heuristic
+yet. Part of the motivation for using a purpose-built storage engine was to let
+us pull on threads exactly like this.
 
 We hypothesized that by scheduling compactions for oft-read key ranges, we
 could lower read amplification for subsequent reads, thus lowering resource
@@ -124,25 +124,25 @@ was scored higher to prioritize its compaction.
   read-amplification and write-amplification.
 </span>
 ```
-$ benchstat baseline-1024.txt read-compac.txt
-name                old ops/sec  new ops/sec  delta
+$ benchstat baseline-1024.txt read-compac-1024.txt
+                    old ops/sec  new ops/sec  delta
 ycsb/C/values=1024    605k ± 8%   1415k ± 5%  +133.93%  (p=0.008 n=5+5)
 
-name                old r-amp    new r-amp    delta
+                    old r-amp    new r-amp    delta
 ycsb/C/values=1024    4.28 ± 1%    1.24 ± 0%   -71.00%  (p=0.016 n=5+4)
 
-name                old w-amp    new w-amp    delta
+                    old w-amp    new w-amp    delta
 ycsb/C/values=1024    0.00         0.00           ~     (all equal)
 
 
-$ benchstat baseline-64.txt read-compac.txt
-name              old ops/sec  new ops/sec  delta
+$ benchstat baseline-64.txt read-compac-64.txt
+                  old ops/sec  new ops/sec  delta
 ycsb/B/values=64    981k ±11%   1178k ± 2%   +20.14%  (p=0.016 n=5+4)
 
-name              old r-amp    new r-amp    delta
+                  old r-amp    new r-amp    delta
 ycsb/B/values=64    4.18 ± 0%    3.53 ± 1%   -15.61%  (p=0.008 n=5+5)
 
-name              old w-amp    new w-amp    delta
+                  old w-amp    new w-amp    delta
 ycsb/B/values=64    4.29 ± 1%   14.86 ± 3%  +246.80%  (p=0.008 n=5+5)
 ```
 <span class="collapsed-marginnote">
@@ -210,7 +210,7 @@ grouped/gated wholesale. That said, we [modularized](https://github.com/cockroac
 our work to make it simple to introduce [new categories](https://github.com/cockroachdb/cockroach/pull/57076)
 as needed.
 
-## Observability, design tokens, data-loss repair, and more!
+## Observability, design tokens, data-loss repair, and more
 
 We hosted a few other interns this semester, and there's much to be said
 about their individual contributions. We typically structure our programs to
@@ -250,8 +250,8 @@ individual queries and to tune them accordingly.
 
 ### Design tokens
 
-[Pooja Maniar](https://www.linkedin.com/in/pooja-maniar-03) interned on the
-[Cloud](https://cockroachlabs.cloud/) side of things, specifically on our
+[Pooja Maniar](https://www.linkedin.com/in/pooja-maniar-03) interned within the
+[Cloud](https://cockroachlabs.cloud/) organization, specifically on the
 Console team. One of the projects she worked on was consolidating and
 standardizing our ["design tokens"](https://amzn.github.io/style-dictionary/#/).
 Think of these as abstractions over visual properties, variables to replace
@@ -260,8 +260,8 @@ motivation here was to limit the number of design decisions developers had to
 make, whether it be choosing between specific hexcodes, UI components, etc. We
 wanted to create and hoist guidelines into a centralized, [shared repo](https://github.com/cockroachdb/ui)
 and then integrate it into our several console pages (accessible both through
-the database itself and our cloud offering). We were also partway through a
-brand-refresh at the time, and Pooja's grand unification [helped ensure](https://github.com/cockroachdb/ui/pull/137)
+the database itself and through the cloud offering). We were also partway
+through a brand-refresh at the time, and Pooja's grand unification [helped ensure](https://github.com/cockroachdb/ui/pull/137)
 brand consistency throughout.
 
 ### Quorum recovery
@@ -349,5 +349,6 @@ database-speak throw you off, most of us didn't know any of it coming in.
 [^queries-of-death]:  Mike Ulrich, 2017. [Site Reliability Engineering, Addressing Cascading Failures](https://sre.google/sre-book/addressing-cascading-failures/).
 [^circuit-breakers]: Martin Fowler, 2014. [Circuit Breakers](https://martinfowler.com/bliki/CircuitBreaker.html).
 [^crdb-jepsen]: Kyle Kingsbury, 2016. [Jepsen Testing CockroachDB](https://jepsen.io/analyses/cockroachdb-beta-20160829).
-[^pg-dump]: PostgreSQL 9.6.20 Documentation, [`pg_dump`](https://www.postgresql.org/docs/9.6/app-pgdump.html)
-[^gossip]: Abhinandan Das, Indranil Gupta, et. al. 2002. [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)
+[^pg-dump]: PostgreSQL 9.6.20 Documentation, [n.d.]. [`pg_dump`](https://www.postgresql.org/docs/9.6/app-pgdump.html).
+[^gossip]: Abhinandan Das, Indranil Gupta, et. al. 2002. [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf).
+[^tpmc]: TPC-C, [n.d.]. [What is TPC-C](http://www.tpc.org/tpcc/faq5.asp).

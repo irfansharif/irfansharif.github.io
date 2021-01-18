@@ -13,8 +13,8 @@ googleAnalytics = "UA-92294257-1"
 # Theme variables.
 [params]
   title = "irfansharif.io"
-  description = "Notes on system design for young(er) bloods."
-  summary = "Notes on system design for young(er) bloods."
+  description = "Notes on engineering for young(er) bloods."
+  summary = "Notes on engineering for young(er) bloods."
 
 [markup]
   defaultMarkdownHandler = "blackfriday"
