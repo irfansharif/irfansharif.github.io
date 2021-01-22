@@ -36,6 +36,6 @@ in software (they have no personalities of their own, like all younger
 siblings); I'm thinking a lot of my writing will be directed at them? If that
 sounds like something you'd want in your inbox, [let me know](/newsletter).
 
-Here's what I'm [reading](/books).
+Here's my (work-in-progress) digital [bookshelf](/books).
 
 <figure><img src="/img/about/face.jpg" class="face-thin"/></figure>
