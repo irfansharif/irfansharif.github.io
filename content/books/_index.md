@@ -7,11 +7,27 @@ TabName: Books
 ## 2021
 ---
 
-<book>Radical Candor</book>
+<book>High Output Management</book>
 <rating>(reading)</rating>
+
+<label for="working-in-public" class="margin-toggle"><sup>&dagger;</sup>
+</label><input type="checkbox" id="working-in-public" class="margin-toggle"/><span class="marginnote">
+Worth just skipping to the last third of the book, where it's more speculative
+and interesting (and closer to her writing [elsewhere](https://nadiaeghbal.com)).
+</span>
+<book>
+Working in Public
+</book>
+<rating>   * * *</rating>
+
+<book>Radical Candor</book>
+<rating> * * * *</rating>
 
 <book>Logicomix</book>
 <rating> * * * * </rating>
+
+<book>The Almanack Of Naval Ravikant</book>
+<rating> * * * </rating>
 
 <label for="haruki" class="margin-toggle"><sup>&dagger;</sup>
 </label><input type="checkbox" id="haruki" class="margin-toggle"/><span class="marginnote">
@@ -19,13 +35,11 @@ Picked this up after reading [this
 profile](https://www.newyorker.com/magazine/2008/06/09/the-running-novelist)
 on Haruki Murakami. Will have to read more of
 him, it's too good.
-<book>
 </span>
+<book>
 The Wind-Up Bird Chronicle</book>
 <rating> * * * * * </rating>
 
-<book>The Almanack Of Naval Ravikant</book>
-<rating> * * * </rating>
 
 <book>The Elements of Typographic Style</book>
 <rating> * * * * </rating>
@@ -406,20 +420,103 @@ Al-Ghazali's Path to Sufism: His Deliverance from Error
 ## To read.
 ---
 
-<book>The Man In The High Castle</book>
+The Lessons of History
 
-<book>Dune Messiah <series>(Dune Chronicles #2)</series></book>
+The Story of Philosophy: The Lives and Opinions of the
+World's Greatest Philosophers
 
-<book>The End of History and the Last Man</book>
+The Innovators: How a Group of Hackers, Geniuses and Geeks
+Created the Digital Revolution
+
+Why Nations Fail: The Origins of Power, Prosperity, and
+Poverty
+
+In Watermelon Sugar
+
+Love is a Dog from Hell
+
+The Big Sleep
+
+Endgame: Bobby Fischer's Remarkable Rise and Fall—From
+America's Brightest Prodigy to the Edge of Madness
+
+The Wright Brothers
+
+Skunk Works: A Personal Memoir of My Years of Lockheed
+
+Anathem
+
+Complexity: The Emerging Science at the Edge of Order and
+Chaos
+
+Maximum City: Bombay Lost and Found
+
+Homegoing
+
+Ants Among Elephants: An Untouchable Family and the Making
+of Modern India
+
+Born to Run: A Hidden Tribe, Superathletes, and the
+Greatest Race the World Has Never Seen
+
+Political Order and Political Decay: From the Industrial
+Revolution to the Globalization of Democracy
+
+Hyperion
+
+Midnight's Children
+
+What I Talk About When I Talk About Running
+
+SPQR: A History of Ancient Rome
+	
+Destiny Disrupted: A History of the World Through Islamic
+Eyes
+
+Sharp Objects
+
+Snow Crash
+
+Neuromancer (Sprawl, #1)
+
+Ender's Game (Ender's Saga, #1)
+	
+A Suitable Boy (A Bridge of Leaves, #1)
+
+Cloud Atlas
+	
+World War Z: An Oral History of the Zombie War
+
+A Canticle for Leibowitz (St. Leibowitz, #1)
+	
+Station Eleven
+	
+Kafka on the Shore
+
+The Art of Worldly Wisdom
+	
+The Waste Books
+	
+A Man Called Ove
+
+Eichmann in Jerusalem: A Report on the Banality of Evil
+
+The Gay Science
+
+The Man In The High Castle
+
+Dune Messiah <series>(Dune Chronicles #2)</series>
+
+The End of History and the Last Man
 
 <style>
   p {
     padding-top: 0rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    font-size: 1.4rem;
-    font-weight: 400;
     font-style: italic;
+    font-weight: 400;
+    font-size: 1.4rem;
     line-height: 1.4rem;
   }
 
@@ -433,6 +530,7 @@ Al-Ghazali's Path to Sufism: His Deliverance from Error
     float: right;
     max-width: 5rem;
     min-width: 5rem;
+    font-style: italic;
   }
   series {
     color: gray;
