@@ -7,8 +7,7 @@ summary: TODO
 preview: TODO
 ---
 
-I picked this book u after coming across this [New Yorker
-article](https://www.newyorker.com/recommends/read/the-greatest-urdu-stories-ever-told-is-a-belated-introduction-to-a-thrilling-canon).
+I picked this book up after coming across this [article](https://www.newyorker.com/recommends/read/the-greatest-urdu-stories-ever-told-is-a-belated-introduction-to-a-thrilling-canon).
 It's a collection of stories from the pre-partition era, and reminded of folk
 tales I heard from my grandparents growing up. I particularly liked "Aanandi",
 but the entire set had a compelling range I've not found in other anthologies.
