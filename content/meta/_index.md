@@ -30,9 +30,9 @@ TabName:
 <figure><img src="/img/about/face.jpg" class="face-wide"/></figure>
 
 I'm still trying to figure out the kind of writing I want to publish here.
-Roughly what I'm thinking is 'notes on engineering for my younger self', where
+Roughly what I'm thinking is _notes on engineering for my younger self_, where
 that could be as recent as six months ago. I have two brothers who are also
-in software (they have no personalities of their own, like all younger
+in software (with no personalities of their own, like all younger
 siblings); I'm thinking a lot of my writing will be directed at them? If that
 sounds like something you'd want in your inbox, [let me know](/newsletter).
 

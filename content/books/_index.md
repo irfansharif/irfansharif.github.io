@@ -9,21 +9,26 @@ TabName: Books
 
 <group>
 <member><book>
-<label for="output-management" class="margin-toggle"><sup>&dagger;</sup></label>
 High Output Management
-<input type="checkbox" id="output-management" class="margin-toggle"/>
 <span class="marginnote">
-I promise I'll stop reading these soon, I'm just curious what it's like "on the
-other side". Staying on-brand, a lot of this reading was motivated by this
-sense of
-[inherent](https://twitter.com/irfansharifm/status/1302665825883750406)
-[distrust](https://twitter.com/irfansharifm/status/1339303823865733122) I'm
-apparently cultivating.
+I promise I'll stop reading these soon, I'm just curious what it's like 'on the
+other side'. Staying on-brand, a lot of this reading was motivated by this
+sense of [inherent](https://twitter.com/irfansharifm/status/1302665825883750406) [distrust](https://twitter.com/irfansharifm/status/1339303823865733122)
+I'm apparently cultivating.
 </span>
 </book><rating>(reading)</rating></member>
 <member><book>The 7 Habits of Highly Effective People</book>  <rating>(reading)</rating></member>
 <member><book>Radical Candor</book>                           <rating> * * * * </rating></member>
-<member><book>The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change</book> <rating>   * * *</rating></member>
+<member><book>The Manager's Path<label for="output-management" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="output-management" class="margin-toggle"/>
+<span class="marginnote thin">
+I promise I'll stop reading these soon, I'm just curious what it's like 'on the
+other side'. Staying on-brand, a lot of this reading was motivated by this
+sense of [inherent](https://twitter.com/irfansharifm/status/1302665825883750406) [distrust](https://twitter.com/irfansharifm/status/1339303823865733122)
+I'm apparently cultivating.
+</span>
+</book>
+<rating>   * * *</rating></member>
 </group>
 
 <book>
@@ -33,8 +38,7 @@ Logicomix
 
 <group>
 <member><book>
-<label for="working-in-public" class="margin-toggle"><sup>&dagger;</sup></label>
-Working in Public
+Working in Public<label for="working-in-public" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="working-in-public" class="margin-toggle"/><span class="marginnote">
 Worth just skipping to the last third of the book, where it's more speculative
 and interesting (and closer to her writing [elsewhere](https://nadiaeghbal.com)).
@@ -54,8 +58,7 @@ The Elements of Typographic Style
 
 <group>
 <member><book>
-<label for="haruki" class="margin-toggle"><sup>&dagger;</sup></label>
-The Wind-Up Bird Chronicle
+The Wind-Up Bird Chronicle<label for="haruki" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="haruki" class="margin-toggle"/><span class="marginnote">
 Picked this up after reading [this
 profile](https://www.newyorker.com/magazine/2008/06/09/the-running-novelist)
@@ -71,9 +74,7 @@ him, it's too good.
 <group>
 <member>
 <book>
-<label for="dune" class="margin-toggle"><sup>&dagger;</sup></label>
 [Dune](dune) <series>(Dune Chronicles #1)</series>
-<input type="checkbox" id="dune" class="margin-toggle"/>
 <span class="marginnote">
 Will probably pick up the rest of these series soon, especially Dune. These
 are all sci-fi/fantasy, and as far as world-building goes, pretty stellar.
@@ -90,7 +91,12 @@ are all sci-fi/fantasy, and as far as world-building goes, pretty stellar.
 <member>
 <book>
 Red Rising
-<series>(Red Rising Saga #1)</series>
+<series>(Red Rising Saga #1)</series><label for="dune" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="dune" class="margin-toggle"/>
+<span class="marginnote thin">
+Will probably pick up the rest of these series soon, especially Dune. These
+are all sci-fi/fantasy, and as far as world-building goes, pretty stellar.
+</span>
 </book>
 <rating>    * * *</rating>
 </member>
@@ -104,8 +110,7 @@ Red Rising
 <group>
 <member>
 <book>
-<label for="robots-of-dawn" class="margin-toggle"><sup>&dagger;</sup></label>
-The Robots of Dawn <series>(Robot #3)</series>
+The Robots of Dawn <series>(Robot #3)</series><label for="robots-of-dawn" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="robots-of-dawn" class="margin-toggle"/>
 <span class="marginnote">
 Enjoyable, light read. Was my first Isaac Asimov, and easy to get
@@ -129,10 +134,8 @@ into (also enough of a segue to pick up the Foundation series).
 <group>
 <member>
 <book>
-<label for="on-writing" class="margin-toggle"><sup>&dagger;</sup></label>
 On Writing: A Memoir of the Craft
-<input type="checkbox" id="on-writing" class="margin-toggle"/>
-<span class="marginnote" style="height: 3.8rem;">
+<span class="marginnote">
 Mostly autobiographical but also a fun foray into what an "expert" POV in a
 domain I have no idea about (popular fiction writing) is like. Also picked up
 an actual book of his, which was meh.
@@ -142,7 +145,13 @@ an actual book of his, which was meh.
 </member>
 <member>
 <book>
-The Institute
+The Institute<label for="on-writing" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="on-writing" class="margin-toggle"/>
+<span class="marginnote thin">
+Mostly autobiographical but also a fun foray into what an "expert" POV in a
+domain I have no idea about (popular fiction writing) is like. Also picked up
+an actual book of his, which was meh.
+</span>
 </book>
 <rating>     * * *</rating>
 </member>
@@ -161,8 +170,7 @@ The Glass Castle
 <group>
 <member>
 <book>
-<label for="american-psycho" class="margin-toggle"><sup>&dagger;</sup></label>
-American Psycho
+American Psycho<label for="american-psycho" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="american-psycho" class="margin-toggle"/>
 <span class="marginnote">
 The author was unwell writing this. I couldn't actually finish it because of
@@ -198,11 +206,10 @@ Night <series>(The Night Trilogy #1)</series>
 <group>
 <member>
 <book>
-<label for="mental-models" class="margin-toggle"><sup>&dagger;</sup></label>
-The Great Mental Models: General Thinking Concepts
+The Great Mental Models: General Thinking Concepts<label for="mental-models" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="mental-models" class="margin-toggle"/>
 <span class="marginnote">
-Could have been a blog post, which just so happens to be a
+Could have been a blog post, which happens to be a
 [thing](https://fs.blog/mental-models/).
 </span>
 </book>
@@ -219,13 +226,12 @@ Animal Farm
 <group>
 <member>
 <book>
-<label for="thinking-systems" class="margin-toggle"><sup>&dagger;</sup></label>
-Thinking in Systems: A Primer
+Thinking in Systems: A Primer<label for="thinking-systems" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="thinking-systems" class="margin-toggle"/>
 <span class="marginnote">
-  Essentially an engineering systems course applied more broadly. The
-  appendix of "system models" is a useful list
-  to have in one's toolbox generally.
+Essentially an engineering systems course applied more broadly. The
+appendix of "system models" is a useful list
+to have in one's toolbox generally.
 </span>
 </book>
 <rating>  * * * *</rating>
@@ -244,8 +250,7 @@ A Philosophy of Software Design
 <group>
 <member>
 <book>
-<label for="dragon-tattoo" class="margin-toggle"><sup>&dagger;</sup></label>
-The Girl with the Dragon Tattoo <series>(Millennium #1)</series>
+The Girl with the Dragon Tattoo <series>(Millennium #1)</series><label for="dragon-tattoo" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="dragon-tattoo" class="margin-toggle"/>
 <span class="marginnote">
 The murder mystery had me hooked throughout. Lisbeth Salander was expertly
@@ -269,8 +274,7 @@ The Catcher in the Rye
 <group>
 <member>
 <book>
-<label for="breath-air" class="margin-toggle"><sup>&dagger;</sup></label>
-When Breath Becomes Air
+When Breath Becomes Air<label for="breath-air" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="breath-air" class="margin-toggle"/>
 <span class="marginnote">
 Beautifully written, had to finish it in one sitting.
@@ -288,8 +292,7 @@ Thinking, Fast and Slow
 <group>
 <member>
 <book>
-<label for="blindness" class="margin-toggle"><sup>&dagger;</sup></label>
-Blindness
+Blindness<label for="blindness" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="blindness" class="margin-toggle"/>
 <span class="marginnote">
 The lack of punctuation can take some time getting used to, but the characters
@@ -319,9 +322,7 @@ The Metamorphosis
 <group>
 <member>
 <book>
-<label for="the-prophet" class="margin-toggle"><sup>&dagger;</sup></label>
 The Prophet
-<input type="checkbox" id="the-prophet" class="margin-toggle"/>
 <span class="marginnote">
 I first got into Khalil Gibran when trying to find literature to make
 my university essays seem sophisticated, but these are some of my favorite
@@ -338,7 +339,13 @@ The Broken Wings
 </member>
 <member>
 <book>
-The Madman
+The Madman<label for="the-prophet" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="the-prophet" class="margin-toggle"/>
+<span class="marginnote thin">
+I first got into Khalil Gibran when trying to find literature to make
+my university essays seem sophisticated, but these are some of my favorite
+books. Start with The Prophet.
+</span>
 </book>
 <rating> * * * * *</rating>
 </member>
@@ -352,16 +359,18 @@ Annihilation <series>(Southern Reach #1)</series>
 <group>
 <member>
 <book>
-<label for="catch-22" class="margin-toggle"><sup>&dagger;</sup></label>
 Catch-22
-<input type="checkbox" id="catch-22" class="margin-toggle"/>
-<span class="marginnote" style="height: 6.2rem;">
+<span class="marginnote">
 Two of the funniest books I've read to date.
 </span>
 </book>
 <rating> * * * * *</rating>
 <book>
-The Hitchhiker's Guide to the Galaxy <series>(Hitchhiker's Guide to the Galaxy #1)</series>
+The Hitchhiker's Guide to the Galaxy <series>(Hitchhiker's Guide to the Galaxy #1)</series><label for="catch-22" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="catch-22" class="margin-toggle"/>
+<span class="marginnote thin">
+Two of the funniest books I've read to date.
+</span>
 </book>
 <rating>   * * * *</rating>
 </member>
@@ -380,10 +389,8 @@ The Trial and Death of Socrates
 <group>
 <member>
 <book>
-<label for="sapiens" class="margin-toggle"><sup>&dagger;</sup></label>
 Sapiens: A Brief History of Humankind
-<input type="checkbox" id="sapiens" class="margin-toggle"/>
-<span class="marginnote" style="height: 3.8rem;">
+<span class="marginnote">
 I don't understand why people like these books. They're horrible.
 </span>
 </book>
@@ -391,7 +398,11 @@ I don't understand why people like these books. They're horrible.
 </member>
 <member>
 <book>
-Outliers: The Story of Success
+Outliers: The Story of Success<label for="sapiens" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="sapiens" class="margin-toggle"/>
+<span class="marginnote thin">
+I don't understand why people like these books. They're horrible.
+</span>
 </book>
 <rating>         *</rating>
 </member>
@@ -410,10 +421,8 @@ Brave New World
 <group>
 <member>
 <book>
-<label for="game-of-thrones" class="margin-toggle"><sup>&dagger;</sup></label>
 A Game of Thrones <series>(A Song of Ice and Fire #1)</series>
-<input type="checkbox" id="game-of-thrones" class="margin-toggle"/>
-<span class="marginnote" style="height: 8.6rem;">
+<span class="marginnote">
 This girl I liked in high-school owned copies of this series. I had to keep
 borrowing them to keep talking to her.
 </span>
@@ -434,7 +443,12 @@ A Storm of Swords: Steel and Snow <series>(A Song of Ice and Fire #3: Part 1 of 
 </member>
 <member>
 <book>
-A Storm of Swords: Blood and Gold <series>(A Song of Ice and Fire #3: Part 2 of 2)</series>
+A Storm of Swords: Blood and Gold <series>(A Song of Ice and Fire #3: Part 2 of 2)</series><label for="game-of-thrones" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="game-of-thrones" class="margin-toggle"/>
+<span class="marginnote thin">
+This girl I liked in high-school owned copies of this series. I had to keep
+borrowing them to keep talking to her.
+</span>
 </book>
 <rating>     * * *</rating>
 </member>
@@ -443,12 +457,11 @@ A Storm of Swords: Blood and Gold <series>(A Song of Ice and Fire #3: Part 2 of 
 <group>
 <member>
 <book>
-<label for="nassim" class="margin-toggle"><sup>&dagger;</sup></label>
 The Black Swan: The Impact of the Highly Improbable
-<input type="checkbox" id="nassim" class="margin-toggle"/>
-<span class="marginnote" style="height: 6.2rem;">
+<span class="marginnote">
 Went through a Black Swan phase in high-school. Thought it was pretty good
-at the time. Found it super rambly on a re-read.
+at the time. Found it a bit rambly on a re-read (though still, with decent
+ideas).
 </span>
 </book>
 <rating>       * *</rating>
@@ -461,7 +474,13 @@ Fooled by Randomness: The Hidden Role of Chance in Life and in the Markets
 </member>
 <member>
 <book>
-Antifragile: Things That Gain from Disorder
+Antifragile: Things That Gain from Disorder<label for="nassim" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="nassim" class="margin-toggle"/>
+<span class="marginnote thin">
+Went through a Black Swan phase in high-school. Thought it was pretty good
+at the time. Found it a bit rambly on a re-read (though still, with decent
+ideas).
+</span>
 </book>
 <rating>       * *</rating>
 </member>
@@ -504,7 +523,7 @@ Dune Messiah <series>(Dune Chronicles #2)</series>
 
 Neuromancer <series>(Sprawl #1)</series>
 
-The Name of the Wind <series>(The Kingkiller Chronicle #1)</series> 
+The Name of the Wind <series>(The Kingkiller Chronicle #1)</series>
 
 Personal Knowledge: Towards a Post-Critical Philosophy
 
@@ -611,7 +630,7 @@ I Am a Strange Loop
 
 Bowling Alone: The Collapse And Revival Of American Community
 
-The Secret Life of Groceries: The Dark Miracle of the American Supermarket 
+The Secret Life of Groceries: The Dark Miracle of the American Supermarket
 
 <style>
   p {
@@ -672,6 +691,7 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
     color: gray;
   }
 
+  .thin { display: none; }
   @media (max-width: 850px) {
     book { height: auto; }
     .margin-toggle:checked + .marginnote {
@@ -681,7 +701,7 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
       height: min-content !important;
     }
     group {
-      border-right: none;
+      padding-right: 5%;
     }
     group book, group rating {
       margin-top: 0rem;
@@ -689,7 +709,7 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
   }
 
   @media (max-width: 650px) {
-    book { 
+    book {
       max-width: 70%;
       min-width: 70%;
     }
