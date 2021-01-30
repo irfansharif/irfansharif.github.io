@@ -4,7 +4,7 @@ TabName: Books
 
 ## Read.
 
-## 2021
+### 2021
 ---
 
 <group>
@@ -31,10 +31,24 @@ I'm apparently cultivating.
 <rating>   * * *</rating></member>
 </group>
 
+<group>
+<member><book>
+The Elements of Typographic Style
+<span class="marginnote">
+Used these as style-guides for the site.
+</span>
+</book><rating>   * * * * </rating></member>
+<member>
 <book>
-Logicomix
+The Visual Display of Quantitative Information<label for="typographic" class="margin-toggle"><sup>&dagger;</sup></label>
+<input type="checkbox" id="typographic" class="margin-toggle"/>
+<span class="marginnote thin">
+Used these as style-guides for the site.
+</span>
 </book>
-<rating> * * * * </rating>
+<rating> (reading) </rating>
+</member>
+</group>
 
 <group>
 <member><book>
@@ -47,14 +61,14 @@ and interesting (and closer to her writing [elsewhere](https://nadiaeghbal.com))
 </group>
 
 <book>
+Logicomix
+</book>
+<rating> * * * * </rating>
+
+<book>
 The Almanack Of Naval Ravikant
 </book>
 <rating> * * * </rating>
-
-<book>
-The Elements of Typographic Style
-</book>
-<rating> * * * * </rating>
 
 <group>
 <member><book>
@@ -68,7 +82,7 @@ him, it's too good.
 </book><rating> * * * * * </rating></member>
 </group>
 
-## 2020
+### 2020
 ---
 
 <group>
@@ -84,7 +98,7 @@ are all sci-fi/fantasy, and as far as world-building goes, pretty stellar.
 </member>
 <member>
 <book>
-[The Three-Body Problem](three-body) <series>(Remembrance of Earth's Past #1)</series>
+[The Three-Body Problem](the-three-body-problem) <series>(Remembrance of Earth's Past #1)</series>
 </book>
 <rating>    * * *</rating>
 </member>
@@ -127,7 +141,7 @@ into (also enough of a segue to pick up the Foundation series).
 <rating> * * * * *</rating>
 
 <book>
-[The Greatest Urdu Stories Ever Told](greatest-urdu-stories-ever-told)
+[The Greatest Urdu Stories Ever Told](the-greatest-urdu-stories-ever-told)
 </book>
 <rating>   * * * *</rating>
 
@@ -136,7 +150,7 @@ into (also enough of a segue to pick up the Foundation series).
 <book>
 On Writing: A Memoir of the Craft
 <span class="marginnote">
-Mostly autobiographical but also a fun foray into what an "expert" POV in a
+Mostly autobiographical but also a fun foray into what an 'expert' POV in a
 domain I have no idea about (popular fiction writing) is like. Also picked up
 an actual book of his, which was meh.
 </span>
@@ -148,7 +162,7 @@ an actual book of his, which was meh.
 The Institute<label for="on-writing" class="margin-toggle"><sup>&dagger;</sup></label>
 <input type="checkbox" id="on-writing" class="margin-toggle"/>
 <span class="marginnote thin">
-Mostly autobiographical but also a fun foray into what an "expert" POV in a
+Mostly autobiographical but also a fun foray into what an 'expert' POV in a
 domain I have no idea about (popular fiction writing) is like. Also picked up
 an actual book of his, which was meh.
 </span>
@@ -163,7 +177,7 @@ The Glass Castle
 <rating>     * * *</rating>
 
 <book>
-[1971: A Global History of the Creation of Bangladesh](1971)
+[1971: A Global History of the Creation of Bangladesh](1971-a-global-history-of-the-creation-of-bangladesh)
 </book>
 <rating>   * * * *</rating>
 
@@ -199,7 +213,7 @@ Night <series>(The Night Trilogy #1)</series>
 <rating> * * * * *</rating>
 
 <book>
-[One Hundred Years of Solitude](one-hundred-years-of-solitude.md)
+[One Hundred Years of Solitude](one-hundred-years-of-solitude)
 </book>
 <rating>  * * * *</rating>
 
@@ -244,7 +258,7 @@ A Philosophy of Software Design
 <rating>  * * * *</rating>
 
 
-## Before
+### Before
 ---
 
 <group>
@@ -632,6 +646,10 @@ Bowling Alone: The Collapse And Revival Of American Community
 
 The Secret Life of Groceries: The Dark Miracle of the American Supermarket
 
+Anti-Intellectualism in American Life
+
+Good Economics for Hard Times
+
 <style>
   p {
     padding-top: 0rem;
@@ -642,7 +660,7 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
   }
 
   group {
-    padding-right: 5%;
+    padding-right: 1.5rem;
     border-right: 1px solid #ccc;
   }
   group book {
@@ -671,6 +689,7 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
     min-width: 80%;
     display: inline-block;
     height: 0rem;
+    line-height: normal;
   }
   rating {
     float: right;
@@ -681,7 +700,7 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
   }
   .marginnote {
     font-style: italic;
-    margin-right: -97.5%;
+    margin-right: calc(-90% - 2rem);
     width: 60%;
     border-left: 1px solid #ccc;
     padding-left: 1rem;
@@ -701,7 +720,7 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
       height: min-content !important;
     }
     group {
-      padding-right: 5%;
+      padding-right: 3.5%;
     }
     group book, group rating {
       margin-top: 0rem;
@@ -726,5 +745,11 @@ The Secret Life of Groceries: The Dark Miracle of the American Supermarket
   }
   group .marginnote {
     border-left: none;
+  }
+
+  .single-content h3 {
+    font-variant: normal;
+    font-size: 1.6rem;
+    font-style: italic;
   }
 </style>

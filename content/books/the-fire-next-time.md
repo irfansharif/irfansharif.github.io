@@ -8,7 +8,7 @@ preview: TODO
 ---
 
 A very prescient essay. Baldwin has a way with words, and here he
-dissects the very petulant infantility (is that a word?) of non-Black American
+dissects the very petulant infantility _(is that a word?)_ of non-Black American
 consciousness. I liked this bit below, it's aged well:
 
 <blockquote>

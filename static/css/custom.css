@@ -1,0 +1,110 @@
+abbrev {
+  font-variant: all-small-caps;
+}
+
+.single-content h2 a:link, 
+.single-content h2 a:visited, 
+.single-content h3 a:link, 
+.single-content h3 a:visited 
+{
+  text-decoration: none !important;
+  color: black !important;
+}
+
+a:link, a:visited {
+  /* text-decoration: none; */
+  background-repeat: no-repeat;
+  text-decoration: 1px underline dotted;
+  text-underline-offset: 1px;
+  /* color: #0F31A0; /1* crdb dark blue *1/ */
+  /* color: #4379FF; /1* stripe blue *1/ */
+  /* color: #50b; /1* metarationality purple *1/ */
+  /* color: #5E2CA5; /1* common cog purple *1/ */
+  /* color: #5433FF; /1* stripe purple *1/ */
+  color: #A00000; /* melting asphalt red */
+  /* color: #000000; /1* black *1/ */
+}
+a:hover, a:active {
+  text-decoration: 1px underline solid;
+}
+.newsletter-submit-button {
+  text-decoration: none;
+  background-repeat: no-repeat;
+  /* text-decoration: underline dotted; */
+  /* color: #0F31A0; /1* crdb dark blue *1/ */
+  /* color: #4379FF; /1* stripe blue *1/ */
+  /* color: #50b; /1* metarationality purple *1/ */
+  /* color: #5E2CA5; /1* common cog purple *1/ */
+  /* color: #5433FF; /1* stripe purple *1/ */
+  /* color: #A00000; /1* melting asphalt red *1/ */
+  color: #000000; /* black */
+  background-color: #e7e7e7;
+  border-color: #ccc;
+}
+.newsletter-email-input {
+  border-color: #ccc;
+}
+
+.nav-bar li {
+  font-weight: normal;
+}
+
+sup a:link, sup a:visited {
+  text-decoration: none !important;
+  background-repeat: no-repeat !important;
+}
+
+html {
+  overflow:   scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.home-page a {
+  font-weight: normal;
+}
+
+.single-title {
+  font-variant: small-caps;
+  font-size: 1.8rem;
+  margin-top: 2.3rem;
+}
+
+.listing-title {
+  font-variant: all-small-caps;
+  font-size: 1.6rem;
+  font-style: normal;
+}
+h2.listing-title {
+  /* padding-top: 0.0rem; */
+}
+.single-content h2 {
+  font-variant: all-small-caps;
+  font-size: 1.6rem;
+  font-style: normal;
+}
+h2 .anchor {
+  font-size: 1.2rem;
+}
+
+.single-content h3 {
+  font-size: 1.4rem;
+  font-style: italic;
+}
+h3 .anchor {
+  font-size: 1.1rem;
+}
+section.single-content {
+  padding-top: 0rem;
+}
+.single-content h2:first-child {
+  padding-top: 1.0rem;
+}
+.nav-bar {
+  border-bottom-color: #ccc;
+}
+h3.listing-item {
+  line-height: normal;
+}

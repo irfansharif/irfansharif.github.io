@@ -4,7 +4,7 @@ TabName:
 
 # Irfan Sharif
 
-<tag>
+<tag class="home-page">
   Member of Technical Staff at [Cockroach Labs, Inc.](https://github.com/cockroachdb/cockroach/)
   Previously machine learning infrastructure at [LinkedIn](https://www.linkedin.com/);
   search relevance at [Amazon]((https://www.amazon.com/)); storage, performance, and query
@@ -19,3 +19,12 @@ TabName:
 - [github](http://github.com/irfansharif)
 - [résumé](resume.pdf)
 - [twitter](https://twitter.com/irfansharifm)/[e-mail](mailto:irfan@irfansharif.io)
+
+<style>
+ul li a {
+  font-weight: normal;
+}
+h1 {
+  font-variant: small-caps;
+}
+</style>

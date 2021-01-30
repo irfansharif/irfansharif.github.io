@@ -8,16 +8,25 @@ preview: TODO
 ---
 
 Pretty unique book. The story telling here is very non-linear for one; the
-timeline is more like a "map" in that the past, present, and future are all
-observed at the same time. It opens with "Many years later, as he faced the
+timeline is more like a _map_ in that the past, present, and future are all
+observed at the same time. It opens with the snippet below, and the mode
+permeates throughout.
+
+<blockquote>
+<p>
+<em>
+Many years later, as he faced the
 firing squad, Colonel Aureliano Buendía was to remember that distant afternoon
-when his father took him to discover ice", and that mode permeates throughout.
+when his father took him to discover ice, [...]
+</em>
+</p>
+</blockquote>
 
 It's also very cyclical. The story is about seven generations of Arcadio
 family, where the same names (and just as confusingly, characteristics and
 misfortunes) are shared across the many generations. It can make for a somewhat
 dense read, but it works well as a story telling device. It's also imbued with
-magical realism; you're reading the account of a remote village with limited
+magical realism -- you're reading the account of a remote village with limited
 interaction with the outside world (hence the title), and everything is colored
 through that lens. Pretty interesting.
 

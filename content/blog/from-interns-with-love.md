@@ -16,8 +16,8 @@ preview: img/from-interns-with-love/watson-lab.jpg
 </span>
 
 _Spoke with our interns this year to understand what they were working on. Some
-version of this will post eventually find its way to the company's [engineering
-blog](https://www.cockroachlabs.com/blog/engineering/). To keep up with new
+version of this will post eventually find its way to the company's engineering
+[blog](https://www.cockroachlabs.com/blog/engineering/). To keep up with new
 writing, sign up for my [newsletter](/newsletter)._
 
 ---
@@ -26,22 +26,22 @@ While not exactly _envious_ of our current crop of interns (cause, you know,
 the whole work from home thing), I'll admit I find myself reminiscing back to
 when I was one myself. I'm still surprised they let me anywhere near the stuff
 they did. When I first interned four years ago, we had just declared a [code yellow](https://www.cockroachlabs.com/blog/cockroachdb-stability-from-1-node-to-100-nodes/)
-to focus our energy towards [stabilizing CRDB](https://www.cockroachlabs.com/blog/cant-run-100-node-cockroachdb-cluster/).
+to focus our energy towards [stabilizing](https://www.cockroachlabs.com/blog/cant-run-100-node-cockroachdb-cluster/) <abbrev>CRDB</abbrev>.
 Having joined the newly-formed distributed query execution[^distsql-rfc] team,
 but now with its attention directed elsewhere, what that meant for me was free
 rein to flesh out a few nifty things: distributed [hash](https://github.com/cockroachdb/cockroach/pull/10438)
 and [merge](https://github.com/cockroachdb/cockroach/pull/10346) joins[^better-joins],
-[aggregation primitives](https://github.com/cockroachdb/cockroach/pull/9793)
+[aggregation](https://github.com/cockroachdb/cockroach/pull/9793) primitives
 (think `SUM`, `COUNT`, [`DISTINCT`](https://github.com/cockroachdb/cockroach/pull/10034),
-etc.), and various [sorting algorithms](https://github.com/cockroachdb/cockroach/pull/9224).
+etc.), and various [sorting](https://github.com/cockroachdb/cockroach/pull/9224) algorithms.
 
 That was more than enough to rope me back in for a second internship. This time
-I brought my dear friend [Bilal Akhtar](https://www.cockroachlabs.com/blog/from-intern-to-full-time-engineer-at-cockroach-labs/)
-along, who similarly went on to intern twice. I even managed to sneak [my brother](https://ridwanmsharif.github.io/)
-in (a strictly worse engineer), also as a two-time intern.
+I brought my dear friend Bilal along, who similarly went on to intern twice. I
+even managed to sneak [my brother](https://ridwanmsharif.github.io/) in (a
+strictly worse engineer), also as a two-time intern.
 
 All of which is to say that I think internships here can be pretty great.
-CRDB is a mostly-cool system to be working on, and we're still at the point
+<abbrev>CRDB</abbrev> is a mostly-cool system to be working on, and we're still at the point
 where we're happy to let junior engineers take on work that, I think, would
 otherwise only be accessible to someone further along career-wise. This was
 true for me back when, and I'd say the same applied for our most recent cohort.
@@ -51,38 +51,38 @@ all working on projects deserving of full-length blog posts. Today however
 we'll highlight two projects from our most recent batch and give a briefer
 treatment for the remaining.
 
-## Read-based compaction heuristics
+## 1. Read-based compaction heuristics
 
 [Aaditya Sondhi](https://www.aadityasondhi.com/) interned on our Storage team
 to work on [Pebble](https://www.cockroachlabs.com/blog/pebble-rocksdb-kv-store/),
-a storage engine based on [log-structured merge trees](http://www.benstopford.com/2015/02/14/log-structured-merge-trees/)[^lsm-history][^crdb-rocksdb]
-\(abbrev. LSMs). Aaditya worked on introducing read-based compactions to
+a storage engine based on [log-structured](http://www.benstopford.com/2015/02/14/log-structured-merge-trees/) merge trees[^lsm-history][^crdb-rocksdb]
+\(abbrev. <abbrev>LSM</abbrev>s). Aaditya worked on introducing read-based compactions to
 Pebble, but before diving into what that means, we'll first need to understand
 what read-amplification and compactions are.
 
-### Compactions and read-amplification in LSMs
+### 1.1 Compactions and read-amplification in LSMs
 
-In LSMs, keys and values are stored as sorted strings in immutable blobs
-called SSTs (sorted string tables). SSTs are stacked across multiple levels
-(L1, L2, ...), don't overlap within a level, and when searching for a key that
-overlaps with multiple SSTs (necessarily across multiple levels), the one found
+In <abbrev>LSM</abbrev>s, keys and values are stored as sorted strings in immutable blobs
+called <abbrev>SST</abbrev>s (sorted string tables). <abbrev>SST</abbrev>s are stacked across multiple levels
+(<abbrev>L1</abbrev>, <abbrev>L2</abbrev>, ...), don't overlap within a level, and when searching for a key that
+overlaps with multiple <abbrev>SST</abbrev>s (necessarily across multiple levels), the one found
 at the higher level is considered authoritative. This brings us
 to read-amplification: the amount of physical work done (bytes read, number of
 disk seeks, blocks decompressed, etc.) per logical operation. When reading a
-key `k` from a two-level LSM, we may have to trawl through both if it isn't
+key `k` from a two-level <abbrev>LSM</abbrev>, we may have to trawl through both if it isn't
 found in the first.
 
 That in turn brings us to compactions[^leveled-cmps]. As data flows into higher
-level SSTs, LSMs maintain a "healthy" structure by compacting them into (fewer
-but larger) lower level SSTs. At one level (sorry) this lets LSMs reclaim
+level <abbrev>SST</abbrev>s, <abbrev>LSM</abbrev>s maintain a _healthy_ structure by compacting them into (fewer
+but larger) lower level <abbrev>SST</abbrev>s. At one level (sorry) this lets <abbrev>LSM</abbrev>s reclaim
 storage (range deletion tombstones and newer revisions mask out older values),
-but also helps bound the read IOPS required to sustain a fixed workload. Like
+but also helps bound the read <abbrev>IOPS</abbrev> required to sustain a fixed workload. Like
 all things, this is counter-balanced[^compaction-1][^compaction-2][^compaction-3][^compaction-4]
 with the need to maintain sane write/space-amplification, which the rate of
 compactions directly play into.
 
 <span class="marginnote">
-  An SST compaction; the L1 SST overlaps with two L2 SSTs and is compacted into it.
+  An <abbrev>SST</abbrev> compaction; the L1 <abbrev>SST</abbrev> overlaps with two L2 <abbrev>SST</abbrev>s and is compacted into it.
 </span>
 {{< gallery hover-effect="none" caption-effect="none" >}}
   {{< figure src="img/from-interns-with-love/compaction.png" size="3515x1080"
@@ -90,33 +90,33 @@ compactions directly play into.
       caption="An SST compaction; the L1 SST overlaps with two L2 SSTs and is compacted into it." >}}
 {{< /gallery >}}
 <span class="collapsed-marginnote">
-  Figure 1. An SST compaction; the L1 SST overlaps with two L2 SSTs and is compacted into it.
+  Figure 1. An <abbrev>SST</abbrev> compaction; the L1 <abbrev>SST</abbrev> overlaps with two L2 <abbrev>SST</abbrev>s and is compacted into it.
 </span>
 
 (Aside: there's something to be said about how storage engines are
 characterized in terms of resource utilization[^perf-util] as opposed to
-unqualified "throughput" or "latency". System-wide measures like `$/tpmC`[^tpmc]
+unqualified _throughput_ or _latency_. System-wide measures like `$/tpmC`[^tpmc]
 are another example of this. These feel comparatively easier to reason about,
 more useful for capacity planning, and easily verifiable.)
 
-### Optimizing compactions for read-amplification
+### 1.2 Optimizing compactions for read-amplification
 
-Compacting LSMs based on reads isn't a novel idea. It was originally
-implemented in [google/leveldb](https://github.com/google/leveldb), and later
-dropped in [facebook/rocksdb](https://github.com/facebook/rocksdb/). As for
-the Go re-implementation of it ([golang/leveldb](https://github.com/golang/leveldb),
+Compacting <abbrev>LSM</abbrev>s based on reads isn't a novel idea. It was originally
+implemented in _[google/leveldb](https://github.com/google/leveldb)_, and later
+dropped in _[facebook/rocksdb](https://github.com/facebook/rocksdb/)_. As for
+the Go re-implementation of it (_[golang/leveldb](https://github.com/golang/leveldb)_,
 incidentally where we forked Pebble from), it hasn't ported over the heuristic
 yet. Part of the motivation for using a purpose-built storage engine was to let
 us pull on threads exactly like this.
 
 We hypothesized that by scheduling compactions for oft-read key ranges, we
 could lower read amplification for subsequent reads, thus lowering resource
-utilization and improving read performance. In [implementing it](https://github.com/cockroachdb/pebble/pull/1009),
-we borrowed from the ideas present in [google/leveldb](https://github.com/google/leveldb).
+utilization and improving read performance. In [implementing](https://github.com/cockroachdb/pebble/pull/1009) it,
+we borrowed from the ideas present in _[google/leveldb](https://github.com/google/leveldb)_.
 For every positioning operation that returned a user key (think `Next`, `Prev`,
 `Seek`, etc.), we sampled the key range (mediated by tunable knobs). The
-sampling process checked for overlapping SSTs across the various levels in the
-LSM. If an oft-read SST was found to overlap with ones from lower levels, it
+sampling process checked for overlapping <abbrev>SST</abbrev>s across the various levels in the
+<abbrev>LSM</abbrev>. If an oft-read <abbrev>SST</abbrev> was found to overlap with ones from lower levels, it
 was scored higher to prioritize its compaction.
 
 <span class="marginnote">
@@ -153,38 +153,38 @@ ycsb/B/values=64    4.29 ± 1%   14.86 ± 3%  +246.80%  (p=0.008 n=5+5)
 
 As expected, we [found](https://github.com/cockroachdb/pebble/issues/29#issuecomment-744514344)
 that read-based compactions led to significant improvement in read heavy
-workloads. Our benchmarks running YCSB-C (100% reads) using 1KB writes saw
+workloads. Our benchmarks running <abbrev>YCSB-C</abbrev> 100% reads) using <abbrev>1KB</abbrev> writes saw
 read amplification reduced by ~71% and throughput increased by ~133%. With
-YCSB-B (95% reads) using small value reads/writes (64 bytes), we reduced
+<abbrev>YCSB-B</abbrev> (95% reads) using small value reads/writes (64 bytes), we reduced
 read-amplification by ~15% which led to a throughput increase of ~20%.  These
 benchmarks targeted Pebble directly, and there's still a bit of legwork to be
 done around parameter tuning (we're necessarily trading off some
 write-amplification in this process), but the results are encouraging.
 
-## Query denylists (and our RFC process)
+## 2. Query denylists (and our RFC process)
 
-[Angela Wen](https://www.linkedin.com/in/angelapwen) interned on our SQL
-Experience team, which owns the frontier where SQL clients meet the database.
+[Angela Wen](https://www.linkedin.com/in/angelapwen) interned on our <abbrev>SQL</abbrev>
+Experience team, which owns the frontier where <abbrev>SQL</abbrev> clients meet the database.
 During her internship Angela worked on introducing a mechanism to gate certain
 classes of queries from being run against the database. This was motivated by
-[our Cloud](https://www.cockroachlabs.com/product/cockroachcloud/) SREs running
-large CRDB installations, and wanting the ability to deny
-queries(-of-death[^queries-of-death]) when emergent situations call for it (think "circuit
-breakers"[^circuit-breakers]).
+our cloud <abbrev>SRE</abbrev>s running
+large <abbrev>CRDB</abbrev> installations, and wanting the ability to deny
+queries(-of-death[^queries-of-death]) when emergent situations call for it (think _circuit
+breakers_[^circuit-breakers]).
 
 Angela's experience captures the kind of broad leeway accorded to
 interns that I'm arguing we do a bit better than elsewhere. A general purpose
 [query denylist](https://github.com/cockroachdb/cockroach/issues/51643) is a
 very open-ended problem, with many personas you could design it for, and one
 took deliberate effort to build consensus on. The [process](https://github.com/cockroachdb/cockroach/blob/v20.2.3/docs/RFCS/README.md)
-we use to structure these conversations are RFCs, and we ended up authoring one
+we use to structure these conversations are <abbrev>RFC</abbrev>s, and we ended up [authoring](https://github.com/cockroachdb/cockroach/pull/55778) one
 here as well.
 
-The [RFC](https://github.com/cockroachdb/cockroach/pull/55778) and the ensuing
-discussions clarified who the intended users were, the "must
-haves"/"nice-to-haves", catalogued the various classes of deniable queries, and
+The <abbrev>RFC</abbrev> and the ensuing
+discussions clarified who the intended users were, the _must
+haves/nice-to-haves_, catalogued the various classes of deniable queries, and
 most importantly, outlined the actual mechanics of the denial itself. For all
-my gripes with RFCs, I find the process of actually writing one edifying. It
+my gripes with <abbrev>RFC</abbrev>s, I find the process of actually writing one edifying. It
 can foster real agency over a component's design and works decently well as a
 pedagogical tool (also I imagine it's cool to have public design documents to
 share with friends similarly into query denylists).
@@ -207,18 +207,17 @@ instead on certain classes of queries as opposed to more granularly matching
 specific ones. This came after observing that a vast majority of problematic
 queries during prior incidents were well understood, and could be structurally
 grouped/gated wholesale. That said, we [modularized](https://github.com/cockroachdb/cockroach/pull/57040)
-our work to make it simple to introduce [new categories](https://github.com/cockroachdb/cockroach/pull/57076)
+our work to make it simple to introduce new [categories](https://github.com/cockroachdb/cockroach/pull/57076)
 as needed.
 
-## Observability, design tokens, data-loss repair, and more
+## 3. Observability, design tokens, data-loss repair, and more
 
 We hosted a few other interns this semester, and there's much to be said
 about their individual contributions. We typically structure our programs to
-have folks work on one or two "major" projects, building up to them with
-["starter"](https://www.cockroachlabs.com/blog/onboarding-starter-projects/)
-ones. Here we'll briefly touch what these were.
+have folks work on one or two _major_ projects, building up to them with
+_starter_ ones. Here we'll briefly touch what these were.
 
-### Query runtime statistics
+### 3.1 Query runtime statistics
 
 <span class="marginnote">
   The query execution plan for a full table scan followed by an `AVG`.
@@ -234,60 +233,60 @@ ones. Here we'll briefly touch what these were.
 
 [Cathy Wang](https://www.linkedin.com/in/cathy-m-wang) interned on our SQL
 Execution team and worked on improving observability for running queries. We
-have some [existing infrastructure](https://www.cockroachlabs.com/docs/v20.2/explain-analyze.html)
+have some existing [infrastructure](https://www.cockroachlabs.com/docs/v20.2/explain-analyze.html)
 in place to surface various execution statistics. Cathy built upon this to
-include details about [network latencies](https://github.com/cockroachdb/cockroach/pull/55705)
+include details about network [latencies](https://github.com/cockroachdb/cockroach/pull/55705)
 (useful for debugging queries run within geo-distributed clusters), structured
-our traces to break down how much time is spent [across various layers](https://github.com/cockroachdb/cockroach/pull/57495)
+our traces to break down how much time is spent across [various layers](https://github.com/cockroachdb/cockroach/pull/57495)
 in the system, and tacked on memory utilization to our traces to surface
 exactly how much memory is in-use during any point mid-execution. This last bit
 is worth elaborating on: Go's garbage collector doesn't give us fine-grained
 control over allocations, and to that end a result we've had to design our own
-[memory accounting/monitoring infrastructure](https://github.com/cockroachdb/cockroach/blob/v20.2.3/pkg/util/mon/bytes_usage.go#L29-L169)
+[memory accounting/monitoring](https://github.com/cockroachdb/cockroach/blob/v20.2.3/pkg/util/mon/bytes_usage.go#L29-L169) infrastructure
 to closely track usage during a query's lifecycle. By exposing these internal
 statistics, we expect developers to better understand the memory footprint of
 individual queries and to tune them accordingly.
 
-### Design tokens
+### 3.2 Design tokens
 
 [Pooja Maniar](https://www.linkedin.com/in/pooja-maniar-03) interned within the
-[Cloud](https://cockroachlabs.cloud/) organization, specifically on the
-Console team. One of the projects she worked on was consolidating and
-standardizing our ["design tokens"](https://amzn.github.io/style-dictionary/#/).
-Think of these as abstractions over visual properties, variables to replace
-hardcoded color palettes, fonts, box shadows on pressed buttons, etc. The
-motivation here was to limit the number of design decisions developers had to
-make, whether it be choosing between specific hexcodes, UI components, etc. We
-wanted to create and hoist guidelines into a centralized, [shared repo](https://github.com/cockroachdb/ui)
+Cloud organization, specifically on the Console team. One of the projects she
+worked on was consolidating and standardizing our _[design
+tokens](https://amzn.github.io/style-dictionary/#/)_.  Think of these as
+abstractions over visual properties, variables to replace hardcoded color
+palettes, fonts, box shadows on pressed buttons, etc. The motivation here was
+to limit the number of design decisions developers had to
+make, whether it be choosing between specific hexcodes, <abbrev>UI</abbrev> components, etc. We
+wanted to create and hoist guidelines into a centralized, shared [repo](https://github.com/cockroachdb/ui)
 and then integrate it into our several console pages (accessible both through
 the database itself and through the cloud offering). We were also partway
-through a brand-refresh at the time, and Pooja's grand unification [helped ensure](https://github.com/cockroachdb/ui/pull/137)
+through a brand-refresh at the time, and Pooja's grand unification helped [ensure](https://github.com/cockroachdb/ui/pull/137)
 brand consistency throughout.
 
-### Quorum recovery
+### 3.3 Quorum recovery
 
-[Sam Huang](https://www.linkedin.com/in/samshuang) interned on the KV team
+[Sam Huang](https://www.linkedin.com/in/samshuang) interned on the <abbrev>KV</abbrev> team
 (they let me mentor this fellow), and one of the projects we worked on was
 to introduce a [quorum recovery](https://github.com/cockroachdb/cockroach/pull/56333)
-mechanism within CRDB. Because CRDB is built atop raft-replicated key-ranges,
+mechanism within <abbrev>CRDB</abbrev>. Because <abbrev>CRDB</abbrev> is built atop raft-replicated key-ranges,
 when a cluster permanently loses quorum for a given set of keys (think
 persistent node/disk failures), it's unable to recover from it. This necessarily
 entails data-loss, but we still want the ability to [paper over](https://github.com/cockroachdb/cockroach/issues/41411)
 such keys and provide [tooling](https://github.com/cockroachdb/cockroach/pull/57034)
 for manual repair. Sam worked on introducing an out-of-band mechanism to
-"reset" the quorum for a given key-range, and somewhat cleanly, we were able to
+_reset_ the quorum for a given key-range, and somewhat cleanly, we were able to
 leverage existing Raft machinery to do so. This came from the observation that
 if we were to construct a synthetic snapshot (seeded using data from extant
 replicas, if any), and configured it to specify a new set of participants, we
 would essentially trick the underlying replication sub-system into recovering
 quorum for this key-range. Our synthetic snapshot incremented the relevant
-counters to "come after" the existing data, which also in-turn purged older
+counters to _come after_ the existing data, which also in-turn purged older
 replicas from the system.
 
-### Metamorphic schema changes
+### 3.4 Metamorphic schema changes
 
 [Jayant Shrivastava](https://jayshrivastava.me/) interned on our SQL Schemas
-team, and spent his time here ruggedizing our schemas infrastructure. CRDB
+team, and spent his time here ruggedizing our schemas infrastructure. <abbrev>CRDB</abbrev>
 makes use of several advanced testing strategies to ensure correctness and
 stability, including use of [fuzzers](https://www.cockroachlabs.com/blog/sqlsmith-randomized-sql-testing/),
 [metamorphic](https://en.wikipedia.org/wiki/Metamorphic_testing) and
@@ -296,42 +295,42 @@ testing, [Jepsen](https://www.cockroachlabs.com/blog/jepsen-tests-lessons/)[^crd
 and much more. Having observed some latent fragility in this area recently,
 Jayant fleshed out an [equivalent test harness](https://github.com/cockroachdb/cockroach/pull/55521)
 but focusing instead on [schema changes](https://github.com/cockroachdb/cockroach/pull/54889).
-We constructed a workload generator to execute randomly generated DDL
+We constructed a workload generator to execute randomly generated <abbrev>DDL</abbrev>
 statements, executing within the confines of individual transactions. These
 statements generate and drop tables on the fly, do the same for columns with
 randomized types, and are executed concurrently with statements issued against
 those very tables/columns. We leveraged metamorphic methods here by
 [asserting](https://github.com/cockroachdb/cockroach/issues/56119) against the
 invariants of the system rather than specific outputs (things like
-"transactions that have read from a certain column should expect to always find
-it in subsequent reads"). Put together we were able to cover a large space of
+_transactions that have read from a certain column should expect to always find
+it in subsequent reads_). Put together we were able to cover a large space of
 possible interleavings and uncovered [several](https://github.com/cockroachdb/cockroach/pull/56858)
 [critical](https://github.com/cockroachdb/cockroach/pull/56589)
 [bugs](https://github.com/cockroachdb/cockroach/issues/56230) in the process.
 
-### Import compatibility
+### 3.5 Import compatibility
 
 [Monica Xu](https://monicaxu.me/) took a brief hiatus from her aspiring [music
 career](https://youtu.be/vYrI1rcj-z4) to intern on our Bulk IO team. Her team's
-broadly responsible for getting data in and out of CRDB as fast as possible
+broadly responsible for getting data in and out of <abbrev>CRDB</abbrev> as fast as possible
 (specifically import/export and backup/restore). Monica made several contributions in
 this area, including enabling [progress tracking](https://github.com/cockroachdb/cockroach/pull/55511)
 for dump files, supporting [dry run](https://github.com/cockroachdb/cockroach/pull/56080)
 [imports](https://github.com/cockroachdb/cockroach/pull/56587), and
 improving `pg_dump`[^pg-dump] compatibility. There were kinks to be work out
-with the latter seeing as how CRDB only supports a [subset](https://www.cockroachlabs.com/blog/why-postgres/)
+with the latter seeing as how <abbrev>CRDB</abbrev> only supports a [subset](https://www.cockroachlabs.com/blog/why-postgres/)
 of Postgres syntax, which can be problematic when processing `pg_dump` files as
 is. The particular set of questions Monica helped address was what
-"reasonable behavior" is when chewing through potentially destructive import
+_reasonable behavior_ is when chewing through potentially destructive import
 directives. Think `DROP TABLE [IF EXISTS]`, or `CREATE VIEW`, which is
 particularly tricky given it stores the results of the query it was constructed
 using, results subject to change during the import process. Monica engaged with
-our product teams when forming these judgements (we now simply [defer to the user](https://github.com/cockroachdb/cockroach/pull/56920)
+our product teams when forming these judgements (we now simply [defer](https://github.com/cockroachdb/cockroach/pull/56920) to the user
 with instructive messaging), and helped [significantly](https://github.com/cockroachdb/cockroach/pull/55126)
 [ease](https://github.com/cockroachdb/cockroach/pull/57339) the onboarding
 experience for developers migrating off of their existing installations.
 
-## Parting thoughts
+## 4. Parting thoughts
 
 If you're still here and interested, hit us up. And don't let the
 database-speak throw you off, most of us didn't know any of it coming in.
