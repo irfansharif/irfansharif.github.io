@@ -1,6 +1,6 @@
 ---
 title: "On Debugging"
-date: 2021-02-01
+date: 2021-02-15
 summary: TODO.
 preview: img/on-debugging/first-bug.png
 ---

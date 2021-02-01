@@ -11,17 +11,20 @@ abbrev {
   color: black !important;
 }
 
+a:link {
+  text-underline-offset: 2px;
+}
+
 a:link, a:visited {
-  /* text-decoration: none; */
   background-repeat: no-repeat;
+  text-decoration: none; /* Needed as fallback for Safari */
   text-decoration: 1px underline dotted;
-  text-underline-offset: 1px;
+  color: #A00000; /* melting asphalt red */
   /* color: #0F31A0; /1* crdb dark blue *1/ */
   /* color: #4379FF; /1* stripe blue *1/ */
   /* color: #50b; /1* metarationality purple *1/ */
   /* color: #5E2CA5; /1* common cog purple *1/ */
   /* color: #5433FF; /1* stripe purple *1/ */
-  color: #A00000; /* melting asphalt red */
   /* color: #000000; /1* black *1/ */
 }
 a:hover, a:active {
@@ -40,6 +43,9 @@ a:hover, a:active {
   color: #000000; /* black */
   background-color: #e7e7e7;
   border-color: #ccc;
+}
+.margin-toggle sup {
+    color: #A00;
 }
 .newsletter-email-input {
   border-color: #ccc;
@@ -107,4 +113,8 @@ section.single-content {
 }
 h3.listing-item {
   line-height: normal;
+}
+.listing-time {
+  color: gray;
+  font-size: 1.4rem;
 }

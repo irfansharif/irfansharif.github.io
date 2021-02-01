@@ -37,6 +37,6 @@ siblings),_ so I think a lot of my writing might be directed at them? We'll see,
 but if that sounds like something you'd want in your inbox, [let me
 know](/newsletter).
 
-Here's my (work-in-progress) [bookshelf](/books), and my [home page](/).
+Here's my (work-in-progress) [bookshelf](/books), and my [home page](/). 
 
 <figure><img src="/img/about/face.jpg" class="face-thin"/></figure>
