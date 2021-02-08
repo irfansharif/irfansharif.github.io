@@ -8,7 +8,7 @@ rm -r *
 cp -r ../public/* .
 rm -r ../public
 git add --all
-git commit --amend
+git commit --amend --no-edit
 git push -f
 git checkout master
 git clean -fdx

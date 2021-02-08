@@ -7,6 +7,18 @@ TabName: Books
 ### 2021
 ---
 
+<book>
+  A Collection of Essays
+  <series><nowrap>--- George</nowrap> Orwell</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+  The Ninety-nine Beautiful Names of God
+  <series><nowrap>--- Abu</nowrap> Hamid Muhammad Al-Ghazali</series>
+</book>
+<rating>(reading)</rating>
+
 <group>
 <member>
 <book>
@@ -19,7 +31,7 @@ sense of [inherent](https://twitter.com/irfansharifm/status/1302665825883750406)
 I'm apparently cultivating.
 </span>
 </book>
-<rating>(reading)</rating>
+<rating>     * * * </rating>
 </member>
 <member>
 <book>
@@ -68,7 +80,7 @@ The Visual Display of Quantitative Information<label for="typographic" class="ma
 Used these as style-guides for the site.
 </span>
 </book>
-<rating> (reading) </rating>
+<rating>   * * * * </rating>
 </member>
 </group>
 
@@ -728,290 +740,459 @@ Al‑Ghazālī's Path to Sufism and His Deliverance from Error
 Dune Messiah
 <series><nowrap>--- Frank</nowrap> Herbert (Dune Chronicles #2)</series>
 </book>
+<rating>  </rating>
 
 <book>
   Neuromancer
   <series><nowrap>--- William</nowrap> Gibson (Sprawl #1)</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Name of the Wind
 <series><nowrap>--- Patrick</nowrap> Rothfuss (The Kingkiller Chronicle #1)</series>
 </book>
+<rating>  </rating>
 
 <book>
   Personal Knowledge
   <series><nowrap>--- Michael</nowrap> Polanyi</series>
   <rating>  </rating>
 </book>
+<rating>  </rating>
 
 <book>
   The Lessons of History
   <series><nowrap>--- Will</nowrap> Durant</series>
   <rating>  </rating>
 </book>
+<rating>  </rating>
 
 <book>
   The Story of Philosophy
   <series><nowrap>--- Will</nowrap> Durant</series>
   <rating>  </rating>
 </book>
+<rating>  </rating>
 
 <book>
 The Innovators
 <series><nowrap>--- Walter</nowrap> Isaacson</series>
 </book>
+<rating>  </rating>
 
 <book>
 Why Nations Fail
 <series><nowrap>--- Daron</nowrap> Acemoglu</series>
 </book>
+<rating>  </rating>
 
 <book>
 In Watermelon Sugar
 <series><nowrap>--- Richard</nowrap> Brautigan</series>
 </book>
+<rating>  </rating>
 
 <book>
 Love is a Dog from Hell
 <series><nowrap>--- Charles</nowrap> Bukowski</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Big Sleep
 <series><nowrap>--- Raymond</nowrap> Chandler</series>
 </book>
+<rating>  </rating>
 
 <book>
 Endgame: Bobby Fischer's Remarkable Rise and Fall
 <series><nowrap>--- Frank</nowrap> Brady</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Wright Brothers
 <series><nowrap>--- Samuel</nowrap> Willard Crompton</series>
 </book>
+<rating>  </rating>
 
 <book>
 Skunk Works: A Personal Memoir of My Years of Lockheed
 <series><nowrap>--- Steve</nowrap> Pace</series>
 </book>
+<rating>  </rating>
 
 <book>
 Anathem
 <series><nowrap>--- Neal</nowrap> Stephenson</series>
 </book>
+<rating>  </rating>
 
 <book>
 Complexity: The Emerging Science at the Edge of Order and Chaos
 <series><nowrap>--- Mitchell</nowrap> M. Waldrop</series>
 </book>
+<rating>  </rating>
 
 <book>
 Maximum City: Bombay Lost and Found
 <series><nowrap>--- Suketu</nowrap> Mehta</series>
 </book>
+<rating>  </rating>
 
 <book>
 Homegoing
 <series><nowrap>--- Yaa</nowrap> Gyasi</series>
 </book>
+<rating>  </rating>
 
 <book>
 Ants Among Elephants: An Untouchable Family and the Making
 of Modern India
 <series><nowrap>--- Sujatha</nowrap> Gidla</series>
 </book>
+<rating>  </rating>
 
 <book>
 Born to Run: A Hidden Tribe, Superathletes, and the Greatest Race the World Has
 Never Seen
 <series><nowrap>--- Christopher</nowrap> McDougall</series>
 </book>
+<rating>  </rating>
 
 <book>
 Political Order and Political Decay
 <series><nowrap>--- Francis</nowrap> Fukuyama</series>
 </book>
+<rating>  </rating>
 
 <book>
 Hyperion
 <series><nowrap>--- Dan</nowrap> Simmons (Hyperion Cantos #1)</series>
 </book>
+<rating>  </rating>
 
 <book>
 Midnight's Children
 <series><nowrap>--- Salman</nowrap> Rushdie</series>
 </book>
+<rating>  </rating>
 
 <book>
 What I Talk About When I Talk About Running
 <series><nowrap>--- Haruki</nowrap> Murakami</series>
 </book>
+<rating>  </rating>
 
 <book>
 SPQR: A History of Ancient Rome
 <series><nowrap>--- Mary</nowrap> Beard</series>
 </book>
+<rating>  </rating>
 
 <book>
 Destiny Disrupted: A History of the World Through Islamic Eyes
 <series><nowrap>--- Tamim</nowrap> Ansary</series>
 </book>
+<rating>  </rating>
 
 <book>
 Sharp Objects
 <series><nowrap>--- Gillian</nowrap> Flynn</series>
 </book>
+<rating>  </rating>
 
 <book>
 Snow Crash
 <series><nowrap>--- Neal</nowrap> Stephenson</series>
 </book>
+<rating>  </rating>
 
 <book>
 Ender's Game
 <series><nowrap>--- Orson</nowrap> Scott Card (Ender's Saga #1)</series>
 </book>
+<rating>  </rating>
 
 <book>
 A Suitable Boy <series>(A Bridge of Leaves #1)</series>
 <series><nowrap>--- Vikram</nowrap> Seth</series>
 </book>
+<rating>  </rating>
 
 <book>
 Cloud Atlas
 <series><nowrap>--- Robert</nowrap> W. Popham</series>
 </book>
+<rating>  </rating>
 
 <book>
 World War Z
 <series><nowrap>--- Max</nowrap> Brooks</series>
 </book>
+<rating>  </rating>
 
 <book>
 A Canticle for Leibowitz
 <series>(St. Leibowitz #1)</series> <series><nowrap>--- Walter</nowrap> M. Miller, Jr.</series>
 </book>
+<rating>  </rating>
 
 <book>
 Station Eleven
 <series><nowrap>--- Emily</nowrap> St. John Mandel</series>
 </book>
+<rating>  </rating>
 
 <book>
 Kafka on the Shore
 <series><nowrap>--- Haruki</nowrap> Murakami</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Art of Worldly Wisdom
 <series><nowrap>--- Baltasar</nowrap> Gracian</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Waste Books
 <series><nowrap>--- Georg</nowrap> Christoph Lichtenberg</series>
 </book>
+<rating>  </rating>
 
 <book>
 A Man Called Ove
 <series><nowrap>--- Fredrik</nowrap> Backman</series>
 </book>
+<rating>  </rating>
 
 <book>
 Eichmann in Jerusalem
 <series><nowrap>--- Hannah</nowrap> Arendt</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Gay Science
 <series><nowrap>--- Friedrich</nowrap> Nietzsche</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Man In The High Castle
 <series><nowrap>--- Philip</nowrap> K. Dick</series>
 </book>
+<rating>  </rating>
 
 <book>
 The End of History and the Last Man
 <series><nowrap>--- Francis</nowrap> Fukuyama</series>
 </book>
+<rating>  </rating>
 
 <book>
 Conditional Citizens: On Belonging in America
 <series><nowrap>--- Laila</nowrap> Lalami</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Undocumented Americans
 <series><nowrap>--- Karla</nowrap> Cornejo Villavicencio</series>
 </book>
+<rating>  </rating>
 
 <book>
 Commentary on the Eleventh Contentions
 <series><nowrap>--- Abdal</nowrap> Hakim Murad</series>
 </book>
+<rating>  </rating>
 
 <book>
 Travelling Home: Essays on Islam in Europe
 <series><nowrap>--- Abdal</nowrap> Hakim Murad</series>
 </book>
+<rating>  </rating>
 
 <book>
 Herman Miller: A Way of Living
 <series><nowrap>--- Amy</nowrap> Auscherman</series>
 </book>
+<rating>  </rating>
 
 <book>
 Dieter Rams: The Complete Works
 <series><nowrap>--- Christian</nowrap> Werner Thomsen</series>
 </book>
+<rating>  </rating>
 
 <book>
 The 99% Invisible City
 <series><nowrap>--- Roman</nowrap> Mars</series>
 </book>
+<rating>  </rating>
 
 <book>
 I Am a Strange Loop
 <series><nowrap>--- Douglas</nowrap> R. Hofstadter</series>
 </book>
+<rating>  </rating>
 
 <book>
 Bowling Alone: The Collapse And Revival Of American Community
 <series><nowrap>--- Robert</nowrap> D. Putnam</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Secret Life of Groceries
 <series><nowrap>--- Benjamin</nowrap> Lorr</series>
 </book>
+<rating>  </rating>
 
 <book>
 Anti-Intellectualism in American Life <series><nowrap>--- Richard</nowrap>
 Hofstadter</series>
 </book>
+<rating>  </rating>
 
 <book>
 Good Economics for Hard Times <series><nowrap>--- Abhijit</nowrap> V.
 Banerjee</series>
 </book>
+<rating>  </rating>
 
 <book>
 The Power Broker: Robert Moses and the Fall of New York <series><nowrap>---
 Robert</nowrap> A. Caro</series>
 </book>
+<rating>  </rating>
 
 <book>
   The Dream Machine
   <series><nowrap>--- M.</nowrap> Mitchell Waldrop</series>
-  <rating>  </rating>
 </book>
+<rating>  </rating>
 
 <book>
   Ready Player One
   <series><nowrap>--- Ernest</nowrap> Cline</series>
-  <rating>  </rating>
 </book>
+<rating>  </rating>
+
+<book>
+  The Splendid and the Vile: A Saga of Churchill, Family, and Defiance During the Blitz
+  <series><nowrap>--- Erik</nowrap> Larson</series>
+</book>
+<rating>  </rating>
+
+<book>
+  A Place for Us
+  <series><nowrap>--- Fatima</nowrap> Farheen Mirza</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Seeing with Fresh Eyes: Meaning, Space, Data, Truth
+  <series><nowrap>--- Edward</nowrap> Tufte</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The God of Small Things
+  <series><nowrap>--- Amitabh</nowrap> Roy</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Lolita
+  <series><nowrap>--- Vladimir</nowrap> Nabokov</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Pachinko
+  <series><nowrap>--- Min</nowrap> Jin Lee</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Good Strategy, Bad Strategy: The Difference and Why It Matters
+  <series><nowrap>--- Richard</nowrap> P. Rumelt</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Restating Orientalism: A Critique of Modern Knowledge
+  <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The Impossible State: Islam, Politics, and Modernity's Moral Predicament
+  <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Flash Boys: A Wall Street Revolt
+  <series><nowrap>--- Michael</nowrap> Lewis</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The Difference Engine: Charles Babbage and the Quest to Build the First Computer
+  <series><nowrap>--- Doron</nowrap> Swade</series>
+</book>
+<rating>  </rating>
+
+<book>
+  A Secular Age
+  <series><nowrap>--- Charles</nowrap> TAYLOR</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger
+  <series><nowrap>--- Charles</nowrap> T. Munger</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Stubborn Attachments: A Vision for a Society of Free, Prosperous, and Responsible Individuals
+  <series><nowrap>--- Tyler</nowrap> Cowen</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Debt: The First 5000 Years
+  <series><nowrap>--- David</nowrap> Graeber</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed
+  <series><nowrap>--- James</nowrap> C. Scott</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Finite and Infinite Games
+  <series><nowrap>--- James</nowrap> Carse</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Team Topologies: Organizing Business and Technology Teams for Fast Flow
+  <series><nowrap>--- Matthew</nowrap> Skelton</series>
+</book>
+<rating>  </rating>
+
+<book>
+  How We Disappeared
+  <series><nowrap>--- Jing-Jing</nowrap> Lee</series>
+</book>
+<rating>  </rating>
