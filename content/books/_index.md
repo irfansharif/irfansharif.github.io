@@ -8,14 +8,94 @@ TabName: Books
 ---
 
 <book>
-  A Collection of Essays
-  <series><nowrap>--- George</nowrap> Orwell</series>
+  The Splendid and the Vile
+  <series><nowrap>--- Erik</nowrap> Larson</series>
 </book>
 <rating>(reading)</rating>
 
 <book>
+Good Economics for Hard Times
+<series><nowrap>--- Abhijit</nowrap> V.  Banerjee</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+The Power Broker
+<series><nowrap>--- Robert</nowrap> A. Caro</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+  Gang Leader for a Day
+  <series><nowrap>--- Sudhir</nowrap> Venkatesh</series>
+</book>
+<rating>* * * * * </rating>
+
+<book>
+  Blood, Sweat, and Pixels
+  <series><nowrap>--- Jason</nowrap> Schreier</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+Dune Messiah
+<series><nowrap>--- Frank</nowrap> Herbert (Dune Chronicles #2)</series>
+</book>
+<rating> * * * * </rating>
+
+<group>
+<member>
+<book>
+Flash Boys: A Wall Street Revolt
+<series><nowrap>--- Michael</nowrap> Lewis</series>
+<span class="marginnote">
+Just your usual pop-non-fiction books. Pretty sure Flash Boys was
+written for folks like me: outsiders to the HFT world entertained by a good
+finance story (almost regardless of how true it is). If it's anything like
+usual narrative-driven books about the computing industry, there's probably a
+lot to be skeptical of. But it was still fun to forget about all that.
+</span>
+</book>
+<rating> * * * * </rating>
+</member>
+<member>
+<book>
+Good Strategy, Bad Strategy
+<series><nowrap>--- Richard</nowrap> P. Rumelt</series>
+</book>
+<rating>  * * * </rating>
+</member>
+<member>
+<book>
+Mistakes Were Made (but Not by Me)<label for="output-management" class="margin-toggle"><sup>&dagger;</sup></label>
+<series><nowrap>--- Carol</nowrap> Tavris</series>
+<input type="checkbox" id="output-management" class="margin-toggle"/>
+<span class="marginnote thin">
+Just your usual pop-non-fiction books. Pretty sure Flash Boys was
+written for folks like me: outsiders to the HFT world entertained by a good
+finance story (almost regardless of how true it is). If it's anything like
+usual narrative-driven books about the computing industry, there's probably a
+lot to be skeptical of. But it was still fun to forget about all that.
+</span>
+</book>
+<rating>  * * * </rating>
+</group>
+
+<book>
+  A Collection of Essays
+  <series><nowrap>--- George</nowrap> Orwell</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+  The Impossible State
+  <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
+</book>
+<rating> * * * </rating>
+
+<book>
   The Ninety-nine Beautiful Names of God
-  <series><nowrap>--- Abu</nowrap> Hamid Muhammad Al-Ghazali</series>
+  <series><nowrap>--- Al-Ghazali</nowrap></series>
 </book>
 <rating>(reading)</rating>
 
@@ -38,7 +118,7 @@ I'm apparently cultivating.
 The 7 Habits of Highly Effective People
 <series><nowrap>--- Stephen</nowrap> Covey</series>
 </book>
-<rating>(reading)</rating>
+<rating>    * * * </rating>
 </member>
 <member>
 <book>
@@ -71,6 +151,13 @@ Used these as style-guides for the site.
 </span>
 </book>
 <rating>   * * * * </rating></member>
+<member>
+<member>
+<book>
+Typography for Lawyers
+<series><nowrap>--- Matthew</nowrap>  Butterick</series>
+</book>
+<rating>     * * * </rating></member>
 <member>
 <book>
 The Visual Display of Quantitative Information<label for="typographic" class="margin-toggle"><sup>&dagger;</sup></label>
@@ -611,13 +698,13 @@ Islam and the Destiny of Man
 
 <book>
 The Incoherence of the Philosophers
-<series><nowrap>--- Abu</nowrap> Hamid Al-Ghazali</series>
+<series><nowrap>--- Al-Ghazali</nowrap></series>
 </book>
 <rating> </rating>
 
 <book>
 Al‑Ghazālī's Path to Sufism and His Deliverance from Error
-<series><nowrap>--- Abu</nowrap> Hamid Al-Ghazālī</series>
+<series><nowrap>--- Al-Ghazali</nowrap></series>
 </book>
 <rating> </rating>
 
@@ -737,12 +824,6 @@ Al‑Ghazālī's Path to Sufism and His Deliverance from Error
 ---
 
 <book>
-Dune Messiah
-<series><nowrap>--- Frank</nowrap> Herbert (Dune Chronicles #2)</series>
-</book>
-<rating>  </rating>
-
-<book>
   Neuromancer
   <series><nowrap>--- William</nowrap> Gibson (Sprawl #1)</series>
 </book>
@@ -818,7 +899,7 @@ The Wright Brothers
 <rating>  </rating>
 
 <book>
-Skunk Works: A Personal Memoir of My Years of Lockheed
+Skunk Works
 <series><nowrap>--- Steve</nowrap> Pace</series>
 </book>
 <rating>  </rating>
@@ -830,13 +911,13 @@ Anathem
 <rating>  </rating>
 
 <book>
-Complexity: The Emerging Science at the Edge of Order and Chaos
+Complexity
 <series><nowrap>--- Mitchell</nowrap> M. Waldrop</series>
 </book>
 <rating>  </rating>
 
 <book>
-Maximum City: Bombay Lost and Found
+Maximum City
 <series><nowrap>--- Suketu</nowrap> Mehta</series>
 </book>
 <rating>  </rating>
@@ -848,15 +929,13 @@ Homegoing
 <rating>  </rating>
 
 <book>
-Ants Among Elephants: An Untouchable Family and the Making
-of Modern India
+Ants Among Elephants
 <series><nowrap>--- Sujatha</nowrap> Gidla</series>
 </book>
 <rating>  </rating>
 
 <book>
-Born to Run: A Hidden Tribe, Superathletes, and the Greatest Race the World Has
-Never Seen
+Born to Run
 <series><nowrap>--- Christopher</nowrap> McDougall</series>
 </book>
 <rating>  </rating>
@@ -892,7 +971,7 @@ SPQR: A History of Ancient Rome
 <rating>  </rating>
 
 <book>
-Destiny Disrupted: A History of the World Through Islamic Eyes
+Destiny Disrupted
 <series><nowrap>--- Tamim</nowrap> Ansary</series>
 </book>
 <rating>  </rating>
@@ -1054,20 +1133,8 @@ The Secret Life of Groceries
 <rating>  </rating>
 
 <book>
-Anti-Intellectualism in American Life <series><nowrap>--- Richard</nowrap>
-Hofstadter</series>
-</book>
-<rating>  </rating>
-
-<book>
-Good Economics for Hard Times <series><nowrap>--- Abhijit</nowrap> V.
-Banerjee</series>
-</book>
-<rating>  </rating>
-
-<book>
-The Power Broker: Robert Moses and the Fall of New York <series><nowrap>---
-Robert</nowrap> A. Caro</series>
+Anti-Intellectualism in American Life
+<series><nowrap>--- Richard</nowrap> Hofstadter</series>
 </book>
 <rating>  </rating>
 
@@ -1084,19 +1151,13 @@ Robert</nowrap> A. Caro</series>
 <rating>  </rating>
 
 <book>
-  The Splendid and the Vile: A Saga of Churchill, Family, and Defiance During the Blitz
-  <series><nowrap>--- Erik</nowrap> Larson</series>
-</book>
-<rating>  </rating>
-
-<book>
   A Place for Us
   <series><nowrap>--- Fatima</nowrap> Farheen Mirza</series>
 </book>
 <rating>  </rating>
 
 <book>
-  Seeing with Fresh Eyes: Meaning, Space, Data, Truth
+  Seeing with Fresh Eyes
   <series><nowrap>--- Edward</nowrap> Tufte</series>
 </book>
 <rating>  </rating>
@@ -1120,49 +1181,25 @@ Robert</nowrap> A. Caro</series>
 <rating>  </rating>
 
 <book>
-  Good Strategy, Bad Strategy: The Difference and Why It Matters
-  <series><nowrap>--- Richard</nowrap> P. Rumelt</series>
-</book>
-<rating>  </rating>
-
-<book>
-  Restating Orientalism: A Critique of Modern Knowledge
-  <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
-</book>
-<rating>  </rating>
-
-<book>
-  The Impossible State: Islam, Politics, and Modernity's Moral Predicament
-  <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
-</book>
-<rating>  </rating>
-
-<book>
-  Flash Boys: A Wall Street Revolt
-  <series><nowrap>--- Michael</nowrap> Lewis</series>
-</book>
-<rating>  </rating>
-
-<book>
-  The Difference Engine: Charles Babbage and the Quest to Build the First Computer
+  The Difference Engine
   <series><nowrap>--- Doron</nowrap> Swade</series>
 </book>
 <rating>  </rating>
 
 <book>
   A Secular Age
-  <series><nowrap>--- Charles</nowrap> TAYLOR</series>
+  <series><nowrap>--- Charles</nowrap> Taylor</series>
 </book>
 <rating>  </rating>
 
 <book>
-  Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger
+  Poor Charlie's Almanack
   <series><nowrap>--- Charles</nowrap> T. Munger</series>
 </book>
 <rating>  </rating>
 
 <book>
-  Stubborn Attachments: A Vision for a Society of Free, Prosperous, and Responsible Individuals
+  Stubborn Attachments
   <series><nowrap>--- Tyler</nowrap> Cowen</series>
 </book>
 <rating>  </rating>
@@ -1174,7 +1211,7 @@ Robert</nowrap> A. Caro</series>
 <rating>  </rating>
 
 <book>
-  Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed
+  Seeing Like a State
   <series><nowrap>--- James</nowrap> C. Scott</series>
 </book>
 <rating>  </rating>
@@ -1186,7 +1223,7 @@ Robert</nowrap> A. Caro</series>
 <rating>  </rating>
 
 <book>
-  Team Topologies: Organizing Business and Technology Teams for Fast Flow
+  Team Topologies
   <series><nowrap>--- Matthew</nowrap> Skelton</series>
 </book>
 <rating>  </rating>
@@ -1194,5 +1231,125 @@ Robert</nowrap> A. Caro</series>
 <book>
   How We Disappeared
   <series><nowrap>--- Jing-Jing</nowrap> Lee</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Twitter and Tear Gas
+  <series><nowrap>--- Zeynep</nowrap> Tufekci</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Disciplined Minds
+  <series><nowrap>--- Jeff</nowrap> Schmidt</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Heartburn
+  <series><nowrap>--- Nora</nowrap> Ephron</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Ada or Ardor
+  <series><nowrap>--- Vladimir</nowrap> Nabokov</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Accelerate
+  <series><nowrap>--- Nicole</nowrap> Forsgren PhD</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Fundamentals of Software Architecture
+  <series><nowrap>--- Mark</nowrap> Richards</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Building Evolutionary Architectures
+  <series><nowrap>--- Neal</nowrap> Ford</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Being Mortal
+  <series><nowrap>--- Atul</nowrap> Gawande</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The History Of The Decline And Fall Of The Roman Empire
+  <series><nowrap>--- Edward</nowrap> Gibbon</series>
+</book>
+<rating>  </rating>
+
+<book>
+  War and Peace
+  <series><nowrap>--- Leo</nowrap> Tolstoy</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The Emperor of All Maladies
+  <series><nowrap>--- Siddhartha</nowrap> Mukherjee</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Homeland Elegies
+  <series><nowrap>--- Ayad</nowrap> Akhtar</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Beloved
+  <series><nowrap>--- Toni</nowrap> Morrison</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Underworld
+  <series><nowrap>--- Don</nowrap> DeLillo</series>
+</book>
+<rating>  </rating>
+
+<book>
+  All the Light We Cannot See
+  <series><nowrap>--- Anthony</nowrap> Doerr</series>
+</book>
+<rating>  </rating>
+
+<book>
+  A Random Walk Down Wall Street
+  <series><nowrap>--- Burton</nowrap> Gordon Malkiel</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Benjamin Franklin An American Life
+  <series><nowrap>--- Walter</nowrap> Isaacson</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Walden
+  <series><nowrap>--- Henry</nowrap> David Thoreau</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Restating Orientalism: A Critique of Modern Knowledge
+  <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Let the Lord Sort: Them The Rise and Fall of the Death Penalty
+  <series><nowrap>--- Maurice</nowrap> Chammah</series>
 </book>
 <rating>  </rating>
