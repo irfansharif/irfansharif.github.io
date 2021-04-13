@@ -8,22 +8,58 @@ TabName: Books
 ---
 
 <book>
+  The Power Broker
+  <series><nowrap>--- Robert</nowrap> A. Caro</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+SPQR: A History of Ancient Rome
+<series><nowrap>--- Mary</nowrap> Beard</series>
+</book>
+<rating> * * * * * </rating>
+
+<book>
   The Splendid and the Vile
   <series><nowrap>--- Erik</nowrap> Larson</series>
 </book>
 <rating>(reading)</rating>
 
 <book>
+  How to Fail at Almost Everything and Still Win Big
+  <series><nowrap>--- Scott</nowrap> Adams</series>
+</book>
+<rating> * * * </rating>
+
+<book>
+  Born a Crime
+  <series><nowrap>--- Trevor</nowrap> Noah</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+  Lolita
+  <series><nowrap>--- Vladimir</nowrap> Nabokov</series>
+</book>
+<rating> * * * * * </rating>
+
+<book>
+Great Founder Theory
+<series><nowrap>--- Samo</nowrap> Burja</series>
+</book>
+<rating>* * * * </rating>
+
+<book>
+  The Enigma of Reason
+  <series><nowrap>--- Hugo</nowrap> Mercier</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
 Good Economics for Hard Times
 <series><nowrap>--- Abhijit</nowrap> V.  Banerjee</series>
 </book>
-<rating>(reading)</rating>
-
-<book>
-The Power Broker
-<series><nowrap>--- Robert</nowrap> A. Caro</series>
-</book>
-<rating>(reading)</rating>
+<rating> * * * * * </rating>
 
 <book>
   Gang Leader for a Day
@@ -965,12 +1001,6 @@ What I Talk About When I Talk About Running
 <rating>  </rating>
 
 <book>
-SPQR: A History of Ancient Rome
-<series><nowrap>--- Mary</nowrap> Beard</series>
-</book>
-<rating>  </rating>
-
-<book>
 Destiny Disrupted
 <series><nowrap>--- Tamim</nowrap> Ansary</series>
 </book>
@@ -1121,7 +1151,7 @@ I Am a Strange Loop
 <rating>  </rating>
 
 <book>
-Bowling Alone: The Collapse And Revival Of American Community
+Bowling Alone
 <series><nowrap>--- Robert</nowrap> D. Putnam</series>
 </book>
 <rating>  </rating>
@@ -1165,12 +1195,6 @@ Anti-Intellectualism in American Life
 <book>
   The God of Small Things
   <series><nowrap>--- Amitabh</nowrap> Roy</series>
-</book>
-<rating>  </rating>
-
-<book>
-  Lolita
-  <series><nowrap>--- Vladimir</nowrap> Nabokov</series>
 </book>
 <rating>  </rating>
 
@@ -1331,7 +1355,7 @@ Anti-Intellectualism in American Life
 <rating>  </rating>
 
 <book>
-  Benjamin Franklin An American Life
+  Benjamin Franklin
   <series><nowrap>--- Walter</nowrap> Isaacson</series>
 </book>
 <rating>  </rating>
@@ -1343,13 +1367,115 @@ Anti-Intellectualism in American Life
 <rating>  </rating>
 
 <book>
-  Restating Orientalism: A Critique of Modern Knowledge
+  Restating Orientalism
   <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
 </book>
 <rating>  </rating>
 
 <book>
-  Let the Lord Sort: Them The Rise and Fall of the Death Penalty
+  Let the Lord Sort
   <series><nowrap>--- Maurice</nowrap> Chammah</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Worlds Hidden in Plain Sight
+  <series><nowrap>--- David</nowrap> C. Krakauer</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The Information
+  <series><nowrap>--- James</nowrap> Gleick</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Isaac Newton
+  <series><nowrap>--- James</nowrap> Gleick</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Chaos: Making a New Science
+  <series><nowrap>--- James</nowrap> Gleick</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Anna Karenina
+  <series><nowrap>--- Leo</nowrap> Tolstoy</series>
+</book>
+<rating>  </rating>
+
+<book>
+  In the Light of What We Know
+  <series><nowrap>--- Zia</nowrap> Haider Rahman</series>
+</book>
+<rating>  </rating>
+
+<book>
+  In the Realm of Hungry Ghosts
+  <series><nowrap>--- Gabor</nowrap> Maté, MD</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The Grid
+  <series><nowrap>--- Gretchen</nowrap> Bakke</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The World in a Book
+  <series><nowrap>--- Elias</nowrap> Muhanna</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Liquidated: An Ethnography of Wall Street
+  <series><nowrap>--- Karen</nowrap> Ho</series>
+</book>
+<rating>  </rating>
+
+<book>
+  After Virtue
+  <series><nowrap>--- Alasdair</nowrap> MacIntyre</series>
+</book>
+<rating>  </rating>
+
+<book>
+  The Malaise of Modernity
+  <series><nowrap>--- Charles</nowrap> Taylor</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Seveneves
+  <series><nowrap>--- Neal</nowrap> Stephenson</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Philosophical Investigations
+  <series><nowrap>--- Ludwig</nowrap> Wittgenstein</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Stories of Your Life and Others
+  <series><nowrap>--- Ted</nowrap> Chiang</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Exhalation: Stories
+  <series><nowrap>--- Ted</nowrap> Chiang</series>
+</book>
+<rating>  </rating>
+
+<book>
+  Consider Phlebas
+  <series><nowrap>--- Iain</nowrap> M. Banks</series>
 </book>
 <rating>  </rating>
