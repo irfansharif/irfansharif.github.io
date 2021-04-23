@@ -8,10 +8,22 @@ TabName: Books
 ---
 
 <book>
-  The Power Broker
-  <series><nowrap>--- Robert</nowrap> A. Caro</series>
+Travelling Home
+<series><nowrap>--- Abdal</nowrap> Hakim Murad</series>
 </book>
-<rating>(reading)</rating>
+<rating> (reading) </rating>
+
+<book>
+  Stories of Your Life and Others
+  <series><nowrap>--- Ted</nowrap> Chiang</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+  Exhalation: Stories
+  <series><nowrap>--- Ted</nowrap> Chiang</series>
+</book>
+<rating> * * * * * </rating>
 
 <book>
 SPQR: A History of Ancient Rome
@@ -1121,12 +1133,6 @@ Commentary on the Eleventh Contentions
 <rating>  </rating>
 
 <book>
-Travelling Home: Essays on Islam in Europe
-<series><nowrap>--- Abdal</nowrap> Hakim Murad</series>
-</book>
-<rating>  </rating>
-
-<book>
 Herman Miller: A Way of Living
 <series><nowrap>--- Amy</nowrap> Auscherman</series>
 </book>
@@ -1379,6 +1385,12 @@ Anti-Intellectualism in American Life
 <rating>  </rating>
 
 <book>
+  The Power Broker
+  <series><nowrap>--- Robert</nowrap> A. Caro</series>
+</book>
+<rating>  </rating>
+
+<book>
   Worlds Hidden in Plain Sight
   <series><nowrap>--- David</nowrap> C. Krakauer</series>
 </book>
@@ -1459,18 +1471,6 @@ Anti-Intellectualism in American Life
 <book>
   Philosophical Investigations
   <series><nowrap>--- Ludwig</nowrap> Wittgenstein</series>
-</book>
-<rating>  </rating>
-
-<book>
-  Stories of Your Life and Others
-  <series><nowrap>--- Ted</nowrap> Chiang</series>
-</book>
-<rating>  </rating>
-
-<book>
-  Exhalation: Stories
-  <series><nowrap>--- Ted</nowrap> Chiang</series>
 </book>
 <rating>  </rating>
 
