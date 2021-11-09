@@ -8,10 +8,46 @@ TabName: Books
 ---
 
 <book>
+The Revolt of the Public and the Crisis of Authority
+<series><nowrap>--- Martin</nowrap> Gurri</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+Second Foundation <series><nowrap>--- Isaac</nowrap> Asimov (Foundation #3)</series>
+<series><nowrap>--- Isaac</nowrap> Asimov</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+Foundation and Empire <series><nowrap>--- Isaac</nowrap> Asimov (Foundation #2)</series>
+<series><nowrap>--- Isaac</nowrap> Asimov</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+Foundation <series><nowrap>--- Isaac</nowrap> Asimov (Foundation #1)</series>
+<series><nowrap>--- Isaac</nowrap> Asimov</series>
+</book>
+<rating> * * * * * </rating>
+
+<book>
+Elements of Clojure
+<series><nowrap>--- Zachary</nowrap> Tellman</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+Snow Crash
+<series><nowrap>--- Neal</nowrap> Stephenson</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
 Travelling Home
 <series><nowrap>--- Abdal</nowrap> Hakim Murad</series>
 </book>
-<rating> (reading) </rating>
+<rating> * * * * * </rating>
 
 <book>
   Stories of Your Life and Others
@@ -1021,12 +1057,6 @@ Destiny Disrupted
 <book>
 Sharp Objects
 <series><nowrap>--- Gillian</nowrap> Flynn</series>
-</book>
-<rating>  </rating>
-
-<book>
-Snow Crash
-<series><nowrap>--- Neal</nowrap> Stephenson</series>
 </book>
 <rating>  </rating>
 
