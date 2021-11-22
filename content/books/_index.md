@@ -8,10 +8,28 @@ TabName: Books
 ---
 
 <book>
+Maximum City
+<series><nowrap>--- Suketu</nowrap> Mehta</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+Bowling Alone
+<series><nowrap>--- Robert</nowrap> D. Putnam</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+  The Making of Prince of Persia
+  <series><nowrap>--- Jordan</nowrap> Mechner</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
 The Revolt of the Public and the Crisis of Authority
 <series><nowrap>--- Martin</nowrap> Gurri</series>
 </book>
-<rating>(reading)</rating>
+<rating>* * * * *</rating>
 
 <book>
 Second Foundation <series><nowrap>--- Isaac</nowrap> Asimov (Foundation #3)</series>
@@ -35,7 +53,7 @@ Foundation <series><nowrap>--- Isaac</nowrap> Asimov (Foundation #1)</series>
 Elements of Clojure
 <series><nowrap>--- Zachary</nowrap> Tellman</series>
 </book>
-<rating> * * * * </rating>
+<rating> * * * </rating>
 
 <book>
 Snow Crash
@@ -1001,12 +1019,6 @@ Complexity
 <rating>  </rating>
 
 <book>
-Maximum City
-<series><nowrap>--- Suketu</nowrap> Mehta</series>
-</book>
-<rating>  </rating>
-
-<book>
 Homegoing
 <series><nowrap>--- Yaa</nowrap> Gyasi</series>
 </book>
@@ -1183,12 +1195,6 @@ The 99% Invisible City
 <book>
 I Am a Strange Loop
 <series><nowrap>--- Douglas</nowrap> R. Hofstadter</series>
-</book>
-<rating>  </rating>
-
-<book>
-Bowling Alone
-<series><nowrap>--- Robert</nowrap> D. Putnam</series>
 </book>
 <rating>  </rating>
 
