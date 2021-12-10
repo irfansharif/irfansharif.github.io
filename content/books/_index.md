@@ -8,16 +8,35 @@ TabName: Books
 ---
 
 <book>
+  Don Quixote 
+  <series><nowrap>--- Miguel</nowrap> de Cervantes</series>
+</book>
+<rating>(reading)</rating>
+
+<book>
+  Personal Knowledge
+  <series><nowrap>--- Michael</nowrap> Polanyi</series>
+  <rating>  </rating>
+</book>
+<rating>(reading)</rating>
+
+<book>
+The End of History and the Last Man
+<series><nowrap>--- Francis</nowrap> Fukuyama</series>
+</book>
+<rating>* * * * *</rating>
+
+<book>
 Maximum City
 <series><nowrap>--- Suketu</nowrap> Mehta</series>
 </book>
-<rating>(reading)</rating>
+<rating>* * * </rating>
 
 <book>
 Bowling Alone
 <series><nowrap>--- Robert</nowrap> D. Putnam</series>
 </book>
-<rating>(reading)</rating>
+<rating>(shelved)</rating>
 
 <book>
   The Making of Prince of Persia
@@ -89,7 +108,7 @@ SPQR: A History of Ancient Rome
   The Splendid and the Vile
   <series><nowrap>--- Erik</nowrap> Larson</series>
 </book>
-<rating>(reading)</rating>
+<rating>(paused)</rating>
 
 <book>
   How to Fail at Almost Everything and Still Win Big
@@ -199,7 +218,7 @@ lot to be skeptical of. But it was still fun to forget about all that.
   The Ninety-nine Beautiful Names of God
   <series><nowrap>--- Al-Ghazali</nowrap></series>
 </book>
-<rating>(reading)</rating>
+<rating>(shelved)</rating>
 
 <group>
 <member>
@@ -938,13 +957,6 @@ The Name of the Wind
 <rating>  </rating>
 
 <book>
-  Personal Knowledge
-  <series><nowrap>--- Michael</nowrap> Polanyi</series>
-  <rating>  </rating>
-</book>
-<rating>  </rating>
-
-<book>
   The Lessons of History
   <series><nowrap>--- Will</nowrap> Durant</series>
   <rating>  </rating>
@@ -1147,12 +1159,6 @@ The Gay Science
 <book>
 The Man In The High Castle
 <series><nowrap>--- Philip</nowrap> K. Dick</series>
-</book>
-<rating>  </rating>
-
-<book>
-The End of History and the Last Man
-<series><nowrap>--- Francis</nowrap> Fukuyama</series>
 </book>
 <rating>  </rating>
 
