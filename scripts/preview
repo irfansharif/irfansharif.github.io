@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -euxo pipefail
+
+git submodule update --init --recursive
+hugo server -D

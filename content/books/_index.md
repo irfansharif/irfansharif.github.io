@@ -4,7 +4,7 @@ TabName: Books
 
 ## Read.
 
-### 2021
+### 2022
 ---
 
 <book>
@@ -14,11 +14,38 @@ TabName: Books
 <rating>(reading)</rating>
 
 <book>
+  A Place for Us
+  <series><nowrap>--- Fatima</nowrap> Farheen Mirza</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+  The Malaise of Modernity
+  <series><nowrap>--- Charles</nowrap> Taylor</series>
+</book>
+<rating> * * * * </rating>
+
+<book>
+Dieter Rams: The Complete Works
+<series><nowrap>--- Christian</nowrap> Werner Thomsen</series>
+</book>
+<rating> * * * </rating>
+
+### 2021
+---
+
+<book>
+  Walden
+  <series><nowrap>--- Henry</nowrap> David Thoreau</series>
+</book>
+<rating> * * * </rating>
+
+<book>
   Personal Knowledge
   <series><nowrap>--- Michael</nowrap> Polanyi</series>
   <rating>  </rating>
 </book>
-<rating>(reading)</rating>
+<rating> * * * * </rating>
 
 <book>
 The End of History and the Last Man
@@ -30,13 +57,7 @@ The End of History and the Last Man
 Maximum City
 <series><nowrap>--- Suketu</nowrap> Mehta</series>
 </book>
-<rating>* * * </rating>
-
-<book>
-Bowling Alone
-<series><nowrap>--- Robert</nowrap> D. Putnam</series>
-</book>
-<rating>(shelved)</rating>
+<rating> * * * </rating>
 
 <book>
   The Making of Prince of Persia
@@ -105,10 +126,34 @@ SPQR: A History of Ancient Rome
 <rating> * * * * * </rating>
 
 <book>
+Bowling Alone
+<series><nowrap>--- Robert</nowrap> D. Putnam</series>
+</book>
+<rating>(shelved)</rating>
+
+<book>
+  The Making of the Atomic Bomb
+  <series><nowrap>--- Richard</nowrap> Rhodes</series>
+</book>
+<rating>(shelved)</rating>
+
+<book>
+  The Power Broker
+  <series><nowrap>--- Robert</nowrap> A. Caro</series>
+</book>
+<rating>(shelved)</rating>
+
+<book>
   The Splendid and the Vile
   <series><nowrap>--- Erik</nowrap> Larson</series>
 </book>
-<rating>(paused)</rating>
+<rating>(shelved)</rating>
+
+<book>
+  How Asia Works
+  <series><nowrap>--- Joe</nowrap> Studwell</series>
+</book>
+<rating>(shelved)</rating>
 
 <book>
   How to Fail at Almost Everything and Still Win Big
@@ -1187,12 +1232,6 @@ Herman Miller: A Way of Living
 <rating>  </rating>
 
 <book>
-Dieter Rams: The Complete Works
-<series><nowrap>--- Christian</nowrap> Werner Thomsen</series>
-</book>
-<rating>  </rating>
-
-<book>
 The 99% Invisible City
 <series><nowrap>--- Roman</nowrap> Mars</series>
 </book>
@@ -1225,12 +1264,6 @@ Anti-Intellectualism in American Life
 <book>
   Ready Player One
   <series><nowrap>--- Ernest</nowrap> Cline</series>
-</book>
-<rating>  </rating>
-
-<book>
-  A Place for Us
-  <series><nowrap>--- Fatima</nowrap> Farheen Mirza</series>
 </book>
 <rating>  </rating>
 
@@ -1409,12 +1442,6 @@ Anti-Intellectualism in American Life
 <rating>  </rating>
 
 <book>
-  Walden
-  <series><nowrap>--- Henry</nowrap> David Thoreau</series>
-</book>
-<rating>  </rating>
-
-<book>
   Restating Orientalism
   <series><nowrap>--- Wael</nowrap> B. Hallaq</series>
 </book>
@@ -1423,12 +1450,6 @@ Anti-Intellectualism in American Life
 <book>
   Let the Lord Sort
   <series><nowrap>--- Maurice</nowrap> Chammah</series>
-</book>
-<rating>  </rating>
-
-<book>
-  The Power Broker
-  <series><nowrap>--- Robert</nowrap> A. Caro</series>
 </book>
 <rating>  </rating>
 
@@ -1499,12 +1520,6 @@ Anti-Intellectualism in American Life
 <rating>  </rating>
 
 <book>
-  The Malaise of Modernity
-  <series><nowrap>--- Charles</nowrap> Taylor</series>
-</book>
-<rating>  </rating>
-
-<book>
   Seveneves
   <series><nowrap>--- Neal</nowrap> Stephenson</series>
 </book>
@@ -1521,3 +1536,9 @@ Anti-Intellectualism in American Life
   <series><nowrap>--- Iain</nowrap> M. Banks</series>
 </book>
 <rating>  </rating>
+
+<book>
+  The Crisis of the Modern World 
+  <series><nowrap>--- René</nowrap> Guénon</series>
+</book>
+<rating> </rating>
