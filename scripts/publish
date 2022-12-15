@@ -2,6 +2,7 @@
 
 set -euxo pipefail
 
+git submodule update --init --recursive
 hugo -d ../public
 git checkout gh-pages
 rm -r *
@@ -12,3 +13,4 @@ git commit --amend --no-edit
 git push -f
 git checkout master
 git clean -fdx
+git submodule update --init --recursive
