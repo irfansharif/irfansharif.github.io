@@ -1,25 +1,24 @@
 ---
 title: "Replication Admission Control"
-date: 2025-04-15
-summary: TODO.
-preview: img/on-debugging/first-bug.png
+date: 2040-09-18
+summary: End-to-end flow control for replicated writes in CockroachDB.
+preview: img/replication-admission-control/gimbal-rig.jpg
 ---
 
 <span class="marginnote">
-  When diagnosing persistent errors on the Mark II (1947), the team at Harvard
-  opened the computer's hardware to find an [actual bug](https://www.nationalgeographic.org/thisday/sep9/worlds-first-computer-bug/).
+  Triple-axis gimbal rig simulating flight dynamics for aircraft avionics, MIT Dynamic Analysis and Control Laboratory (1950).
 </span>
 {{< gallery hover-effect="none" caption-effect="none" >}}
-  {{< figure src="img/on-debugging/first-bug.png" size="1000x400" thumb="img/on-debugging/first-bug.png" caption="When diagnosing persistent errors on the Mark II (1947), the team at Harvard opened the computer's hardware to find an actual bug disrupting the electronics of the computer." >}}
+  {{< figure src="img/replication-admission-control/gimbal-rig.jpg" size="1902x776" thumb="img/replication-admission-control/gimbal-rig.jpg" caption="Triple-axis gimbal rig simulating flight dynamics for aircraft avionics, MIT Dynamic Analysis and Control Laboratory (1950)." >}}
 {{< /gallery >}}
 <span class="collapsed-marginnote">
-  When diagnosing persistent errors on the Mark II (1947), the team at Harvard
-  opened the computer's hardware to find an [actual bug](https://www.nationalgeographic.org/thisday/sep9/worlds-first-computer-bug/).
+  Triple-axis gimbal rig simulating flight dynamics for aircraft avionics, MIT Dynamic Analysis and Control Laboratory (1950).
 </span>
 
-<em>
-To get posted on new writing, sign up [here](/newsletter).
-</em>
+<em>This was originally written as a
+[tech note](https://github.com/cockroachdb/cockroach/blob/master/docs/tech-notes/replication_admission_control.md)
+in the cockroachdb/cockroach repo. To keep up with new writing, sign up for my
+(entirely inactive) [newsletter](/newsletter).</em>
 
 ---
 
@@ -27,52 +26,36 @@ This tech note describes the end-to-end flow control machinery we built for
 replicated writes in CockroachDB. It builds on top of existing IO admission
 control primitives and addresses the critical integration gap of follower
 writes. Here and elsewhere we use "replication admission control" or "flow
-control" interchangeably to describe the beast. It's dramatically reduced the
-effect of elastic write traffic like large index backfills, row-level TTL
+control" interchangeably to describe the beast. It's dramatically reduced
+the effect of elastic write traffic like large index backfills, row-level TTL
 deletions, primary-key changes, restores, etc. on foreground write traffic,
 while being able to sustain elastic work at a high bandwidth and keep the LSM
 intact. Only cursory knowledge of CockroachDB's admission control subsystem is
 assumed.
 
-![](img/replication-admission-control/before.png)
-*Figure 1. 9-node TPC-E with two concurrent index backfills, before replication admission control.*
+<span class="marginnote">
+  Figure 1. 9-node TPC-E with two concurrent index backfills, before replication admission control.
+</span>
+{{< gallery hover-effect="none" caption-effect="none" >}}
+  {{< figure src="img/replication-admission-control/before.png" size="3130x1676"
+      thumb="img/replication-admission-control/before.png"
+      caption="Figure 1. 9-node TPC-E with two concurrent index backfills, before replication admission control." >}}
+{{< /gallery >}}
+<span class="collapsed-marginnote">
+  Figure 1. 9-node TPC-E with two concurrent index backfills, before replication admission control.
+</span>
 
-![](img/replication-admission-control/after.png)
-*Figure 2. 9-node TPC-E with two concurrent index backfills, after replication admission control.*
-
-
-#### Table of contents
-
-- [Background](#background)
-  - [Problem](#problem)
-  - [Solution](#solution)
-- [Technical design](#technical-design)
-  - [Overview](#overview)
-  - [Replication streams, work classes, and flow tokens](#replication-streams-work-classes-and-flow-tokens)
-  - [Intra-tenant prioritization](#intra-tenant-prioritization)
-  - [Write shaping for the raft-group](#write-shaping-for-the-raft-group)
-  - [Below-raft, non-blocking admission](#below-raft-non-blocking-admission)
-  - [Flow token transport](#flow-token-transport)
-  - [Raft proposal encoding](#raft-proposal-encoding)
-  - [Only shaping elastic writes](#only-shaping-elastic-writes)
-  - [Flow token leakage](#flow-token-leakage)
-  - [Life of a write being admitted](#life-of-a-write-being-admitted)
-  - [Performance overhead](#performance-overhead)
-  - [Latency masking of moderate IO token exhaustion](#latency-masking-of-moderate-io-token-exhaustion)
-  - [Fan-in effect, and lack of origin-fairness](#fan-in-effect-and-lack-of-origin-fairness)
-- [Operationalizability](#operationalizability)
-  - [Cluster settings](#cluster-settings)
-  - [Metrics](#metrics)
-  - [Virtual tables and /inspectz pages](#virtual-tables-and-inspectz-pages)
-- [Drawbacks](#drawbacks)
-- [Alternatives considered](#alternatives-considered)
-- [Future work](#future-work)
-- [Unresolved questions](#unresolved-questions)
-- [Appendix](#appendix)
-  - [Code organization](#code-organization)
-  - [Documents/presentations](#documentspresentations)
-- [Footnotes](#footnotes)
-
+<span class="marginnote">
+  Figure 2. 9-node TPC-E with two concurrent index backfills, after replication admission control.
+</span>
+{{< gallery hover-effect="none" caption-effect="none" >}}
+  {{< figure src="img/replication-admission-control/after.png" size="3130x1676"
+      thumb="img/replication-admission-control/after.png"
+      caption="Figure 2. 9-node TPC-E with two concurrent index backfills, after replication admission control." >}}
+{{< /gallery >}}
+<span class="collapsed-marginnote">
+  Figure 2. 9-node TPC-E with two concurrent index backfills, after replication admission control.
+</span>
 ## Background
 
 IO admission control[^27] ensures that we only admit as much write
@@ -171,9 +154,9 @@ We introduce the notion of replication streams, work classes, and flow tokens:
   - Per-store basis treats discrete bottleneck resources discretely (lower
     admission rates on one store don't affect writes bound for other stores).
 
-  Writes to the local store are also modeled using these replication streams.
-  There's no distinction between local and remote replicas as far as flow
-  control is concerned.
+    Writes to the local store are also modeled using these replication streams.
+    There's no distinction between local and remote replicas as far as flow
+    control is concerned.
 
 - `admissionpb.WorkClass` represents the class of work, defined entirely by its
   priority. Namely, everything less than `admissionpb.NormalPri` is defined to
@@ -238,7 +221,18 @@ bucket is initialized with `16MiB` of flow tokens and the elastic with `8MiB` an
 step through multiple token deductions/returns tagged with different work
 classes.
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/kvflowcontrol/kvflowcontroller/testdata/flow_token_adjustment#L41-L65
+```
+                   regular |  elastic
+                    +16MiB |  +8.0MiB
+======================================
+ -7.0MiB elastic    +16MiB |  +1.0MiB
+ -7.0MiB regular   +9.0MiB |  -6.0MiB (elastic blocked)
+ +6.0MiB elastic   +9.0MiB |      +0B (elastic blocked)
+ -1.0MiB regular   +8.0MiB |  -1.0MiB (elastic blocked)
+ -6.0MiB regular   +2.0MiB |  -7.0MiB (elastic blocked)
+ +6.0MiB regular   +8.0MiB |  -1.0MiB (elastic blocked)
+ -9.0MiB regular   -1.0MiB |   -10MiB (regular and elastic blocked)
+```
 
 ### Write shaping for the raft-group
 
@@ -257,7 +251,47 @@ be admitted at the rate flow tokens are returned for this depleted bucket, i.e.
 case from `pkg/.../kvflowsimulator/testdata/handle_single_slow_stream`
 simulating exactly the above:
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/kvflowcontrol/kvflowsimulator/testdata/handle_single_slow_stream#L1-L82
+```
+# Set up a triply connected handle (to s1, s2, s3) and start issuing writes at
+# 1MiB/s. For two of the streams, return tokens at exactly the rate its being
+# deducted (1MiB/s). For the third stream (s3), we return flow tokens at only
+# 0.5MiB/s.
+timeline
+t=0s         handle=h op=connect    stream=t1/s1   log-position=1/0
+t=0s         handle=h op=connect    stream=t1/s2   log-position=1/0
+t=0s         handle=h op=connect    stream=t1/s3   log-position=1/0
+t=[0s,50s)   handle=h class=regular adjust=-1MiB/s   rate=10/s
+t=[0.2s,50s) handle=h class=regular adjust=+1MiB/s   rate=10/s stream=t1/s1
+t=[0.2s,50s) handle=h class=regular adjust=+1MiB/s   rate=10/s stream=t1/s2
+t=[0.2s,50s) handle=h class=regular adjust=+0.5MiB/s rate=10/s stream=t1/s3
+
+# Observe:
+# - Total available tokens flatlines at 32MiB since flow tokens for s3
+#   eventually depletes and later bounces off of 0MiB. We initially have
+#   3*16MiB = 48MiB worth of flow tokens, and end up at 48MiB-16MiB = 32MiB.
+# - Initially the rate of token deductions (3*1MiB/s = 3MiB/s) is higher than
+#   the token returns (1MiB/s+1MiB/s+0.5MiB/s = 2.5MiB/s), but after we start
+#   shaping it to the slowest stream, they end up matching at (0.5MiB/s*3 =
+#   1.5MiB/s).
+
+ 47.7 ┼╮
+ 46.6 ┤╰─╮
+ 45.6 ┤  ╰─╮
+ 44.5 ┤    ╰╮
+ 43.5 ┤     ╰─╮
+ 42.4 ┤       ╰╮
+ 41.4 ┤        ╰─╮
+ 40.3 ┤          ╰─╮
+ 39.3 ┤            ╰╮
+ 38.2 ┤             ╰─╮
+ 37.2 ┤               ╰─╮
+ 36.1 ┤                 ╰╮
+ 35.1 ┤                  ╰─╮
+ 34.0 ┤                    ╰─╮
+ 33.0 ┤                      ╰╮
+ 31.9 ┤                       ╰───────────────
+            regular_tokens_available (MiB)
+```
 
 To manage the per-leaseholder replica list of underlying replication streams we
 need to deduct/return flow tokens from, we embed a `kvflowcontrol.Handle` in
@@ -270,6 +304,7 @@ Blocking below-raft for IO tokens comes with the hazards listed in
 interface[^21], used exclusively for below-raft IO work. This is
 sometimes interchangeably referred to as "asynchronous", "logical" or "virtual"
 admission. The idea is as follows:
+
 - Below-raft we're told to append log entries to stable storage.
 - Before doing so, we enqueue a "virtual" work item in IO work queue for the
   given store[^23].
@@ -313,6 +348,7 @@ inform origin nodes of said fact in order to return the deducted flow tokens.
 We piggyback such communication over the existing bi-directional raft transport
 streams established between nodes. We also make use of a special-purpose
 outbox for this delivery, `kvflowcontrol.Dispatch`.
+
 - When work gets logically admitted, we record into the outbox the log position
   and priority of the work that got admitted and the node that needs to be
   informed of it.
@@ -363,6 +399,7 @@ we want regular leaseholder writes to automatically be shaped to the follower
 region's write rate). For regular writes, by default, we'll continue to use the
 leaseholder-only IO admission scheme as before, with regular follower writes
 deducting tokens without waiting.
+
 - C1 is coarsely addressed by using flow control for elastic writes, where
   elastic follower work no longer deducts IO tokens without waiting. So we
   don't have the severe priority inversion problem.
@@ -413,9 +450,35 @@ safety (no token leaks, no double returns) and liveness (eventual token
 returns). We rather fail-open preferring to over-admit rather than risking token
 leakage.
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/flow_control_integration.go#L21-L211
+```
+// flow_control_integration.go
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/kvflowcontrol/doc.go#L155-L476
+//   - onRaftTicked is invoked periodically, and refreshes the set of streams
+//     we're connected to. It disconnects streams to inactive followers and/or
+//     reconnects to now-active followers. It also observes raft progress state
+//     for individual replicas, disconnecting from ones we're not actively
+//     replicating to (because they're too far behind on their raft log, in need
+//     of snapshots, or because we're unaware of their committed log indexes).
+//     It also reconnects streams if the raft progress changes.
+//
+//   - onDestroyed is when the replica is destroyed. Like onBecameFollower, we
+//     close the underlying kvflowcontrol.Handle and clear other tracking state.
+```
+
+```
+// kvflowcontrol/doc.go
+
+//   - We could observe node liveness directly, but we're already effectively
+//       doing that when reacting to raft transport streams breaking.
+//   - We could release all flow tokens whenever replicas quiesce (though
+//       risking over-admission).
+//   - We could make the last-updated map more evented, releasing tokens
+//       directly whenever replicas expire, to not need depend on this explicit
+//       ticking that's disabled when quiesced. We could continue ticking (at
+//       low frequency) even when quiesced.
+//   - If we only had expiration based leases/no quiescence, this would not be
+//       a problem.
+```
 
 We'll note that it took many years to harden the proposal quota pool, which
 shares similar leakiness concerns. Hopefully we've applied enough of those
@@ -425,9 +488,38 @@ scrutiny is welcome.
 ### Life of a write being admitted
 
 Here's how the various pieces fit together; they make references to the specific
-interfaces/APIs introduced in the package.
+interfaces/APIs introduced in the package (`kvflowcontrol/doc.go`):
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/kvflowcontrol/doc.go#L13-L151
+```
+// This package contains machinery for "replication admission control" --
+// end-to-end flow control for replication traffic. It's part of the integration
+// layer between KV and admission control.
+//
+// A. The central interfaces/types in this package are:
+//    - kvflowcontrol.Controller, held at the node-level and holds all available
+//      kvflowcontrol.Tokens for each kvflowcontrol.Stream.
+//    - kvflowcontrol.Handle is held at the replica-level (only on those who are
+//      both leaseholder and raft leader), and is used to interface with
+//      the node-level kvflowcontrol.Controller.
+//
+// B. kvflowcontrolpb.RaftAdmissionMeta, embedded within each
+//    kvserverpb.RaftCommand, includes all necessary information for below-raft
+//    IO admission control.
+//
+// C. kvflowcontrolpb.AdmittedRaftLogEntries, piggybacked as part of
+//    kvserverpb.RaftMessageRequest, contains coalesced information about all
+//    raft log entries that were admitted below raft.
+//
+// D. kvflowcontrol.Dispatch is used to dispatch information about admitted raft
+//    log entries (AdmittedRaftLogEntries) to the specific nodes where flow
+//    tokens were deducted and are waiting to be returned.
+//
+// E. We use specific encodings for raft log entries that contain AC data:
+//    EntryEncoding{Standard,Sideloaded}WithAC.
+//
+// F. AdmitRaftEntry, on the kvadmission.Controller is the integration point for
+//    log entries received below raft right as they're being written to storage.
+```
 
 ### Performance overhead
 
@@ -484,7 +576,15 @@ Consider a few cases:
 See `pkg/../admission/testdata/replicated_write_admission` for some of these
 possible test cases, for example:
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/util/admission/testdata/replicated_write_admission/tenant_fairness#L43-L49
+```
+# Observe that each tenant still has one waiting request.
+print
+----
+physical-stats: work-count=4 written-bytes=4B ingested-bytes=0B
+[regular work queue]: len(tenant-heap)=2 top-tenant=t2
+ tenant=t1 weight=1 fifo-threshold=low-pri used=1B
+  [0: pri=normal-pri create-time=1.002µs size=1B range=r1 origin=n1 log-position=4/21]
+```
 
 
 ## Operationalizability
@@ -564,10 +664,22 @@ anyway:
   detect such bugs in cloud environments.
 - `kvadmission_flow_handle_streams_{connected,disconnected}`
 
-![](img/replication_admission_control/metrics-1.png)
-![](img/replication_admission_control/metrics-2.png)
-*Figure 3. Select replication admission control metrics from a roachtest run of
-`admission-control/index-backfill`.*
+<span class="marginnote">
+  Figure 3. Select replication admission control metrics from a roachtest run of
+  admission-control/index-backfill.
+</span>
+{{< gallery hover-effect="none" caption-effect="none" >}}
+  {{< figure src="img/replication-admission-control/metrics-1.png" size="3130x1676"
+      thumb="img/replication-admission-control/metrics-1.png"
+      caption="Figure 3a. Select replication admission control metrics from a roachtest run of admission-control/index-backfill." >}}
+  {{< figure src="img/replication-admission-control/metrics-2.png" size="3130x1676"
+      thumb="img/replication-admission-control/metrics-2.png"
+      caption="Figure 3b. Select replication admission control metrics from a roachtest run of admission-control/index-backfill." >}}
+{{< /gallery >}}
+<span class="collapsed-marginnote">
+  Figure 3. Select replication admission control metrics from a roachtest run of
+  admission-control/index-backfill.
+</span>
 
 The following are a set of metrics around the flow token transport and outbox,
 metrics that I've not really needed to look at. They describe how many flow
@@ -586,8 +698,6 @@ something that's often of interest. If `admission_io_overload` or
 `admission_granter_io_tokens_exhausted_duration_kv` don't readily point to which
 individual stores are IO overloaded and thus looking to shape writes through
 flow tokens, we do log the high-cardinality state. It looks as follows:
-
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/kvflowcontrol/kvflowcontroller/kvflowcontroller_metrics.go#L255-L257
 
 ```
 W230918 14:34:11.468469 437 kv/kvserver/kvflowcontrol/kvflowcontroller/kvflowcontroller_metrics.go:234 ⋮ [-] 994  1 blocked ‹elastic› replication stream(s): ‹t1/s6›
@@ -661,10 +771,18 @@ demo@127.0.0.1:26257/movr> show create table crdb_internal.kv_flow_token_deducti
 ```
 
 These tables can be joined like regular tables, and are used internally in some
-end-to-end integration tests. Like the ones below (click around in the directory
-for other examples):
+end-to-end integration tests:
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/testdata/flow_control_integration/basic#L37-L45
+```
+  kvadmission.flow_controller.elastic_tokens_available   | 24 MiB
+  kvadmission.flow_controller.elastic_tokens_deducted    | 3.0 MiB
+  kvadmission.flow_controller.elastic_tokens_returned    | 3.0 MiB
+  kvadmission.flow_controller.elastic_tokens_unaccounted | 0 B
+  kvadmission.flow_controller.regular_tokens_available   | 48 MiB
+  kvadmission.flow_controller.regular_tokens_deducted    | 3.0 MiB
+  kvadmission.flow_controller.regular_tokens_returned    | 3.0 MiB
+  kvadmission.flow_controller.regular_tokens_unaccounted | 0 B
+```
 
 Since they expose the in-memory state, it's possible to remix them to figure out
 what specific ranges are running low/empty on flow tokens, and based on which
@@ -674,7 +792,28 @@ the `/inspectz` endpoint. Specifically, `/inspectz/kvflowcontroller` and
 is optional and variadic). We've not found a need to use them directly, instead
 mostly using the virtual tables above. The data returned looks like so:
 
-https://github.com/cockroachdb/cockroach/blob/6cbd07ee6fbfb92706e8cdc8c559960b1bc41663/pkg/kv/kvserver/kvflowcontrol/kvflowhandle/testdata/handle_inspect#L65-L138
+```
+{
+  "range_id": "1",
+  "connected_streams": [
+    {
+      "stream": {
+        "tenant_id": { "id": "1" },
+        "store_id": 1,
+        "available_regular_tokens": "16777216",
+        "available_elastic_tokens": "6291456"
+      },
+      "tracked_deductions": [
+        {
+          "priority": -30,
+          "tokens": "1048576",
+          "raft_log_position": { "term": "1", "index": "44" }
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Drawbacks
 

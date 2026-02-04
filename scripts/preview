@@ -3,4 +3,4 @@
 set -euxo pipefail
 
 git submodule update --init --recursive
-hugo server -D
+~/bin/hugo server -D

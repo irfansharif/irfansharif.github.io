@@ -5,11 +5,11 @@ TabName:
 # Irfan Sharif
 
 <tag class="home-page">
-  Learning new things at [Modal Labs](https://modal.com).
-  Previously built an oddly-named database at [Cockroach
+  Drawing pixels at [Arcol](https://arcol.io). Previously built serverless GPU infrastructure at [Modal Labs](https://modal.com);
+  an oddly-named database at [Cockroach
   Labs](https://www.cockroachlabs.com); machine learning infrastructure at
   [LinkedIn](https://www.linkedin.com/); search relevance at
-  [Amazon]((https://www.amazon.com/)); and infrastructure at
+  [Amazon]((https://www.amazon.com/)); and  at
   [Shopify](https://www.shopify.ca/). Studied Electrical & Computer Engineering
   at the [University of Waterloo](https://uwaterloo.ca/), and did [some
   research](https://uwaterloo.ca/artificial-intelligence-institute/).
@@ -28,5 +28,8 @@ ul li a {
 }
 h1 {
   font-variant: small-caps;
+}
+tag {
+  text-wrap: balance;
 }
 </style>

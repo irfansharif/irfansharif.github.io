@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 git submodule update --init --recursive
-hugo -d ../public
+~/bin/hugo -d ../public
 git checkout gh-pages
 rm -r *
 cp -r ../public/* .
